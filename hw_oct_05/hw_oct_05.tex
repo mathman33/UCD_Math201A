@@ -1,0 +1,146 @@
+\documentclass[12pt]{article}
+\textwidth=17cm \oddsidemargin=-0.9cm \evensidemargin=-0.9cm
+\textheight=23.7cm \topmargin=-1.7cm
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{moreverb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{array}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\usepackage{bigints}
+\allowdisplaybreaks
+
+\newcommand{\suchthat}{\, \mid \,}
+\renewcommand{\theenumi}{\alph{enumi}}
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+\setcounter{section}{-1}
+
+\title{\bf HW \#1}
+\author{\bf Sam Fleischer}
+\date{\bf October 5, 2015}
+
+\begin{document}
+{\bf MATH 201A \hfill Applied Analysis \ \ \ \ \ \hfill Fall 2015} 
+
+{\let\newpage\relax\maketitle}
+
+\section*{Problem 1}
+{\it Let $(X,d)$ be a metric space, and let $x, y, w, z \in X$.}
+
+\subsection*{ a)}
+{\it Prove that $d(x, y) \geq |d(x, z) - d(z, y)|$.} \\
+
+By the triangle inequality, $d(x, z) \leq d(x, y) + d(z, y)$ and $d(z, y) \leq d(x, y) + d(x, z)$.  These are equivalent to $d(x, y) \geq d(x, z) - d(z, y)$ and $d(x, y) \geq d(z, y) - d(x, z)$.  Thus, $d(x, y) \geq |d(x, z) - d(z, y)|$. \hfill $\square$
+
+\subsection*{ b)}
+{\it Prove that $d(x, y) + d(z, w) \geq |d(x, z) - d(y, w)|$.} \\
+
+By the triangle inequality, $d(x, z) \leq d(x, w) + d(z, w)$ and $d(x, w) \leq d(x, y) + d(y, w)$.  By substitution, $d(x, y) + d(y, w) + d(w, z) \geq d(x, z)$, or
+\begin{equation}
+	d(x, y) + d(z, w) \geq d(x, z) - d(y, w)
+	\label{1.b.1}
+\end{equation}
+Again by the triangle inequality, $d(y, z) \leq d(x, y) + d(x, z)$ and $d(y, z) \leq d(y, z) + d(w, z)$.  By substitution, $d(x, y) + d(z, w) + d(x, z) \geq d(y, w)$, or
+\begin{equation}
+	d(x, y) + d(z, w) \geq d(y, w) - d(x, z)
+	\label{1.b.2}
+\end{equation}
+Thus, combining (\ref{1.b.1}) and (\ref{1.b.2}),
+\begin{equation}
+	d(x, y) + d(z, w) \geq |d(x, z) - d(y, w)|
+\end{equation}
+
+\subsection*{ c)}
+{\it Let $(x_n)$ and $(y_n)$ be converging sequences in $X$ such that $\lim_{n\rightarrow\infty} x_n = x$ and $\lim_{n\rightarrow\infty} y_n = y$.  Prove that $\lim_{n\rightarrow\infty}d(x_n, y_n) = d(x, y)$.} \\
+
+By the definition of limits, $\forall \frac{\epsilon}{2} > 0$, $\exists N_1, N_2 \in \mathbb{N}$ such that $n > N_1 \implies d(x_n, x) < \frac{\epsilon}{2}$ and $n > N_2 \implies d(y_n, y) < \frac{\epsilon}{2}$.  Then for $n > \max\{N_1, N_2\}$, and by the triangle inequality applied twice, $d(x_n, y_n) \leq d(x_n, x) + d(x, y) + d(y_n, y)$, or
+\begin{equation}
+	d(x_n, y_n) - d(x, y) \leq d(x_n, x) + d(y_n, y) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+	\label{1.c.1}
+\end{equation}
+Again, by the triangle inequality applied twice, $d(x, y) \leq d(x_n, x) + d(x_n, y_n) + d(y_n, y)$, or
+\begin{equation}
+	d(x, y) - d(x_n, y_n) \leq d(x_n, x) + d(y_n, y) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+	\label{1.c.2}
+\end{equation}
+Thus, combining (\ref{1.c.1}) and (\ref{1.c.2}),
+\begin{equation}
+	|d(x_n, y_n) - d(x, y)| < \epsilon
+\end{equation}
+which proves $\lim_{n\rightarrow\infty}d(x_n, y_n) = d(x, y)$. \hfill $\square$
+
+\section*{Problem 2}
+{\it Show that the limit of a convergent sequence in a metric space is unique.  I.e., if, for a sequence $(x_n)$ in a metric space $(X, d)$, and $x, y\in X$, $x_n \rightarrow x$ and $x_n \rightarrow y$, then $x = y$.} \\
+
+Assume $x \neq y$.  Then $d(x, y) > 0$.  By the definition of limits, $\forall \epsilon > 0$, $\exists N_1, N_2 \in \mathbb{N}$ such that $n > N_1 \implies d(x_n, x) < \epsilon$ and $n > N_2 \implies d(x_n, y) < \epsilon$.  Now suppose $\epsilon = \frac{1}{2}d(x, y)$.  Then if $n > \max\{N_1, N_2\}$, then $d(x_n, x) < \frac{1}{2}d(x, y)$ and $d(x_n, y) < \frac{1}{2}d(x, y)$.  Adding these inequalities yields
+\begin{equation}
+	d(x_n, x) + d(x_n, y) < d(x, y)
+\end{equation}
+which contradicts the triangle inequality.  Thus, $x = y$, i.e. the limit of a convergent sequence in a metric space is unique. \hfill $\square$
+
+\section*{Problem 3}
+{\it Let $(a_n)$ be a sequence in $\mathbb{R}$.}
+
+\subsection*{ a)}
+{\it Prove that there exists a subsequence $(a_{n_{k}})_{k=1}^{\infty}$ of $(a_n)$ such that $\lim_{k\rightarrow\infty}a_{n_{k}} = \underline{\lim}\ a_n$.} \\
+
+There are three cases, either $\underline{\lim}\ a_n = \infty$, $-\infty$, or $L \in \mathbb{R}$.  It suffices to show we can construct a suitable subsequence in each case.
+
+\subsubsection*{Case 1}
+
+Suppose $\underline{\lim}\ a_n = -\infty$.  First, choose an arbitrary $a_{n_1}$.  Next, choose $a_{n_2}$ such that $a_{n_2} < -2$.  Then choose $a_{n_3}$ such that $a_{n_3} < -3$, and so on such that $a_{n_k} < -k$.  Then $(a_{n_k})$ diverges to $-\infty$, i.e. $\lim_{k\rightarrow\infty}a_{n_{k}} = -\infty = \underline{\lim}\ a_n$.
+
+\subsubsection*{Case 2}
+
+Suppose $\underline{\lim}\ a_n = \infty$.  First, choose an arbitrary $a_{n_1}$.  Next, choose $a_{n_2}$ such that $a_{n_2} \geq a_{n_1}$.  Then choose $a_{n_3}$ such that $a_{n_3} \geq a_{n_2}$, and so on such that $a_{n_1} \leq a_{n_2} \leq \dots \leq a_{n_k} \leq \dots$.  This sequence $(a_{n_k})$ does not have a real limit, since that would contradict $\underline{\lim}\ a_n = \infty$.  Thus $(a_{n_k})$ diverges to $\infty$, i.e. $\lim_{k\rightarrow\infty}a_{n_{k}} = \infty = \underline{\lim}\ a_n$.
+
+\subsubsection*{Case 3}
+
+Suppose $\underline{\lim}\ a_n = L \in \mathbb{R}$.  First, choose an arbitrary $a_{n_1}$.  Next, choose $a_{n_2}$ such that $|L - a_{n_2}| < \frac{1}{2}$.  Then choose $a_{n_3}$ such that $|L - a_{n_3}| < \frac{1}{3}$ and so on such that $|L - a_{n_k}| < \frac{1}{k}$.  Then by the Archimedian principle, $\forall\epsilon > 0$, $\exists N \in \mathbb{N}$ such that $k > N \implies |L - a_{n_k}| < \epsilon$, i.e. $\lim_{k\rightarrow\infty} a_{n_k} = L = \underline{\lim}\ a_n$.
+
+\hfill $\square$
+
+\subsection*{ b)}
+{\it Prove that $(a_n)$ converges to $a \in \mathbb{R}$ if and only if $\underline{\lim}\ a_n = \overline{\lim}\ a_n = a$.}
+
+\subsubsection*{$\implies$}
+
+Let $(a_n) \rightarrow a$.  Then $\forall\epsilon > 0$, $\exists N \in\mathbb{N}$ such that $n \geq N \implies |a_n - a| < \epsilon$.  Then
+\begin{align*}
+	a - \epsilon < \inf\{a_k | k \geq n\} &< a + \epsilon \\
+	\iff -\epsilon < \inf\{a_k | k \geq n\} - a &< \epsilon \\
+	\iff |\inf\{a_k | k \geq n\} - a| &< \epsilon \\
+	\iff \lim_{n\rightarrow\infty}\left(\inf\{a_k | k \geq n\}\right) &= a \\
+	\iff \underline{\lim}\ a_n &= a
+\end{align*}
+Similarly,
+\begin{align*}
+	a - \epsilon < \sup\{a_k | k \geq n\} &< a + \epsilon \\
+	\iff -\epsilon < \sup\{a_k | k \geq n\} - a &< \epsilon \\
+	\iff |\sup\{a_k | k \geq n\} - a| &< \epsilon \\
+	\iff \lim_{n\rightarrow\infty}\left(\sup\{a_k | k \geq n\}\right) &= a \\
+	\iff \overline{\lim}\ a_n &= a
+\end{align*}
+Thus, $\underline{\lim}\ a_n = \overline{\lim}\ a_n = a$
+
+\subsubsection*{$\Longleftarrow$}
+
+\end{document}
