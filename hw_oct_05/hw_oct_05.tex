@@ -13,6 +13,7 @@
 \usepackage{hyperref}
 \usepackage{textcomp}
 \usepackage{alltt}
+\usepackage{physics}
 \usepackage{mathtools}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
@@ -121,7 +122,7 @@ Suppose $\underline{\lim}\ a_n = L \in \mathbb{R}$.  First, choose an arbitrary 
 \subsection*{ b)}
 {\it Prove that $(a_n)$ converges to $a \in \mathbb{R}$ if and only if $\underline{\lim}\ a_n = \overline{\lim}\ a_n = a$.}
 
-\subsubsection*{$\implies$}
+\subsubsection*{``$\implies$''}
 
 Let $(a_n) \rightarrow a$.  Then $\forall\epsilon > 0$, $\exists N \in\mathbb{N}$ such that $n \geq N \implies |a_n - a| < \epsilon$.  Then
 \begin{align*}
@@ -141,6 +142,90 @@ Similarly,
 \end{align*}
 Thus, $\underline{\lim}\ a_n = \overline{\lim}\ a_n = a$
 
-\subsubsection*{$\Longleftarrow$}
+\subsubsection*{``$\Longleftarrow$''}
+
+Let $\underline{\lim}\ a_n = \overline{\lim}\ a_n = a$.  Then $\forall\epsilon > 0$, $\exists N_1, N_2$ such that $n \geq N_1 \implies |\inf\{a_k | k \geq n\} - a| < \epsilon$ and $n \geq N_2 \implies |\sup\{a_k | k \geq n\} - a| < \epsilon$.  Let $\epsilon > 0$ and $n \geq \max\{N_1, N_2\}$.  For ease, define $K \equiv \{a_k | k \geq n\}$  Since the infimum of a set is always less than or equal to the supremum of that set, we can write
+\begin{align*}
+	-\epsilon < \inf K - a &\leq \sup K - a < \epsilon \\
+	\iff -\epsilon + a < \inf K &\leq \sup K < \epsilon + a
+\end{align*}
+By the definition of infimum and supremum,
+\begin{align*}
+	-\epsilon + a < \inf K \leq\ &a_n \leq \sup K < \epsilon + a \\
+	\implies \epsilon + a <\ &a_n < \epsilon + a \\
+	\iff |a_n - a| < \epsilon
+\end{align*}
+Thus, $(a_n) \rightarrow a$. \\
+
+\noindent Thus, $(a_n) \rightarrow a \iff \underline{\lim}\ a_n = \overline{\lim}\ a_n = a$. \hfill $\square$
+
+\section*{Problem 4}
+{\it Let $(X,d)$ be a metric space.  Prove the statements in Proposition 1.37 in the textbook:}
+
+\subsection*{ a)}
+{\it The empty set $\emptyset$ and $X$ itself are both open and closed sets in $(X, d)$.} \\
+
+It is vacuously true that the empty set $\emptyset$ is open.  Thus $X$ is closed.  Let $x \in X$ and choose $r \in \mathbb{R}$.  Then $y\in B_r(x) \implies y \in X$ since $B_r(x) \subseteq X$.  Thus $X$ is open and the empty set $\emptyset$ is closed. \hfill $\square$
+
+\subsection*{ b)}
+{\it The intersection of a finite collection of open sets is open.} \\
+
+Let $A = \bigcap\limits_{k=1}^{n} A_k$ be the intersection of a finite collection of open sets, and let $x \in A$.  Then $\exists r_1, \dots r_n$ such that $y \in B_{r_i}(x) \implies y \in A_i$ for $i = 1, \dots, n$.  Then let $r = \min\{r_1, \dots r_n\}$.  Then $y \in B_r(x) \implies y \in B_{r_i}(x)$ for $i = 1, \dots n$.  Thus $y \in A$.  Thus the intersection of a finite collection of open sets is open. \hfill $\square$
+
+\subsection*{ c)}
+{\it The union of an arbitrary collection of open sets is open.} \\
+
+Let $A = \bigcup\limits_{i\in I} A_i$ be the union of an arbitrary collection of open sets, and let $x \in A$.  Then $x \in A_k$ for some $k \in I$.  Since $A_k$ is open, $\exists r$ such that $y \in B_r(x) \implies y \in A_k$.  But since $A_k \subseteq A$, $y \in A$.  Thus the union of an arbitrary collection of open sets is open. \hfill $\square$
+
+\subsection*{ d)}
+{\it The union of a finite collection of closed sets is closed.} \\
+
+Let $A = \bigcup\limits_{k=1}^{n} A_k$ be the union of a finite collection of closed sets.  By De Morgan's Law in Set Theory, $A^C = \bigcap\limits_{k=1}^{n} A_k^C$.  $A^C$ is open since each $A_k^C$ is open and the intersection of a finite collection of open sets is open.  Since $A_C$ is open, $A$ is closed.  Thus the union of a finite collection of closed sets is closed. \hfill $\square$
+
+\subsection*{ e)}
+{\it The intersection of an arbitrary collection of closed sets is closed.} \\
+
+Let $A = \bigcap\limits_{i\in I} A_i$ be the intersection of an arbitrary collection of closed sets.  By De Morgan's Law in Set Theory, $A^C = \bigcup\limits_{i\in I} A_i^C$.  $A^C$ is open since each $A_i^C$ is open and the union of an arbitrary collection of open sets is open.  Since $A^C$ is open, $A$ is closed.  Thus the intersection of an arbitrary collection of closed sets is closed. \hfill $\square$
+
+\section*{Problem 5}
+{\it Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces, $f: X \rightarrow Y$ a ontinuous function, and $B \subset Y$ a closed set.  Prove that $A$ defined by}
+\begin{align*}
+	A = \{x \in X | f(x) \in B\}
+\end{align*}
+{\it is a closed set.} \\
+
+Let $a \in A^C$.  Then $f(a) \notin B$.  Then $f(a) \in B^C$.  Since $B$ is closed, $B^C$ is open, and thus $\exists \epsilon$ such that $y \in B_\epsilon(f(a)) \implies y \in B^C$.  By the definition of continuous functions, $\exists \delta$ such that $x \in B_\delta(a) \implies f(x) \in B_\epsilon(f(a))$, which then implies $f(x) \in B^C$.  Thus, $f(x) \notin B \implies x \notin A \implies x \in A^C$.  Thus $A^C$ is open, which implies $A$ is closed. \hfill $\square$
+
+\section*{Problem 6}
+{\it Let X be a Banach space and let $(x_n)$ be a sequence in $X$ such that $\sum_{n=1}^\infty \norm{x_n} = 1$.}
+
+\subsection*{ a)}
+{\it Prove that the series $\sum_{n=1}^\infty x_n$ converges to a limit $x \in X$.} \\
+
+Convergence of a series is equivalent to convergence of the sequence of partial sums, so since $\sum_{n=1}^\infty \norm{x_n} = 1$, then $\lim_{k\rightarrow\infty}\sum_{n=1}^k \norm{x_n} = 1$.  The sequence is Cauchy since the real numbers are complete, so $\forall\epsilon>0$, $\exists N$ such that $a \geq b \geq N \implies \left|\sum_{n=1}^a \norm{x_n} - \sum_{n=1}^b \norm{x_n}\right| < \epsilon$, or $\left|\sum_{n=b+1}^a \norm{x_n}\right| < \epsilon$.  Since the norm is always positive, the sum of norms is positive.  Thus, it can also be written without the absolute value: $\sum_{n=b+1}^a \norm{x_n} < \epsilon$.
+
+Now let $\epsilon > 0$ and $a \geq b \geq N$.  Then
+\begin{align*}
+	\norm{\sum_{n=1}^{a} x_n - \sum_{n-1}^{b} x_n} &= \norm{\sum_{n=b+1}^a x_n} \\
+	&\leq \sum_{n=b+1}^a \norm{x_n}\ \ \text{(by the triangle inequality of normed metric spaces)} \\
+	&< \epsilon
+\end{align*}
+Thus $\qty(\sum_{n=1}^k x_n)_k$ is a Cauchy sequence in $X$, and since all Banach spaces are complete, $\qty(\sum_{n=1}^k x_n)_k$ converges to a limit $x \in X$.  Any sequence of partial sums can be written as a series, and so $\sum_{n=1}^\infty x_n$ converges to a limit $x \in X$. \hfill $\square$
+
+\subsection*{ b)}
+{\it Prove that for any subsequence $(x_{n_k})_{k=1}^\infty$ of $(x_n)$, the series $\sum_{k=1}^\infty x_{n_k}$ also converges and that the norm of its limit is bounded by $1$.} \\
+
+By part a), $\sum_{n=1}^\infty x_n$ is convergent, and therefore Cauchy.  Thus $\forall\epsilon>0$, $\exists N$ such that $a \geq b \geq N \implies \left|\sum_{n=b+1}^{a} x_n\right| < \epsilon$.  Then let $\epsilon>0$ and pick $c,d\in\mathbb{N}$ such that $n_c \geq n_d \geq N$.  Then $\left|\sum_{k=d+1}^{c} x_{n_k}\right| < \epsilon$.  Thus, the subsequence $(x_{n_k})_{k=1}^\infty$ is a Cauchy sequence in $X$, and since all Banach spaces are complete, $(x_{n_k})_{k=1}^\infty$ is convergent.
+
+Now consider the norm of the limit of partial sums of the subsequence: $\norm{\lim_{l\rightarrow\infty}\sum_{k=1}^{l} x_{n_k}}$.  By the triangle inequality of normed metric spaces,
+\begin{align*}
+	\norm{\lim_{l\rightarrow\infty}\sum_{k=1}^{l} x_{n_k}} \leq \lim_{l\rightarrow\infty}\sum_{k=1}^{l}\norm{x_{n_k}}
+\end{align*}
+Since all norms are positive
+\begin{align*}
+	\lim_{l\rightarrow\infty}\sum_{k=1}^{l}\norm{x_{n_k}} &\leq \lim_{k\rightarrow\infty}\sum_{n=1}^k \norm{x_{n_k}} \\
+	&= \sum_{n=1}^\infty \norm{x_{n_k}} = 1
+\end{align*}
+Thus, the norm of the limit of the subseries is bounded by $1$. \hfill $\square$
 
 \end{document}
