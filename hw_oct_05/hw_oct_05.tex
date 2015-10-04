@@ -107,15 +107,15 @@ There are three cases, either $\underline{\lim}\ a_n = \infty$, $-\infty$, or $L
 
 \subsubsection*{Case 1}
 
-Suppose $\underline{\lim}\ a_n = -\infty$.  First, choose an arbitrary $a_{n_1}$.  Next, choose $a_{n_2}$ such that $a_{n_2} < -2$.  Then choose $a_{n_3}$ such that $a_{n_3} < -3$, and so on such that $a_{n_k} < -k$.  Then $(a_{n_k})$ diverges to $-\infty$, i.e. $\lim_{k\rightarrow\infty}a_{n_{k}} = -\infty = \underline{\lim}\ a_n$.
+Suppose $\underline{\lim}\ a_n = -\infty$.  First, choose an arbitrary $a_{n_1}$.  Next, choose $a_{n_2}$ ($n_2 > n_1$) such that $a_{n_2} < -2$.  Then choose $a_{n_3}$ ($n_3 > n_2$) such that $a_{n_3} < -3$, and so on such that $a_{n_k} < -k$.  Then $(a_{n_k})$ diverges to $-\infty$, i.e. $\lim_{k\rightarrow\infty}a_{n_{k}} = -\infty = \underline{\lim}\ a_n$.
 
 \subsubsection*{Case 2}
 
-Suppose $\underline{\lim}\ a_n = \infty$.  First, choose an arbitrary $a_{n_1}$.  Next, choose $a_{n_2}$ such that $a_{n_2} \geq a_{n_1}$.  Then choose $a_{n_3}$ such that $a_{n_3} \geq a_{n_2}$, and so on such that $a_{n_1} \leq a_{n_2} \leq \dots \leq a_{n_k} \leq \dots$.  This sequence $(a_{n_k})$ does not have a real limit, since that would contradict $\underline{\lim}\ a_n = \infty$.  Thus $(a_{n_k})$ diverges to $\infty$, i.e. $\lim_{k\rightarrow\infty}a_{n_{k}} = \infty = \underline{\lim}\ a_n$.
+Suppose $\underline{\lim}\ a_n = \infty$.  First, choose an arbitrary $a_{n_1}$.  Next, choose $a_{n_2}$ ($n_2 > n_1$) such that $a_{n_2} \geq a_{n_1}$.  Then choose $a_{n_3}$ ($n_3 > n_2$) such that $a_{n_3} \geq a_{n_2}$, and so on such that $a_{n_1} \leq a_{n_2} \leq \dots \leq a_{n_k} \leq \dots$.  This sequence $(a_{n_k})$ does not have a real limit, since that would contradict $\underline{\lim}\ a_n = \infty$.  Thus $(a_{n_k})$ diverges to $\infty$, i.e. $\lim_{k\rightarrow\infty}a_{n_{k}} = \infty = \underline{\lim}\ a_n$.
 
 \subsubsection*{Case 3}
 
-Suppose $\underline{\lim}\ a_n = L \in \mathbb{R}$.  First, choose an arbitrary $a_{n_1}$.  Next, choose $a_{n_2}$ such that $|L - a_{n_2}| < \frac{1}{2}$.  Then choose $a_{n_3}$ such that $|L - a_{n_3}| < \frac{1}{3}$ and so on such that $|L - a_{n_k}| < \frac{1}{k}$.  Then by the Archimedian principle, $\forall\epsilon > 0$, $\exists N \in \mathbb{N}$ such that $k > N \implies |L - a_{n_k}| < \epsilon$, i.e. $\lim_{k\rightarrow\infty} a_{n_k} = L = \underline{\lim}\ a_n$.
+Suppose $\underline{\lim}\ a_n = L \in \mathbb{R}$.  First, choose an arbitrary $a_{n_1}$.  Next, choose $a_{n_2}$ ($n_2 > n_1$) such that $|L - a_{n_2}| < \frac{1}{2}$.  Then choose $a_{n_3}$ ($n_3 > n_2$) such that $|L - a_{n_3}| < \frac{1}{3}$ and so on such that $|L - a_{n_k}| < \frac{1}{k}$.  Then by the Archimedian principle, $\forall\epsilon > 0$, $\exists N \in \mathbb{N}$ such that $k > N \implies |L - a_{n_k}| < \epsilon$, i.e. $\lim_{k\rightarrow\infty} a_{n_k} = L = \underline{\lim}\ a_n$.
 
 \hfill $\square$
 
@@ -188,7 +188,7 @@ Let $A = \bigcup\limits_{k=1}^{n} A_k$ be the union of a finite collection of cl
 Let $A = \bigcap\limits_{i\in I} A_i$ be the intersection of an arbitrary collection of closed sets.  By De Morgan's Law in Set Theory, $A^C = \bigcup\limits_{i\in I} A_i^C$.  $A^C$ is open since each $A_i^C$ is open and the union of an arbitrary collection of open sets is open.  Since $A^C$ is open, $A$ is closed.  Thus the intersection of an arbitrary collection of closed sets is closed. \hfill $\square$
 
 \section*{Problem 5}
-{\it Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces, $f: X \rightarrow Y$ a ontinuous function, and $B \subset Y$ a closed set.  Prove that $A$ defined by}
+{\it Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces, $f: X \rightarrow Y$ a continuous function, and $B \subset Y$ a closed set.  Prove that $A$ defined by}
 \begin{align*}
 	A = \{x \in X | f(x) \in B\}
 \end{align*}
@@ -206,7 +206,7 @@ Convergence of a series is equivalent to convergence of the sequence of partial 
 
 Now let $\epsilon > 0$ and $a \geq b \geq N$.  Then
 \begin{align*}
-	\norm{\sum_{n=1}^{a} x_n - \sum_{n-1}^{b} x_n} &= \norm{\sum_{n=b+1}^a x_n} \\
+	\norm{\sum_{n=1}^{a} x_n - \sum_{n=1}^{b} x_n} &= \norm{\sum_{n=b+1}^a x_n} \\
 	&\leq \sum_{n=b+1}^a \norm{x_n}\ \ \text{(by the triangle inequality of normed metric spaces)} \\
 	&< \epsilon
 \end{align*}
@@ -215,7 +215,7 @@ Thus $\qty(\sum_{n=1}^k x_n)_k$ is a Cauchy sequence in $X$, and since all Banac
 \subsection*{ b)}
 {\it Prove that for any subsequence $(x_{n_k})_{k=1}^\infty$ of $(x_n)$, the series $\sum_{k=1}^\infty x_{n_k}$ also converges and that the norm of its limit is bounded by $1$.} \\
 
-By part a), $\sum_{n=1}^\infty x_n$ is convergent, and therefore Cauchy.  Thus $\forall\epsilon>0$, $\exists N$ such that $a \geq b \geq N \implies \left|\sum_{n=b+1}^{a} x_n\right| < \epsilon$.  Then let $\epsilon>0$ and pick $c,d\in\mathbb{N}$ such that $n_c \geq n_d \geq N$.  Then $\left|\sum_{k=d+1}^{c} x_{n_k}\right| < \epsilon$.  Thus, the subsequence $(x_{n_k})_{k=1}^\infty$ is a Cauchy sequence in $X$, and since all Banach spaces are complete, $(x_{n_k})_{k=1}^\infty$ is convergent.
+By part a), $\sum_{n=1}^\infty x_n$ is convergent, and therefore Cauchy.  Thus $\forall\epsilon>0$, $\exists N$ such that $a \geq b \geq N \implies \norm{\sum_{n=b+1}^{a} x_n} < \epsilon$.  Then let $\epsilon>0$ and pick $c,d\in\mathbb{N}$ such that $n_c \geq n_d \geq N$.  Then $\norm{\sum_{k=d+1}^{c} x_{n_k}} < \epsilon$.  Thus, the subsequence $(x_{n_k})_{k=1}^\infty$ is a Cauchy sequence in $X$, and since all Banach spaces are complete, $(x_{n_k})_{k=1}^\infty$ is convergent.
 
 Now consider the norm of the limit of partial sums of the subsequence: $\norm{\lim_{l\rightarrow\infty}\sum_{k=1}^{l} x_{n_k}}$.  By the triangle inequality of normed metric spaces,
 \begin{align*}
