@@ -48,24 +48,35 @@
 
 \noindent ``$\implies$'' \\
 
-Let $X$ be compact.  Then choose $C = \bigcup_{x\in X}B_{\epsilon}(x)$ as an open cover of $X$ for any $0 < \epsilon < 1$.  Since $X$ is compact, there exists a finite subcover of $C$, say $\tilde{C} = \bigcup_{i = 1}^{n}B_{\epsilon}(x_i)$.  However, if $x \in B_{\epsilon}(x_i)$, then $d(x, x_i) < \epsilon < 1$.  This means $d(x, x_i) = 0$, which implies $x = x_i$.  Thus $B_{\epsilon}(x_i) = \{x_i\}$ for $i = 1, \dots n$.  Then $\tilde{C} = \bigcup_{i = 1}^{n}\{x_i\}$.  Since this covers $X$, $X \subset \tilde{C}$.  But $\tilde{C}$ is finite, and so $X$ is finite. \\
+Let $X$ be compact.  Then choose $C = \{B_{\epsilon}(x) | x\in X\}$ as an open cover of $X$ for any $0 < \epsilon < 1$.  Since $X$ is compact, there exists a finite subcover of $C$, say $\tilde{C} = \{B_{\epsilon}(x_i) | i=1\dots n\}$.  However, if $x \in B_{\epsilon}(x_i)$, then $d(x, x_i) < \epsilon < 1$.  This means $d(x, x_i) = 0$, which implies $x = x_i$.  Thus $B_{\epsilon}(x_i) = \{x_i\}$ for $i = 1, \dots n$.  Then $\tilde{C} = \{x_1,\dots,n_n\}$.  Since this covers $X$, $X \subset \tilde{C}$.  But $\tilde{C}$ is finite, and so $X$ is finite. \\
 
 \noindent ``$\Longleftarrow$'' \\
 
-Let $X = \{x_1, \dots, x_n\}$ be finite, and let $C = \bigcup_{i\in I}C_i$ be an open cover of $X$.  Then $\forall x_k \in X$, there is at least one $i$ such that $x_k \in C_i$.  Choose one, say $C_k$.  Then $X \subset \bigcup_{k=1}^{n}C_k$, which is a finite open subcover.  Thus $X$ is compact. \hfill $\square$
+Let $X = \{x_1, \dots, x_n\}$ be finite, and let $C = \{C_i|i\in I\}$ (where $I$ is an arbitrary indexing set) be an open cover of $X$.  Then $\forall x \in X$, there is at least one $i \in I$ such that $x \in C_i$.  Choose one $i$ for each $x \in X$, say $C_{i(x)}$.  Then $X \subset \bigcup_{x\in X}C_{i(x)}$, and $\{C_{i(x)}| x \in X\}$ is a finite open subcover.  Thus $X$ is compact. \hfill $\square$
 
 \section*{Problem 2}
 {\it Give an example of a continuous function $f : \mathbb{R} \rightarrow \mathbb{R}$ such that there is a non-empty closed set $F \subset \mathbb{R}$, with $f(F)$ open.} \\
 
 \noindent\textbf{Trivial solution}: Let $f(x) = x$ and let $F = \mathbb{R}$.  Then $F$ is a non-empty closed set since $F^C = \emptyset$ is open.  Then $f(F) = \mathbb{R}$ is open.
 
+% The following works but is way overcomplicated in comparison to the my new non-trivial solution.
+% \noindent\textbf{Non-trivial solution}: Define $f$ as
+% \begin{align*}
+%     f(x) &= \left\{\begin{array}{lcl}
+%         \dfrac{3}{2^{n+2}}x + \dfrac{2^{n+1} - 3n - 2}{2^{n+1}} &,& x \in [2n, 2n+1], n = 0, 1, \dots \\[.3cm]
+%         \dfrac{-1}{2^{n+2}}x + \dfrac{2^{n+1} + n}{2^{n+1}} &,& x \in [2n+1, 2(n+1)], n = 0, 1, \dots
+%     \end{array}\right. \\
+%     f(-x) &= -f(x)
+% \end{align*}
+% and let $F = \bigcup_{n=0}^{\infty}\qty([2n,2n+1]\cup[-(2n+1),-2n])$.  Then $f$ is continuous on $\mathbb{R}$, $F$ is closed (since its complement is a union of open sets), and $f(F) = (-1, 1)$, which is an open set.
+
 \noindent\textbf{Non-trivial solution}: Define $f$ as
 \begin{align*}
-    f(x) &= \left\{\begin{array}{lcl}
-        \dfrac{3}{2^{n+2}}x + \dfrac{2^{n+1} - 3n - 2}{2^{n+1}} &,& x \in [2n, 2n+1], n = 0, 1, \dots \\[.3cm]
-        \dfrac{-1}{2^{n+2}}x + \dfrac{2^{n+1} + n}{2^{n+1}} &,& x \in [2n+1, 2(n+1)], n = 0, 1, \dots
-    \end{array}\right. \\
-    f(-x) &= -f(x)
+  f(x) &= \left\{\begin{array}{lcl}
+    \dfrac{1}{2^{n+1}}x + \dfrac{2^n - n - 1}{2^n} &,& x \in [2n, 2n+1], n = 0, 1, \dots \\[.3cm]
+    \dfrac{1}{2^{n+1}} &,& x \in [2n + 1, 2(n+1)], n = 0, 1, \dots
+  \end{array}\right. \\
+  f(-x) &= -f(x)
 \end{align*}
 and let $F = \bigcup_{n=0}^{\infty}\qty([2n,2n+1]\cup[-(2n+1),-2n])$.  Then $f$ is continuous on $\mathbb{R}$, $F$ is closed (since its complement is a union of open sets), and $f(F) = (-1, 1)$, which is an open set.
 
@@ -85,37 +96,89 @@ Let $d(K, F) > 0$.  Then $\forall k\in K$ and $f\in F$, $d(k, f) > 0$ which impl
 
 Let $d(K, F) \not> 0$.  Then, since $d(K,F) \not< 0$, then $d(K,F) = 0$.  Then $\forall \epsilon > 0$, $\exists k \in K, f \in F$ such that $d(k, f) < \epsilon$.  Now construct sequences $(k_n) \in K$ and $(f_n) \in F$ such that $d(k_n, f_n) < \frac{1}{n}$.  Since $K$ is compact, there is a subsequence $(k_{n_l})$ that converges to some limit $\tilde{k} \in K$.  By the triangle inequality,
 \begin{align*}
-    d(f_{n_l}, \tilde{k}) &\leq d(f_{n_l}, k_{n_l}) + d(k_{n_l}, \tilde{k})
+  d(f_{n_l}, \tilde{k}) &\leq d(f_{n_l}, k_{n_l}) + d(k_{n_l}, \tilde{k})
 \end{align*}
-Since $\lim_{l\rightarrow\infty} d(f_{n_l}, k_{n_l}) = 0$ and $\lim_{l\rightarrow\infty} d(k_{n_l}, \tilde{k}) = 0$, then $\lim_{l\rightarrow\infty} d(f_{n_l}, \tilde{k}) = 0$, which shows the subsequence $(f_{n_l})$ converges to $k$.  However, $f$ is closed, which means every convergent sequence in $F$ converges to a limit in $F$, and since limits are unique, $k \in F$.  Thus $K \cap F \neq \emptyset$. \hfill $\square$
+Since $\lim_{l\rightarrow\infty} d(f_{n_l}, k_{n_l}) = 0$ and $\lim_{l\rightarrow\infty} d(k_{n_l}, \tilde{k}) = 0$, then $\lim_{l\rightarrow\infty} d(f_{n_l}, \tilde{k}) = 0$, which shows the subsequence $(f_{n_l})$ converges to $k$.  However, $F∫$ is closed, which means every convergent sequence in $F$ converges to a limit in $F$, and since limits are unique, $\tilde{k} \in F$.  Thus $\tilde{k} \in K \cap F \implies K \cap F \neq \emptyset$. \hfill $\square$
 
 \section*{Problem 4}
 {\it Consider the space $X$ of all bounded real-valued functions defined on the interval $[0,1] \subset \mathbb{R}$.  For all $f,g \in X$, define $d(f,g)$ by}
 \begin{equation}
 	\label{problem_4_definition}
-	d(f, g) = \sup\{|f(x) - g(x)| | x \in [0,1]\}.
+	d(f, g) = \sup\{|f(x) - g(x)|\ |\ x \in [0,1]\}.
 \end{equation}
 
 \subsection*{ a)}
 {\it Prove that $d$ is a metric on $X$.}
 
+\begin{align*}
+  \forall f \in X,\ \ \ d(f,f) &= \sup\{\abs{f(x) - f(x)}\ |\ x \in [0,1]\} = \sup\{0\} = 0
+\end{align*}
+
+\begin{align*}
+  \forall f,g \in X,\ \ \ d(f,g) = \sup\{\abs{f(x) - g(x)}\ | x \in [0,1]\} \geq 0\ \ \ \ \text{since $\abs{a} \geq 0$ for any $a$.}
+\end{align*}
+
+Since $\abs{f(x) - g(x)} = \abs{g(x) - f(x)}$,
+\begin{align*}
+  \forall f,g \in X,\ \ \ d(f,g) &= \sup\{\abs{f(x) - g(x)} | x \in [0,1]\} \\
+  &= \sup\{\abs{g(x) - f(x)} | x \in [0,1]\}  = d(g,f)
+\end{align*}
+
+\begin{align*}
+  \forall f,g,h \in X,\ \ \ d(f,g) &= \sup\{\abs{f(x) - g(x)}\ | x \in [0,1]\} \\
+  &= \sup\{\abs{f(x) - h(x) + h(x) - g(x)}\ | x \in [0,1]\} \\
+  &\leq \sup\{\abs{f(x) - h(x)} + \abs{h(x) - g(x)}\ | x \in [0,1]\} \\
+  &\hphantom{mmmmm} \text{(by the triangle inequality in $\mathbb{R}$)}\\
+  &= \sup\{\abs{f(x) - h(x)}\ | x \in [0,1]\} + \sup\{\abs{h(x) - g(x)}\ | x \in [0,1]\} \\
+  &\hphantom{mmmmm} \text{(by properties of supremum)} \\
+  &= d(f, h) + d(g, h)
+\end{align*}
+Thus $d$ is a metric on $X$. \hfill $\square$
+
 \subsection*{ b)}
-{\it Prove that the metric space $(X, d)$ is not separable.}
+{\it Prove that the metric space $(X, d)$ is not separable.} \\
+
+\noindent\textbf{Solution 1}: Consider the set $A = \{f_{\alpha}\}_{\alpha \in [0,1]}$ where
+\begin{align*}
+  f_{\alpha}(x) = \left\{\begin{array}{lcl}
+    0 &,& x \neq \alpha \\
+    1 &,& x = \alpha
+  \end{array}\right.
+\end{align*}
+Then $\forall \alpha,\beta \in [0,1]$ with $\alpha \neq \beta$, $d(f_{\alpha}, f_{\beta}) = 1$.  Now consider a countable subset $S \subset X$ and assume $S$ is dense.  Then $\forall f \in X$, $\exists (s_n)_n \in S$ such that $s_n \rightarrow f$, i.e.~$\forall \epsilon > 0 \exists s\in S$ such that $d(s, f) < \epsilon$.  In particular, $\forall a \in A$, $\exists (s_n)_n \in S$ such that $s_n \rightarrow a$, i.e.~$\forall a \in A$, $\exists s \in S$ (dependent on $a$) such that $d(s, a) < \epsilon$.  However, if we pick any $\epsilon < 1/2$, then for each $a \in A$ we must choose a different $s \in S$ to satisfy $d(s, a) < \epsilon$.  This implies there is a one-to-one correspondence between $A$ and $S$, which is a contradiction since $A$ is countable.  Thus there is no countable dense subset of $X$, proving $X$ is not separable. \hfill $\square$ \\
+
+% The following doesn't work since $f$ is not necessarily bounded...
+% \noindent\textbf{Solution 2}: Let $A = \{a_i(x)\}$ be a countable set of functions in $X$.  Then choose an enumeration of the rational numbers between $0$ and $1$, say $\{q_0, q_1, \dots\}$.  Then let $f(x)$ be defined as
+% \begin{align*}
+%   f(x) = \left\{\begin{array}{lcl}
+%     x &,& x \in [0,1]\setminus\mathbb{Q} \\
+%     a_i(q_i) + \epsilon &,& x \in [0,1]\cap\mathbb{Q}
+%   \end{array}\right.
+% \end{align*}
+% for some $\epsilon > 0$.  Then $\forall a_i \in A$, $d(a_i, f) \geq \epsilon$.  Then there is no sequence $(a_n) \in A$ such that $(a_n) \rightarrow f$.  Thus $A$ is not dense in $X$.  Thus any countable subset of $X$ is not dense in $X$, proving $X$ is not separable. \hfill $\square$
 
 \section*{Problem 5}
 {\it Let $(X,d)$ be a metric space and, for each $i = 1, \dots, n$, let $K_i \subset X$ be compact.}
 
 \subsection*{ a)}
-{\it Prove that $\bigcap_{i=1}^{n}K_i$ is compact.}
+{\it Prove that $\bigcap_{i=1}^{n}K_i$ is compact.} \\
+
+Let $(k_n)_n$ be a sequence in $\bigcap_{i=1}^n K_i$.  Then $(k_n)_n$ is a sequence in $K_i$ for each $i = 1, \dots, n$.  Since each $K_i$ is compact, then each $K_i$ is sequentially compact, and thus there is a subsequence $(k_{n_\ell})_\ell$ that converges to a limit $\tilde{k} \in K_i$ for each $i = 1, \dots, n$.  Then $\tilde{k} \in \bigcap_{i=1}^n K_i$.  Thus any sequence in $\bigcap_{i=1}^n K_i$ has a convergent subsequence that converges to a limit in $\bigcap_{i=1}^n K_i$.  Thus $\bigcap_{i=1}^n K_i$ is sequentially compact, and therefore compact. \hfill $\square$
 
 \subsection*{ b)}
-{\it Prove that $\bigcup_{i=1}^{n}K_i$ is compact.}
+{\it Prove that $\bigcup_{i=1}^{n}K_i$ is compact.} \\
+
+Since each $K_i$ is compact, each $K_i$ is sequentially compact.  Choose any sequence in $\bigcup_{i=1}^n K_i$.  There must be infinitely many points in at least one $K_i$, say $K_\ell$.  Then choose the subsequence of $(k_{n_m})_m$ such that each $k_{n_m} \in K_\ell$.  Since $K_\ell$ is sequentially compact, there is a convergent subsequence $(k_{n_{m_p}})_p$ in $K_\ell$ that converges to a limit $\tilde{k} \in K_\ell$.  Thus the original sequence $(k_n)_n$ has a convergent subsequence $(k_{n_{m_p}})_p$ that converges to $\tilde{k} \in K_\ell \subset \bigcup_{i=1}^{n}K_i$.  Thus $\bigcup_{i=1}^{n}K_i$ is sequentially compact, and therefore compact. \hfill $\square$
 
 \subsection*{ c)}
-{\it Are the union and intersection of an arbitrary family of compact subsets also compact?  Why (not)?}
+{\it Are the union and intersection of an arbitrary family of compact subsets also compact?  Why (not)?} \\
+
+The union of an arbitrary family of compact subsets is not necessarily compact.  Consider $X = \mathbb{R}$ and $K_i = [-i, i]$ for $i\in \mathbb{N}$.  Then $\bigcup_{i\in\mathbb{N}}K_i = \mathbb{R}$, which is not compact.  However, the intersection of an arbitrary family of compact subsets is compact.  The following is a generalization of the proof given in part a). \\
+
+Let $(k_n)_n$ be a sequence in $\bigcap_{i\in I} K_i$ where $I$ is an indexing set.  Then $(k_n)_n$ is a sequence in $K_i$ for every $i\in I$.  Since each $K_i$ is compact, then each $K_i$ is sequentially compact, and thus there is a subsequence $(k_{n_\ell})_\ell$ that converges to a limit $\tilde{k}$, where $\tilde{k} \in K_i$ for every $i\in I$.  Then $\tilde{k} \in \bigcap_{i\in I} K_i$.  Thus any sequence in $\bigcap_{i\in I} K_i$ has a convergent subsequence that converges to a limit in $\bigcap_{i\in I} K_i$.  Thus $\bigcap_{i\in I} K_i$ is sequentially compact, and therefore compact. \hfill $\square$
 
 \section*{Problem 6}
-{\it Let $f \in C([0,1])$ be such that $\in_0^1x^nf(x)dx = 0$ for all integers $n \geq 0$.  Prove that $f(x) = 0$, for all $x \in [0,1]$.}
+{\it Let $f \in C([0,1])$ be such that $\int_0^1x^nf(x)dx = 0$ for all integers $n \geq 0$.  Prove that $f(x) = 0$, for all $x \in [0,1]$.}
 
 \section*{Problem 7}
 {\it Let $(p_n)$ be a sequence of real-valued polynomial functions defined on the interval $[0,1]$ with bounded degree, i.e., there exists $0 \leq D \in \mathbb{Z}$, and sequences of real numbers $(a_n(k))_{n=1}^{\infty}$, $k = 0, \dots, D$, such that}
