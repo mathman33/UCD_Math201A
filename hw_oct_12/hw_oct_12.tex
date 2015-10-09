@@ -195,6 +195,12 @@ Let $(k_n)_n$ be a sequence in $\bigcap_{i\in I} K_i$ where $I$ is an indexing s
 \begin{equation}
 	\label{problem_7b_condition}
 	\overline{\lim_n} \max_{0\leq k \leq D_n} |a_n(k)| = 1
-\end{equation}
+\end{equation} \\
+
+Let $\{q_i\}_i \in (0,1)\cap\mathbb{Q}$ be an enumeration of the rational numbers between $0$ and $1$.  Then define the sequence $\{p_n\}_n$ as
+\begin{equation*}
+  p_n(x) = x(x - 1)\prod\limits_{i=1}^{n}(x - q_i)
+\end{equation*}
+Then $\norm{p_n}_\infty \rightarrow 0$ since the number of roots between $0$ and $1$ approaches infinity, there are no roots outside of the interval $[0,1]$, and polynomials are smooth.  Also, the leading coefficient is always equal to $1$, and all other coefficients are less than $1$ since each $q_i < 1$.  Thus $\overline{\lim\limits_n}\max\limits_{0\leq k\leq D_n} |a_n(k)| = 1$, as required. \hfill $\square$
 
 \end{document}
