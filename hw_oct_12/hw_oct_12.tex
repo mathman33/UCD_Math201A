@@ -59,17 +59,6 @@ Let $X = \{x_1, \dots, x_n\}$ be finite, and let $C = \{C_i|i\in I\}$ (where $I$
 
 \noindent\textbf{Trivial solution}: Let $f(x) = x$ and let $F = \mathbb{R}$.  Then $F$ is a non-empty closed set since $F^C = \emptyset$ is open.  Then $f(F) = \mathbb{R}$ is open.
 
-% The following works but is way overcomplicated in comparison to the my new non-trivial solution.
-% \noindent\textbf{Non-trivial solution}: Define $f$ as
-% \begin{align*}
-%     f(x) &= \left\{\begin{array}{lcl}
-%         \dfrac{3}{2^{n+2}}x + \dfrac{2^{n+1} - 3n - 2}{2^{n+1}} &,& x \in [2n, 2n+1], n = 0, 1, \dots \\[.3cm]
-%         \dfrac{-1}{2^{n+2}}x + \dfrac{2^{n+1} + n}{2^{n+1}} &,& x \in [2n+1, 2(n+1)], n = 0, 1, \dots
-%     \end{array}\right. \\
-%     f(-x) &= -f(x)
-% \end{align*}
-% and let $F = \bigcup_{n=0}^{\infty}\qty([2n,2n+1]\cup[-(2n+1),-2n])$.  Then $f$ is continuous on $\mathbb{R}$, $F$ is closed (since its complement is a union of open sets), and $f(F) = (-1, 1)$, which is an open set.
-
 \noindent\textbf{Non-trivial solution}: Define $f$ as
 \begin{align*}
   f(x) &= \left\{\begin{array}{lcl}
@@ -79,6 +68,9 @@ Let $X = \{x_1, \dots, x_n\}$ be finite, and let $C = \{C_i|i\in I\}$ (where $I$
   f(-x) &= -f(x)
 \end{align*}
 and let $F = \bigcup_{n=0}^{\infty}\qty([2n,2n+1]\cup[-(2n+1),-2n])$.  Then $f$ is continuous on $\mathbb{R}$, $F$ is closed (since its complement is a union of open sets), and $f(F) = (-1, 1)$, which is an open set.
+
+% Space for graphing the construction
+\vspace{5cm}
 
 \section*{Problem 3}
 {\it Let $(X,d)$ be a metric space and $F$ and $K$ two non-empty subsets of $X$.  Assume $F$ is closed and $K$ is compact.  Define}
@@ -178,7 +170,17 @@ The union of an arbitrary family of compact subsets is not necessarily compact. 
 Let $(k_n)_n$ be a sequence in $\bigcap_{i\in I} K_i$ where $I$ is an indexing set.  Then $(k_n)_n$ is a sequence in $K_i$ for every $i\in I$.  Since each $K_i$ is compact, then each $K_i$ is sequentially compact, and thus there is a subsequence $(k_{n_\ell})_\ell$ that converges to a limit $\tilde{k}$, where $\tilde{k} \in K_i$ for every $i\in I$.  Then $\tilde{k} \in \bigcap_{i\in I} K_i$.  Thus any sequence in $\bigcap_{i\in I} K_i$ has a convergent subsequence that converges to a limit in $\bigcap_{i\in I} K_i$.  Thus $\bigcap_{i\in I} K_i$ is sequentially compact, and therefore compact. \hfill $\square$
 
 \section*{Problem 6}
-{\it Let $f \in C([0,1])$ be such that $\int_0^1x^nf(x)dx = 0$ for all integers $n \geq 0$.  Prove that $f(x) = 0$, for all $x \in [0,1]$.}
+{\it Let $f \in C([0,1])$ be such that $\int_0^1x^nf(x)dx = 0$ for all integers $n \geq 0$.  Prove that $f(x) = 0$, for all $x \in [0,1]$.} \\
+
+By the linearity of integrals, $\int_0^1 p(x) f(x) dx = 0$ for any polynomial $p(x)$.  The set of polynomials is dense in $C([0,1])$ by the Weierstrauss Approximation Theorem, and thus there is some sequence of polynomials $\{p_n\}$ such that $p_n \rightarrow f$.
+\begin{align*}
+  \int_0^1 f^2(x)dx = \int_0^1 f(x) f(x) = \int_0^1 \lim\limits_{n\rightarrow \infty} p_n(x) f(x) dx
+\end{align*}
+We can pull the limit out of the integral since $f$ and $p$ are continuous, and so their product is continuous.  Since $p(x)f(x)$ is continuous on a compact set, $p(x)f(x)$ is uniformly continuous.  Thus,
+\begin{align*}
+  \int_0^1 f^2(x)dx = \int_0^1 f(x) f(x) = \int_0^1 \lim\limits_{n\rightarrow \infty} p_n(x) f(x) dx = \lim\limits_{n\rightarrow\infty}\int_0^1 p_n(x) f(x) = \lim\limits_{n\rightarrow\infty} 0 = 0
+\end{align*}
+Since $f^2 \geq 0 $ for $x \in [0,1]$ and $\int_0^1 f^2(x) dx = 0$, then $f^2(x) = 0$ for all $x \in [0,1]$.  Thus, $f(x) = 0$ for all $x \in [0,1]$. \hfill $\square$
 
 \section*{Problem 7}
 {\it Let $(p_n)$ be a sequence of real-valued polynomial functions defined on the interval $[0,1]$ with bounded degree, i.e., there exists $0 \leq D \in \mathbb{Z}$, and sequences of real numbers $(a_n(k))_{n=1}^{\infty}$, $k = 0, \dots, D$, such that}
@@ -188,7 +190,13 @@ Let $(k_n)_n$ be a sequence in $\bigcap_{i\in I} K_i$ where $I$ is an indexing s
 \end{equation}
 
 \subsection*{ a)}
-{\it Prove that if $\norm{p_n}_\infty \rightarrow 0$, then $\lim_{n\rightarrow\infty}\max_{0\leq k\leq D}a_n(k) = 0$ (Hint: try induction on $D$).}
+{\it Prove that if $\norm{p_n}_\infty \rightarrow 0$, then $\lim_{n\rightarrow\infty}\max_{0\leq k\leq D}a_n(k) = 0$ (Hint: try induction on $D$).} \\
+
+\textbf{Base Case}: Let $\{p_n\}$ be a sequence of polynomials of degree $0$, i.e. each polynomial is a constant function, or $p_n(x) = a_n(0)$.  Assume $\norm{p_n}_\infty \rightarrow 0$.  Then $\norm{a_n(0)}_\infty \rightarrow 0$.  But $\norm{a_n(0)}_\infty = a_n(0) = \max_{0\leq k\leq 0}a_n(k)$.  Thus $\lim_{n\rightarrow \infty} \max_{0\leq k\leq 0}a_n(k) = \lim_{n\rightarrow\infty} \norm{a_n(0)}_\infty = 0$. \\
+
+\textbf{Inductive Hypothesis}: Assume that if $\{p_n\}_n$ is a sequence of degree $D$ polynomials such that $\norm{p_n}_\infty \rightarrow 0$, then $\lim_{n\rightarrow\infty}\max_{0\leq k\leq D}a_n(k) = 0$. \\
+
+\textbf{Inductive Step}: Now let $\{p_n\}_n$ be a sequence of degree $D+1$ polynomials, i.e. $p_n(x) = a_n(0) + a_n(1)x + \dots + a_n(D+1)x^{D+1}$.  Assume $\norm{p_n}_\infty \rightarrow 0$.  Since every polynomial in the sequence has degree $D+1$, then $\norm{p'_n}_\infty \rightarrow 0' = 0$.  But $\{p'_n\}$ is a sequence of degree $D$ polynomials, and thus $\lim_{n\rightarrow\infty}\max_{1\leq k\leq D+1}a_n(k) = 0$.  By the induction hypothesis, each $a_n(i) \rightarrow 0$ as $n\rightarrow \infty$ for $i = 1, \dots, D+1$.  Thus $\norm{p_n}_\infty \rightarrow 0 \implies \norm{a_n(0)}_\infty \rightarrow 0$.  Clearly, this implies $a_n(0) \rightarrow 0$.  Thus each $a_n(i) \rightarrow 0$ as $n\rightarrow\infty$ for $i = 0, \dots, D+1$, which is equivalent to $\lim_{n\rightarrow\infty}\max_{0\leq k\leq D+1}a_n(k) = 0$. \hfill $\square$
 
 \subsection*{ b)}
 {\it Show that the assumption of a uniform bound on the degree of $p_n$ is essential for the implication in part a) to hold.  Specifically, find a sequence of polynomials $p_n(x) = \sum_{k=0}^{D_n}a_n(k)x^k$, such that $\norm{p_n}_\infty \rightarrow 0$ and}

@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1444428704 "hw_oct_12.tex" "hw_oct_12.pdf" "hw_oct_12" 1444428706
+["pdflatex"] 1444436917 "hw_oct_12.tex" "hw_oct_12.pdf" "hw_oct_12" 1444436918
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty" 1303254447 8237 52810bdb4db2270e717422560a104aea ""
@@ -160,11 +160,11 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/tools/verbatim.sty" 1399675188 7052 bd460af66db50ed38511e63136966a44 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/xcolor/xcolor.sty" 1169481954 55224 a43bab84e0ac5e6efcaf9a98bde73a94 ""
-  "hw_oct_12.aux" 1444428705 927 458dd36ae8f107a9a419058bc79add94 ""
-  "hw_oct_12.out" 1444428705 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "hw_oct_12.tex" 1444428704 13212 bd590385adcf74ca54786b5d1cd02ece ""
+  "hw_oct_12.aux" 1444436918 927 475c53aee0f022fdb432b4436c5a55b4 ""
+  "hw_oct_12.out" 1444436918 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "hw_oct_12.tex" 1444436916 15025 338c4187ce01daf0e3395093c0358698 ""
   (generated)
-  "hw_oct_12.out"
   "hw_oct_12.pdf"
   "hw_oct_12.log"
+  "hw_oct_12.out"
   "hw_oct_12.aux"
