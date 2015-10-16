@@ -128,22 +128,6 @@ Thus $f_k$ is a Cauchy seqeunce, and since $C([0,1])$ is complete, the limit of 
 
 Consider the family of functions $\mathcal{F} = \{\sin(n\pi x)\}$ for $n = 1, 2, \dots$, and choose any $\delta > 0$.  The choose $N > \frac{2}{\delta}$.  Then the period of $f_N = \sin(N\pi x) = \frac{2}{N} < \delta$.  Then choose a minimum $x_{\text{min}}$ and a maximum $x_{\text{max}}$ of $f_N$ such that $|x_{\text{min}} - x_{\text{max}}| < \delta$ (this can be done since the period of $f_N$ is less than $\delta$).  Since $f_N(x_{\text{min}}) = -1$ and $f_N(x_{\text{max}}) = 1$, then $|f_N(x_{\text{min}}) - f_N(x_{\text{max}})| = 2$.  Thus the family $\mathcal{F}$ is not equicontinuous, and since $\mathcal{F} \subset A$, $A$ is not equicontinuous.  By the Arzel\`a-Ascoli Theorem, $A$ is not precompact. \hfill $\square$
 
-% Consider the sequence $f_n = \sin(n\pi x)$ (note this sequence is in $A$ since $\norm{f_n} = 1$ for each $n = 1, 2, \dots$).  The extrema of $f_n$ occur at $x = \frac{1}{2n} + \frac{k}{n}$.  Specifically, the maxima occur at
-% \begin{align*}
-% 	x_{n,\text{max}} = \frac{1}{2n} + \frac{2k}{n}
-% \end{align*}
-% and the minima occur at
-% \begin{align*}
-% 	x_{n,\text{min}} = \frac{1}{2n} + \frac{2k+1}{n}
-% \end{align*}
-% We will show there is an integer $m$ ($m > n$) such that a maximum of $f_n$ occurs at a minimum of $m$, i.e. fixing $n$ and $k$, and solving the equation
-% \begin{align*}
-% 	x_{n,\text{max}} &= x_{m,\text{min}} \\
-% 	\frac{1}{2n} + \frac{2k}{n} &= \frac{1}{2m} + \frac{2\ell + 1}{m} \\
-% 	(1 + 4k)m + (4n)\ell &= 3n
-% \end{align*}
-% This is a diophantine equation in $m$ and $\ell$, and thus there are infinitely many integer solutions $(m, \ell)$ if $\text{GCD}(1 + 4k, 4n)|3n$.  This is easy to show, however, since $4$ cannot divide $1 + 4k$, and thus the $\text{GCD}$ must divide $n$.  This means it also divides $3n$.  So there are integer solutions to this diophantine equation.  So for any $n$, there is an $m$ such that a maximum of $f_n$ occurs at the same value as a minimum of $f_m$, and since each maximum of $f_n$ is $1$, and each minimum of $f_m$ is $-1$, then $\norm{f_n - f_m}_{\text{sup}} = 2$.
-
 \subsection*{ c)}
 \emph{Prove that the set $B$ deinfed by}
 \begin{equation*}
@@ -151,6 +135,6 @@ Consider the family of functions $\mathcal{F} = \{\sin(n\pi x)\}$ for $n = 1, 2,
 \end{equation*}
 \emph{is precompact in $(C([0,1]), \norm{\cdot}_{\text{sup}})$.}\\
 
-By the mean value theorem, $\forall x, y \in \mathbb{R}$, $\exists c\in[x,y]$ such that $(\sin x - \sin y) = (\cos c)(x - y)$, and since $|\cos c|$ is bounded by $1$, then $|\sin x - \sin y| \leq |x - y|$.
+% By the mean value theorem, $\forall x, y \in \mathbb{R}$, $\exists c\in[x,y]$ such that $(\sin x - \sin y) = (\cos c)(x - y)$, and since $|\cos c|$ is bounded by $1$, then $|\sin x - \sin y| \leq |x - y|$.
 
 \end{document}
