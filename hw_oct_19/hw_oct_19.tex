@@ -1,0 +1,156 @@
+\documentclass[12pt]{article}
+\textwidth=17cm \oddsidemargin=-0.9cm \evensidemargin=-0.9cm
+\textheight=23.7cm \topmargin=-1.7cm
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{moreverb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{array}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\usepackage{bigints}
+\allowdisplaybreaks
+
+\newcommand{\suchthat}{\, \mid \,}
+\renewcommand{\theenumi}{\alph{enumi}}
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+\setcounter{section}{-1}
+
+\title{\bf HW \#1}
+\author{\bf Sam Fleischer}
+\date{\bf October 19, 2015}
+
+\begin{document}
+{\bf MATH 201A \hfill Applied Analysis \ \ \ \ \ \hfill Fall 2015} 
+
+{\let\newpage\relax\maketitle}
+
+\section*{Problem 1}
+\emph{Let $(f_n)$ be a sequence in $C([0,1])$ converging uniformly to the function $f(x) = -x\log x$ on $[0,1]$.  Define}
+\begin{align*}
+	A = \{f_n\ |\ n \geq 1\}\cup\{f\}
+\end{align*}
+\emph{Is A compact, or precompact but not compact, or not precompact, considered as a subset of $(C([0,1]), \norm{\cdot}_{\text{sup}})$?  Justify your answer.} \\
+
+Let $G = \{G_i\ |\ i\in I\}$ for some index set $I$ be an open cover of $A$.  Then $\exists i_0 \in I$ such that $f \in G_{i_0}$.  Since $G_{i_0}$ is open, $\exists \epsilon > 0$ such that $B_\epsilon(f) \subset G_{i_0}$.  Since $f_n$ converges uniformly to $f$, $\exists N\in\mathbb{N}$ such that $n \geq N \implies f_n\in B_\epsilon(f)$ (and thus $f_n \in G_{i_0}$).  Then there are only finitely many functions in $A$ which are potentially not elements of $B_\epsilon(f)$, specifically, $f_1,\dots, f_{N-1}$.  Since $G$ is an open cover of $A$, $\exists i_{1}, \dots, i_{N-1} \in I$ such that $f_1 \in G_{i_1}, \dots, f_{N-1} \in G_{i_{N-1}}$.  Thus $\widetilde{G} = \{G_{i_0}, G_{i_1}, \dots, G_{i_{N-1}}\}$ is a finite open cover of $A$.  Thus $A$ is compact. \hfill $\square$
+
+\section*{Problem 2}
+\emph{Let $f \in C([a,b])$.  Prove that}
+\begin{equation*}
+	\left|\int_a^b f(x) \dd x\right| \leq |b - a|^{1/2}\qty(\int_a^b f(x)^2 \dd x)^{1/2}
+\end{equation*} \\
+
+Define the inner product $<f,g>$ on $C([a,b])$ to be the $\textbf{\emph{L}}^2$ inner product, or
+\begin{align*}
+	<f,g> = \int_a^b f(x) g(x) \dd x
+\end{align*}
+Then consider Cauchy-Schwarz inequality: $|<f,g>| \leq \norm{f}\cdot\norm{g}$, $\forall f, g \in C([a,b])$.  Pick $g(x) \equiv 1$.  Then,
+\begin{align*}
+	|<f,1>| &= \left|\int_a^b f(x) \dd x\right|\\
+	&\leq \qty(\int_a^b f(x)^2\dd x)^{1/2}\qty(\int_a^b 1^2\ \dd x)^{1/2}\ \ \ \ \ \text{by the Cauchy-Schwarz inequality} \\
+	&= \qty(x\Big|_a^b)^{1/2} \qty(\int_a^b f(x)^2\dd x)^{1/2}\\
+	&= |b - a|^{1/2}\qty(\int_a^b f(x)^2\dd x)^{1/2}\ \ \ \ \ \text{$b - a = |b - a|$ since $b \geq a$.}
+\end{align*}\hfill $\square$
+
+\section*{Problem 3}
+\emph{For $M > 0$, define $A_M \subset C([a,b])$ as follows:}
+\begin{equation*}
+	A_M = \{f \in C([a,b])\ |\ f' \in C([a,b]), f(a) = f(b) = 0, \text{ and } \int_a^b f'(x)^2 \dd x \leq M\}
+\end{equation*}
+\emph{Prove that $A_M$ is precompact in $(C([a,b]), \norm{\cdot}_{\text{sup}})$.} \\
+
+Let $\tilde{x} \in [a,b]$ and $f \in A_M$.  Then,
+\begin{align*}
+	|f(\tilde{x})| = |f(\tilde{x}) - 0| &= |f(\tilde{x}) - f(a)| \\
+	&= \left|\int_a^{\tilde{x}} f'(x)\dd x\right|\ \ \ \ \ \text{by the Fundamental Theorem of Calculus} \\
+	&\leq |\tilde{x} - a|^{1/2}\qty(\int_a^{\tilde{x}} f'(x)^2 \dd x)^{1/2} \ \ \ \ \ \text{by Problem 2} \\
+	&\leq |b - a|^{1/2}\qty(\int_a^{\tilde{x}} f'(x)^2 \dd x)^{1/2}\ \ \ \ \ \text{since $\tilde{x}\in [a,b]$}\\
+	&\leq |b - a|^{1/2}\sqrt{M}\ \ \ \ \ \text{by the definition of $A_M$}
+\end{align*}
+Thus $f(\tilde{x})$ is uniformly bounded by $|b-a|^{1/2}\sqrt{M}$ for any $\tilde{x} \in [a,b]$ and any $f \in A_M$.  Thus $A_M$ is bounded.
+
+Pick $\epsilon > 0$ and $x_1 \in [a,b]$.  Assume $d(x_1, x_2) < \frac{\epsilon^2}{M}$.  Then
+\begin{align*}
+	|d(f(x_1), f(x_2))| &= |f(x_1) - f(x_2)| \\
+	&= \left|\int_{x_2}^{x_1}f'(x) \dd x\right|\ \ \ \ \ \text{by the Fundamental Theorem of Calculus} \\
+	&\leq |x_2 - x_1|^{1/2}\qty(\int_{x_2}^{x_1} f'(x)^2)^{1/2}\ \ \ \ \ \text{by Problem 2} \\
+	&< \sqrt{\frac{\epsilon^2}{M}}\sqrt{M}\ \ \ \ \ \text{by assumption and the definition of $A_M$}\\
+	&= \epsilon
+\end{align*}
+Thus $A_M$ is equicontinuous.  By the Arzel\`a-Ascoli Theorem, $A_M$ is precompact. \hfill $\square$
+
+\section*{Problem 4}
+\emph{Consider functions $f: [0,1] \rightarrow \mathbb{R}$ defined by}
+\begin{equation}
+	\label{form_1}
+	f(x) = \sum_{n=1}^\infty a_n\sin(n\pi x),\ \ x \in [0,1]
+\end{equation}
+\emph{where for all $n \geq 1$, $a_n \in \mathbb{R}$, and such that $\sum_{n=1}^\infty |a_n| < +\infty$.}
+
+\subsection*{ a)}
+\emph{Prove that $f \in C([0,1])$.} \\
+
+Consider the sequence $f_k(x) = \sum_{n=1}^k a_n \sin(n\pi x)$.  Clearly, $\lim_{k\rightarrow\infty}f_k = \sum_{n=1}^\infty a_n \sin (n\pi x) = f(x)$.  Since $\sin(n\pi x) \in C([0,1])$ for $n = 1, 2, \dots$, and linear combinations of continuous functions are continuous, $f_k \in C([0,1])$ for $k = 1, 2, \dots$.  It suffices to show that $f_k$ is a Cauchy sequence.  Then, the completeness of $C([0,1])$ will imply that the limit of $f_k$ is in $C([0,1])$.
+
+First, since $\lim_{k\rightarrow\infty}\sum_{n=1}^k|a_n| = L < \infty$, then $\forall \epsilon>0$, $\exists N\in\mathbb{N}$ such that $i > j \geq N \implies \sum_{n=1}^i |a_n| - \sum_{n=1}^j |a_n| = \sum_{n=j+1}^i |a_n| < \epsilon$.  Now pick $\epsilon > 0$, and assume $i > j \geq N$, such that $\sum_{n=j+1}^i |a_n| < \epsilon$.  Then,
+\begin{align*}
+	d(f_i, f_j) = \norm{f_i - f_j}_{\text{sup}} &= \norm{\sum_{n=j+1}^i a_n sin(n\pi x)}_{\text{sup}} \\
+	&\leq \sum_{n=j+1}^i |a_n|\ |\sin(n\pi x)|\ \ \ \ \ \text{by the Triangle Inequality} \\
+	&\leq \sum_{n=j+1}^i |a_n|\ \ \ \ \ \text{since $|\sin(n\pi x)| \leq 1$ for any $n$.} \\
+	&< \epsilon
+\end{align*}
+Thus $f_k$ is a Cauchy seqeunce, and since $C([0,1])$ is complete, the limit of $f_k$, which is $f$, must be an element of $C([0,1])$. \hfill $\square$
+
+\subsection*{ b)}
+\emph{Prove that the set $A$ defined by}
+\begin{equation*}
+	A = \{f \in C([0,1])\ |\ f \text{ is of the form (\ref{form_1}) and } \norm{f}_{\text{sup}} \leq 1\}
+\end{equation*}
+\emph{is not precompact in $(C([0,1]), \norm{\cdot}_{\text{sup}})$.} \\
+
+Consider the family of functions $\mathcal{F} = \{\sin(n\pi x)\}$ for $n = 1, 2, \dots$, and choose any $\delta > 0$.  The choose $N > \frac{2}{\delta}$.  Then the period of $f_N = \sin(N\pi x) = \frac{2}{N} < \delta$.  Then choose a minimum $x_{\text{min}}$ and a maximum $x_{\text{max}}$ of $f_N$ such that $|x_{\text{min}} - x_{\text{max}}| < \delta$ (this can be done since the period of $f_N$ is less than $\delta$).  Since $f_N(x_{\text{min}}) = -1$ and $f_N(x_{\text{max}}) = 1$, then $|f_N(x_{\text{min}}) - f_N(x_{\text{max}})| = 2$.  Thus the family $\mathcal{F}$ is not equicontinuous, and since $\mathcal{F} \subset A$, $A$ is not equicontinuous.  By the Arzel\`a-Ascoli Theorem, $A$ is not precompact. \hfill $\square$
+
+% Consider the sequence $f_n = \sin(n\pi x)$ (note this sequence is in $A$ since $\norm{f_n} = 1$ for each $n = 1, 2, \dots$).  The extrema of $f_n$ occur at $x = \frac{1}{2n} + \frac{k}{n}$.  Specifically, the maxima occur at
+% \begin{align*}
+% 	x_{n,\text{max}} = \frac{1}{2n} + \frac{2k}{n}
+% \end{align*}
+% and the minima occur at
+% \begin{align*}
+% 	x_{n,\text{min}} = \frac{1}{2n} + \frac{2k+1}{n}
+% \end{align*}
+% We will show there is an integer $m$ ($m > n$) such that a maximum of $f_n$ occurs at a minimum of $m$, i.e. fixing $n$ and $k$, and solving the equation
+% \begin{align*}
+% 	x_{n,\text{max}} &= x_{m,\text{min}} \\
+% 	\frac{1}{2n} + \frac{2k}{n} &= \frac{1}{2m} + \frac{2\ell + 1}{m} \\
+% 	(1 + 4k)m + (4n)\ell &= 3n
+% \end{align*}
+% This is a diophantine equation in $m$ and $\ell$, and thus there are infinitely many integer solutions $(m, \ell)$ if $\text{GCD}(1 + 4k, 4n)|3n$.  This is easy to show, however, since $4$ cannot divide $1 + 4k$, and thus the $\text{GCD}$ must divide $n$.  This means it also divides $3n$.  So there are integer solutions to this diophantine equation.  So for any $n$, there is an $m$ such that a maximum of $f_n$ occurs at the same value as a minimum of $f_m$, and since each maximum of $f_n$ is $1$, and each minimum of $f_m$ is $-1$, then $\norm{f_n - f_m}_{\text{sup}} = 2$.
+
+\subsection*{ c)}
+\emph{Prove that the set $B$ deinfed by}
+\begin{equation*}
+	B = \{f \in C([0,1])\ |\ f \text{ is of the form (\ref{form_1}) and } \sum_{n=1}^\infty n^2|a_n|^2 \leq 1\}
+\end{equation*}
+\emph{is precompact in $(C([0,1]), \norm{\cdot}_{\text{sup}})$.}\\
+
+By the mean value theorem, $\forall x, y \in \mathbb{R}$, $\exists c\in[x,y]$ such that $(\sin x - \sin y) = (\cos c)(x - y)$, and since $|\cos c|$ is bounded by $1$, then $|\sin x - \sin y| \leq |x - y|$.
+
+\end{document}
