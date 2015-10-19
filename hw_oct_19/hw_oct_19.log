@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 OCT 2015 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  18 OCT 2015 21:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1887,24 +1887,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 126--128
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 151--153
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
 
  []
 
-[4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 156.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 156.
+[4] [5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 180.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 180.
 (/Users/samuelfleischer/School/UCD/UCD_Math201A/hw_oct_19/hw_oct_19.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 156.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 156.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 180.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 180.
 Package rerunfilecheck Info: File `hw_oct_19.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 156.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 180.
  ) 
 Here is how much of TeX's memory you used:
- 32646 strings out of 493089
- 754589 string characters out of 6134842
- 927477 words of memory out of 5000000
+ 32647 strings out of 493089
+ 754595 string characters out of 6134842
+ 928477 words of memory out of 5000000
  35641 multiletter control sequences out of 15000+600000
  16101 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1926,10 +1926,10 @@ e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/
 2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texl
 ive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on /Users/samuelfleischer/School/UCD/UCD_Math201A/hw_oct_19/hw_o
-ct_19.pdf (4 pages, 162651 bytes).
+ct_19.pdf (5 pages, 168819 bytes).
 PDF statistics:
- 111 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
+ 14 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
