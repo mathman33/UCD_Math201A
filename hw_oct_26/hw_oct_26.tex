@@ -1,0 +1,218 @@
+\documentclass[12pt]{article}
+\textwidth=17cm \oddsidemargin=-0.9cm \evensidemargin=-0.9cm
+\textheight=23.7cm \topmargin=-1.7cm
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{moreverb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{array}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\usepackage{bigints}
+\allowdisplaybreaks
+
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}{Lemma}
+
+% \newenvironment{proof}[1][Proof]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{definition}[1][Definition]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{example}[1][Example]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{remark}[1][Remark]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+% \newcommand{\qed}{\nobreak \ifvmode \relax \else
+%       \ifdim\lastskip<1.5em \hskip-\lastskip
+%       \hskip1.5em plus0em minus0.5em \fi \nobreak
+%       \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\suchthat}{\, \mid \,}
+\renewcommand{\theenumi}{\alph{enumi}}
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+\setcounter{section}{-1}
+
+\title{\bf HW \#4}
+\author{\bf Sam Fleischer}
+\date{\bf October 26, 2015}
+
+\begin{document}
+{\bf MATH 201A \hfill Applied Analysis \ \ \ \ \ \hfill Fall 2015} 
+
+{\let\newpage\relax\maketitle}
+
+\section*{Problem 1}
+\emph{Let $a < b \in \mathbb{R}$.  Prove that $C([a,b])$ with sup norm is a separable metric space.} \\
+
+Define the set of polynomials with rational coefficients on $[a,b]$ as $\mathbb{P}_{\mathbb{Q}}([a,b])$.  We will show this set is countable and dense in $C([0,1])$, proving $C([0,1])$ is separable.
+
+To show $\mathbb{P}_{\mathbb{Q}}([a,b])$ is countable, it suffices to show $\bigcup\limits_{n=0}^\infty \mathbb{Q}^n$ is countable, since there is a bijection $f$ between these two sets.  Namely,
+\begin{align*}
+    f(q_0, q_1, \dots, q_k) = q_0 + q_1 x + \dots + q_k x^k
+\end{align*}
+However, the countably infinite union of countable sets is countable.  Thus $\bigcup\limits_{n=0}^\infty \mathbb{Q}^n$ is countable, whice proves $\mathbb{P}_{\mathbb{Q}}([a,b])$ is countable.
+
+To show $\mathbb{P}_{\mathbb{Q}}([a,b])$ is dense in $C([a,b])$, we will show it is dense in the set of polynomials with real coefficients on $[a,b]$ (denoted $\mathbb{P}_{\mathbb{R}}([a,b])$) and use a diagonal argument to show it is dense in $C([a,b])$.
+\begin{lemma*}[1]
+    $\mathbb{P}_{\mathbb{Q}}([a,b])$ is dense in $\mathbb{P}_{\mathbb{R}}([a,b])$.
+\end{lemma*}
+\begin{proof}
+    Choose $p \in \mathbb{P}_{\mathbb{R}}([a,b])$.  Then $p = r_0 + r_1 x + \dots + r_k x^k$ for some $k \in \mathbb{N}$.  Since $\mathbb{Q}$ is dense in $\mathbb{R}$, there exist sequences $(q_{a,j})_j \in \mathbb{Q}$ such that $q_{a,j} \rightarrow r_a$ for $a = 1, \dots, k$.  Then construct a sequence $(q_{\ell})_\ell \in \mathbb{P}_{\mathbb{Q}}([a,b])$ by
+    \begin{align*}
+        q_{\ell} = q_{\ell,0} + q_{\ell,1}x + \dots + q_{\ell,k}x^k
+    \end{align*}
+    Then $\lim\limits_{\ell\rightarrow\infty}q_{\ell} = p$ for each $x \in [a,b]$.  Thus $q_{\ell}$ converges to $p$ in a pointwise manner.  However, since $p$ is continuous, and each $q_{\ell}$ is continuous, $q_{\ell} \rightarrow p$ uniformly.  Thus $\mathbb{P}_{\mathbb{Q}}([a,b])$ is dense in $\mathbb{P}_{\mathbb{R}}([a,b])$.
+\end{proof}
+
+By the Weierstrauss approximation theorem, $\mathbb{P}_{\mathbb{R}}([a,b])$ is dense in $C([a,b])$.  Thus for any $f \in C([a,b])$, $\exists (p_n)_n \in \mathbb{P}_{\mathbb{R}}([a,b])$ such that $p_n \rightarrow f$ uniformly.  Choose a subsequence of $p_n$ (for ease, call this subsequence $p_n$) such that $\norm{p_n - f} < \frac{1}{2n}$ for all $n \in\mathbb{N}^+$.
+
+By Lemma 1, for each $p_n$ in the sequence, $\exists (q_{n,\ell})_\ell \in \mathbb{P}_{\mathbb{Q}}([a,b])$ such that $q_{n,\ell} \rightarrow p_n$ uniformly.
+
+Then we can construct a sequence in $\mathbb{P}_{\mathbb{Q}}([a,b])$ which converges to $f$.  Choose $w_1 = q_{1,L_{1/2}}$ where $\ell \geq L_{1/2} \implies \norm{q_{1,\ell} - p_1}_{\text{sup}} < \frac{1}{2}$.  Then choose $w_2 = q_{2,L_{1/4}}$ where $\ell \geq L_{1/4} \implies \norm{q_{2,\ell} - p_2}_{\text{sup}} < \frac{1}{4}$.  In general, for all $m\in\mathbb{N}^+$, choose $w_m = q_{m,L_{1/2m}}$ where $\ell \geq L_{1/2m} \implies \norm{q_{m,\ell} - p_m}_{\text{sup}} < \frac{1}{2m}$.  Then
+\begin{align*}
+    \norm{w_n - f}_{\text{sup}} &\leq \norm{w_n - p_n}_{\text{sup}} + \norm{p_n - f}_{\text{sup}} \\
+    &< \frac{1}{2n} + \frac{1}{2n} \\
+    &= \frac{1}{n} \rightarrow 0 \text{ as } n\rightarrow\infty
+\end{align*}
+Thus any arbitrary $f \in C([a,b])$ is the limit of a sequence of polynomials in the countable set $\mathbb{P}_\mathbb{Q}([a,b])$ under the supremum norm.  Thus $C([a,b])$ is a separable metric space. \hfill $\square$ \\
+
+\subsubsection*{A SIMPLER PROOF}
+\begin{lemma*}[2]
+    If $A$ is dense in $B$ and $B$ is dense in $C$, then $A$ is dense in $C$.
+\end{lemma*}
+\begin{proof}
+    Since $A$ is dense in $B$, then $\overline{A} = B$.  Since $B$ is dense in $C$, then $\overline{B} = C$.  Then $\overline{A} = \overline{\overline{A}} = \overline{B} = C$.  Thus $A$ is dense in $C$.
+\end{proof}
+By lemmas 1 and 2 and the Weierstrauss Approximation Theorem, $\mathbb{P}_\mathbb{Q}$ is dense in $C([0,1])$.  Since $\mathbb{P}_\mathbb{Q}([a,b])$ is countable, $C([0,1])$ is separable. \hfill $\square$
+
+\section*{Problem 2}
+\emph{Let $k \in C([0,1] \times [0,1])$, and define a map $T:C([0,1]) \rightarrow C([0,1])$ by}
+\begin{align*}
+    (Tf)(x) = \int_0^1 k(x, y)f(y) \dd y
+\end{align*}
+\emph{Prove that the set $\{Tf\ |\ \norm{f}_\text{sup} \leq 1\}$ is equicontinuous.} \\
+
+Pick $x \in [0,1]$ and let $\varepsilon >0$.  Then the continuity of $k$ implies $\exists \delta >0$ such that $d((x, y), (x_0, y_0)) < \delta \implies d(k(x,y), k(x_0, y_0)) < \varepsilon$.  Consider $\tilde{x} \in [0,1]$ and assume $d(x, \tilde{x})< \delta$.  Then $d((x, y), (\tilde{x}, y)) < \delta$ for any $y \in [0,1]$.  Then $d(k(x, y), k(\tilde{x}, y)) < \varepsilon$.  Now choose $g \in \{Tf\ |\ \norm{f}_\text{sup} \leq 1\}$.  Then
+\begin{align*}
+    d(g(x), g(\tilde{x})) &= \left|\int_0^1 (k(x, y) - k(\tilde{x}, y)f(y) \dd y\right|\ \ \ \ \text{for some $f$ such that $\norm{f}_\text{sup} \leq 1$} \\
+    &\leq \int_0^1 \left|k(x,y) - k(\tilde{x}, y)\right||f(y)|\dd y\\
+    &< \varepsilon \int_0^1 |f(y)| \dd y \\
+    &< \varepsilon \int_0^1 \dd y \ \ \ \ \text{since $\norm{f}_\text{sup} < 1$} \\
+    &= \varepsilon
+\end{align*}
+Thus $\{Tf\ |\ \norm{f}_\text{sup} \leq 1\}$ is equicontinuous. \hfill $\square$
+
+\section*{Problem 3}
+\emph{Let $(X, \mathcal{T})$ be a topological space.  If $G \subset X$ is open and $F \subset X$ is closed, prove that $G \setminus F$ is open.}\\
+
+Since $F$ in closed, $F^C$ is open.  Also, $G\setminus F = G\cap F^C$.  Since the finite intersection of open sets in open, $G\setminus F$ is open. \hfill $\square$
+
+\section*{Problem 4}
+\emph{Let $\mathcal{T}_1$ and $\mathcal{T}_2$ be two topologies on a non-empty set $X$.}
+
+\subsection*{ a)}
+\emph{Is $\mathcal{T}_1 \cap \mathcal{T}_2$ is topology on $X$?}\\
+
+Yes. \\
+
+Let $\mathcal{T} = \mathcal{T}_1 \cap \mathcal{T_2}$.  Since $\emptyset$ and $X$ are elements of all topologies, they are elements of the arbitrary intersection of topologies.  Thus $\emptyset, X \in \mathcal{T}$.
+
+Consider $\{G_\alpha\ |\ \alpha \in I\}$ where each $G_\alpha \in \mathcal{T}$.  Then each $G_\alpha \in \mathcal{T}_1$ and each $G_\alpha \in \mathcal{T}_2$.  Then $\bigcup_{\alpha\in I}G_\alpha \in \mathcal{T}_1$ and $\bigcup_{\alpha\in I}G_\alpha \in \mathcal{T}_2$.  Thus $\bigcup_{\alpha\in I}G_\alpha \in \mathcal{T}$.
+
+Consider $\{G_i\ |\ i = 1, \dots, N\}$ where each $G_i \in \mathcal{T}$.  Then each $G_i \in \mathcal{T}_1$ and each $G_i \in \mathcal{T}_2$.  Then $\bigcap_{i=1}^n G_i \in \mathcal{T}_1$ and $\bigcap_{i=1}^n G_i \in \mathcal{T}_2$.  Thus $\bigcap_{i=1}^n G_i \in \mathcal{T}$.
+
+Thus $\mathcal{T} = \mathcal{T}_1 \cap \mathcal{T}_2$ is a topology on $X$. \hfill $\square$
+
+\subsection*{ b)}
+\emph{Is $\mathcal{T}_1 \cup \mathcal{T}_2$ is topology on $X$?}\\
+
+No. We form a counterexample:\\
+
+Let $X = \{1, 2, 3\}$, and let $\mathcal{T}_1 = \{\emptyset, \{1\}, X\}$ and $\mathcal{T}_2 = \{\emptyset, \{2\}, X\}$.  Then $\mathcal{T}_1 \cup \mathcal{T}_2 = \{\emptyset, \{1\}, \{2\}, X\}$ is not a topology since $\{1\}\cup \{2\} = \{1, 2\} \notin \mathcal{T}_1 \cup \mathcal{T}_2$. \hfill $\square$
+
+\section*{Problem 5}
+\emph{Give an example of two metric spaces $(X_1, d_1)$ and $(X_2, d_2)$, such that $X_1$ and $X_2$ are homeomorphic as topological spaces but $X_1$ is a complete metric space while $X_2$ is not.} \\
+
+Let $X_1 = [1,\infty)$ and $X_2 = (0,1]$.  Then choose $f:X_1 \rightarrow X_2$ by $f(x) = \frac{1}{x}$.  $f$ is clearly bijective and continuous, and $f^{-1}:X_2 \rightarrow X_1$ by $f^{-1}(x) = \frac{1}{x}$ is also continuous.  Thus $X_1$ and $X_2$ are homeomorphic as topological spaces, but $X_1$ is a complete metric while $X_2$ is not.
+
+\section*{Problem 6}
+\emph{Two metrics, $d_1$ and $d_2$, on the same space $X$ are called equivalent if there exist constants $c, C > 0$ such that}
+\begin{align*}
+    cd_1(x, y) \leq d_2(x, y) \leq Cd_1(x, y),\ \ \text{for all}\ x,y \in X
+\end{align*}
+\subsection*{ a)}
+\emph{Show that the topologies on $X$ defined by two equivalent metrics are identical.} \\
+
+Let $\mathcal{T}_1$ and $\mathcal{T}_2$ be the topologies defined by the open sets as defined by the metrics $d_1$ and $d_2$, respectively.  Denote open balls, with respect to the metric $d_i$, of radius $\varepsilon$ around $x$ as $B_{i,\varepsilon}(x)$ for $i = 1,2$.
+
+Let $G \in \mathcal{T}_1$.  Then $G$ is open with respect to $d_1$.  Then $\forall x \in G$, $\exists \varepsilon$ such that $B_{1,\varepsilon}(x) \in G$.  Note that $d_1(x,y) < \epsilon$ for each $y \in B_{1,\varepsilon}(x)$.  Now consider $B_{2,c\varepsilon}(x)$.  If $y \in B_{2,c\varepsilon}(x)$, then $d_2(x, y) < c\varepsilon \iff \frac{1}{c}d_2(x, y) < \varepsilon$.  But since $d_1(x,y) \leq \frac{1}{c}d_2(x, y)$ for all $x,y \in X$, this implies $d_1(x, y) < \varepsilon$, which then implies $y \in B_{1, \varepsilon}(x)$.  Thus $B_{2,c\varepsilon}(x) \subset B_{1,\varepsilon}(x)$, and so $B_{2,c\varepsilon}(x) \subset G$.  Thus there is an open ball with respect to the metric $d_2$ around any point $x$ in $G$ (in particular $B_{2,c\varepsilon}(x)$).  Thus $G$ is open with respect to the metric $d_2$, which shows $G \in \mathcal{T}_2$.  Thus $\mathcal{T}_1 \subset \mathcal{T}_2$.
+
+\begin{lemma*}[3]
+    Metric equivalence is an equivalence relation.
+\end{lemma*}
+\begin{proof}
+    If $d_1$ is a metric on $X$, then $1\cdot d_1(x,y) \leq d_1(x,y) \leq 1\cdot d_1(x,y)$.  Thus $d_1$ is equivalent to $d_1$.  If $d_1$ is equivalent to $d_2$, then $\exists c,C > 0$ such that $cd_1(x,y) \leq d_2(x,y) \leq Cd_1(x,y)$ for all $x, y \in X$.  But this implies $\frac{1}{C}d_2(x,y) \leq d_1(x,y) \leq \frac{1}{c}d_2(x,y)$.  Since $\frac{1}{C}$ and $\frac{1}{c}$ are greater than $0$, this shows $d_2$ is equivalent to $d_1$.  If $d_1$ is equivalent to $d_2$ and $d_2$ is equivalent to $d_3$, then $\exists c_1,C_1 > 0$ such that $c_1d_1(x,y) \leq d_2(x,y) \leq C_1d_1(x,y)$ for all $x,y\in X$, and $\exists c_2,C_2 > 0$ such that $c_2d_2(x,y) \leq d_3(x,y) \leq C_2d_2(x,y)$ for all $x,y \in X$.
+    \begin{align*}
+        c_1c_2d_1(x,y) \leq c_2d_2(x,y) \leq d_3(x,y) \leq C_2d_2(x,y) \leq C_1C_2d_1(x,y)
+    \end{align*}
+    and since $c_1c_2$ and $C_1C_2$ are greater than $0$, this shows $d_1$ is equivalent to $d_3$.  Thus metric equivalence is an equivalence relation.
+\end{proof}
+
+By Lemma 3, we can exchange $\mathcal{T}_1$ and $\mathcal{T}_2$ and show that $\mathcal{T}_2 \subset \mathcal{T}_1$, which proves $\mathcal{T}_1 = \mathcal{T}_2$.  Thus, the topologies on $X$ defined by two equivalent metrics are identical. \hfill $\square$
+
+% Let $G \in \mathcal{T}_2$.  Then $G$ is open with respect to $d_2$.  Then $\forall x \in G$, $\exists \varepsilon$ such that $B_{2,\varepsilon}(x) \in G$.  Note that $d_2(x,y) < \epsilon$ for each $y \in B_{2,\varepsilon}(x)$.  Now consider $B_{1,\varepsilon/c}(x)$.  If $y \in B_{1,\varepsilon/c}(x)$, then $d_1(x, y) < \frac{\varepsilon}{c}$, which implies $d_2(x, y) < \varepsilon$, which then implies $y \in B_{2, \varepsilon}(x)$.  Thus $B_{1,\varepsilon/c}(x) \subset B_{2,\varepsilon}(x)$, and so $B_{1,\varepsilon/c}(x) \subset G$.  Thus there is an open ball with respect to the metric $d_1$ around any point $x$ in $G$.  Thus $G$ is open with respect to the metric $d_1$, and thus $G \in \mathcal{T}_1$.
+
+  % Thus $cd_1(x, y) < \epsilon$, or $d_1(x, y) < \frac{\epsilon}{c}$.
+
+\subsection*{ b)}
+\emph{Let $(X, d)$ be a metric space.  Show that there exists a metric $d_b$ with the property that $d_b(x,y) \leq 1$, for all $x,y \in X$, such that the topology on $X$ derived from the metric $d_b$ is the same as the one derived from the metric $d$.}
+
+\subsection*{ c)}
+\emph{Give an example of the situation in part b) with the metrics $d$ and $d_b$ that are \emph{not} equivalent.}
+
+\section*{Problem 7}
+\emph{Prove Theorem 4.7 of the textbook.}
+
+\begin{lemma*}[4]
+    Let $(X, \mathcal{T})$ be a topological space.  Then $G \in \mathcal{T}$ if and only if $G$ is a neighborhood of $x$ for each $x \in G$.
+\end{lemma*}
+\begin{proof}
+    Let $G\in\mathcal{T}$.  Then since $G \subset G$, then $G$ contains an open set which contains every $x \in G$ (namely, $G$).  Then $G$ is a neighborhood of $x$ for each $x \in G$.  Now let $H$ be a neighborhood of $x$ for each $x \in H$.  Then $\exists H_x \subset H$ such that $x \in H_x$ and $H_x \in \mathcal{T}$ for each $x \in X$.  Then since $H_x \subset H$ for each $x \in H$, then $\bigcup_{x\in H} H_x \subset H$.  However, since $x \in H_x$ for every $x \in H$, then $H \subset \bigcup_{x\in H} H_x$.  Thus $\bigcup_{x\in H} H_x = H$.  Then since $H$ is an arbitrary union of open sets, then $H$ is open, i.e. $H \in \mathcal{T}$.
+\end{proof}
+\begin{lemma*}[5]
+    Let $(X, \mathcal{T})$ be a topological space.  Then $G \in \mathcal{T}$ if and only if $G$ contains a neighborhood of $x$ for each $x \in G$.
+\end{lemma*}
+\begin{proof}
+    Let $G\in\mathcal{T}$.  Then by Lemma 4, $G$ is a neighborhood of $x$ for each $x \in G$, but since $G \subset G$, then $G$ contains a neighborhood of $x$ for each $x \in G$.  Now let $H$ contain a neighborhood of $x$ for each $x \in H$.  Then for each $x \in H$, $\exists H_x \subset H$ such that $H_x$ is a neighborhood of $x$.  Then $\exists G_x \subset H_x$ such that $x\in G_x$ and $G_x \in \mathcal{T}$ for each $x \in H$.  Then for each $x \in H$, $G_x \subset H_x \subset H$.  Thus $H$ is a neighborhood of $x$ for each $x \in H$.  Then by Lemma 4, $H \in \mathcal{T}$.
+\end{proof}
+\begin{theorem*}[4.7]
+    Let $(X, \mathcal{T})$ and $(Y, \mathcal{S})$ be two topological spaces and $f: X \rightarrow Y$.  Then $f$ is continuous on $X$ if and only if $f^{-1}(G) \in \mathcal{T}$ for every $G \in S$.
+\end{theorem*}
+\begin{proof}
+    Suppose $f$ is continuous.  Then by the definition of continuity, for each $x \in X$, for each neighborhood $W$ of $f(x)$, there is a neighborhood $V$ of $x$ such that $f(V) \subset W$.  Now choose $G \in S$.  Then for each $x \in f^{-1}(G)$, $G$ is a neighborhood of each $f(x)$ by Lemma 4.  Since $f$ is continuous, there is a neighborhood $H$ of $x$ such that $f(H) \subset G$, which implies $H \subset f^{-1}(G)$.  Thus $f^{-1}(G)$ contains a neighborhood of each $x$ in $f^{-1}(G)$, thus by Lemma 5, $f^{-1}(G) \in \mathcal{T}$.  Now suppose $f^{-1}(G) \in \mathcal{T}$ for every $G \in S$.  Then pick $x \in X$ and a neighborhood $W$ of $f(x)$.  By the definition of neighborhood, $\exists H \in \mathcal{S}$ such that $f(x) \in H$ and $H \subset W$.  By assumption, $f^{-1}(H) \in \mathcal{T}$.  Since $f(x) \in H$, then $x \in f^{-1}(H)$.  Then by Lemma 4, $f^{-1}(H)$ is a neighborhood of $x$.  Also, $f(f^{-1}(H)) = H \subset W$.  Thus $f$ is continuous.
+\end{proof}
+
+\end{document}
