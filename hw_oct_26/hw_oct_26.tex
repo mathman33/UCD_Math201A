@@ -156,7 +156,7 @@ Let $X = \{1, 2, 3\}$, and let $\mathcal{T}_1 = \{\emptyset, \{1\}, X\}$ and $\m
 \section*{Problem 5}
 \emph{Give an example of two metric spaces $(X_1, d_1)$ and $(X_2, d_2)$, such that $X_1$ and $X_2$ are homeomorphic as topological spaces but $X_1$ is a complete metric space while $X_2$ is not.} \\
 
-Let $X_1 = [1,\infty)$ and $X_2 = (0,1]$.  Then choose $f:X_1 \rightarrow X_2$ by $f(x) = \frac{1}{x}$.  $f$ is clearly bijective and continuous, and $f^{-1}:X_2 \rightarrow X_1$ by $f^{-1}(x) = \frac{1}{x}$ is also continuous.  Thus $X_1$ and $X_2$ are homeomorphic as topological spaces, but $X_1$ is a complete metric while $X_2$ is not.
+Let $X_1 = [1,\infty)$ and $X_2 = (0,1]$.  Then choose $f:X_1 \rightarrow X_2$ by $f(x) = \frac{1}{x}$.  $f$ is clearly bijective and continuous, and $f^{-1}:X_2 \rightarrow X_1$ by $f^{-1}(x) = \frac{1}{x}$ is also continuous.  Thus $X_1$ and $X_2$ are homeomorphic as topological spaces, but $X_1$ is a complete metric while $X_2$ is not. \hfill $\square$
 
 \section*{Problem 6}
 \emph{Two metrics, $d_1$ and $d_2$, on the same space $X$ are called equivalent if there exist constants $c, C > 0$ such that}
@@ -168,7 +168,7 @@ Let $X_1 = [1,\infty)$ and $X_2 = (0,1]$.  Then choose $f:X_1 \rightarrow X_2$ b
 
 Let $\mathcal{T}_1$ and $\mathcal{T}_2$ be the topologies defined by the open sets as defined by the metrics $d_1$ and $d_2$, respectively.  Denote open balls, with respect to the metric $d_i$, of radius $\varepsilon$ around $x$ as $B_{i,\varepsilon}(x)$ for $i = 1,2$.
 
-Let $G \in \mathcal{T}_1$.  Then $G$ is open with respect to $d_1$.  Then $\forall x \in G$, $\exists \varepsilon$ such that $B_{1,\varepsilon}(x) \in G$.  Note that $d_1(x,y) < \epsilon$ for each $y \in B_{1,\varepsilon}(x)$.  Now consider $B_{2,c\varepsilon}(x)$.  If $y \in B_{2,c\varepsilon}(x)$, then $d_2(x, y) < c\varepsilon \iff \frac{1}{c}d_2(x, y) < \varepsilon$.  But since $d_1(x,y) \leq \frac{1}{c}d_2(x, y)$ for all $x,y \in X$, this implies $d_1(x, y) < \varepsilon$, which then implies $y \in B_{1, \varepsilon}(x)$.  Thus $B_{2,c\varepsilon}(x) \subset B_{1,\varepsilon}(x)$, and so $B_{2,c\varepsilon}(x) \subset G$.  Thus there is an open ball with respect to the metric $d_2$ around any point $x$ in $G$ (in particular $B_{2,c\varepsilon}(x)$).  Thus $G$ is open with respect to the metric $d_2$, which shows $G \in \mathcal{T}_2$.  Thus $\mathcal{T}_1 \subset \mathcal{T}_2$.
+Let $G \in \mathcal{T}_1$.  Then $G$ is open with respect to $d_1$.  Then $\forall x \in G$, $\exists \varepsilon$ such that $B_{1,\varepsilon}(x) \in G$.  Note that $d_1(x,y) < \varepsilon$ for each $y \in B_{1,\varepsilon}(x)$.  Now consider $B_{2,c\varepsilon}(x)$.  If $y \in B_{2,c\varepsilon}(x)$, then $d_2(x, y) < c\varepsilon \iff \frac{1}{c}d_2(x, y) < \varepsilon$.  But since $d_1(x,y) \leq \frac{1}{c}d_2(x, y)$ for all $x,y \in X$, this implies $d_1(x, y) < \varepsilon$, which then implies $y \in B_{1, \varepsilon}(x)$.  Thus $B_{2,c\varepsilon}(x) \subset B_{1,\varepsilon}(x)$, and so $B_{2,c\varepsilon}(x) \subset G$.  Thus there is an open ball with respect to the metric $d_2$ around any point $x$ in $G$ (in particular $B_{2,c\varepsilon}(x)$).  Thus $G$ is open with respect to the metric $d_2$, which shows $G \in \mathcal{T}_2$.  Thus $\mathcal{T}_1 \subset \mathcal{T}_2$.
 
 \begin{lemma*}[3]
     Metric equivalence is an equivalence relation.
@@ -181,38 +181,63 @@ Let $G \in \mathcal{T}_1$.  Then $G$ is open with respect to $d_1$.  Then $\fora
     and since $c_1c_2$ and $C_1C_2$ are greater than $0$, this shows $d_1$ is equivalent to $d_3$.  Thus metric equivalence is an equivalence relation.
 \end{proof}
 
-By Lemma 3, we can exchange $\mathcal{T}_1$ and $\mathcal{T}_2$ and show that $\mathcal{T}_2 \subset \mathcal{T}_1$, which proves $\mathcal{T}_1 = \mathcal{T}_2$.  Thus, the topologies on $X$ defined by two equivalent metrics are identical. \hfill $\square$
-
-% Let $G \in \mathcal{T}_2$.  Then $G$ is open with respect to $d_2$.  Then $\forall x \in G$, $\exists \varepsilon$ such that $B_{2,\varepsilon}(x) \in G$.  Note that $d_2(x,y) < \epsilon$ for each $y \in B_{2,\varepsilon}(x)$.  Now consider $B_{1,\varepsilon/c}(x)$.  If $y \in B_{1,\varepsilon/c}(x)$, then $d_1(x, y) < \frac{\varepsilon}{c}$, which implies $d_2(x, y) < \varepsilon$, which then implies $y \in B_{2, \varepsilon}(x)$.  Thus $B_{1,\varepsilon/c}(x) \subset B_{2,\varepsilon}(x)$, and so $B_{1,\varepsilon/c}(x) \subset G$.  Thus there is an open ball with respect to the metric $d_1$ around any point $x$ in $G$.  Thus $G$ is open with respect to the metric $d_1$, and thus $G \in \mathcal{T}_1$.
-
-  % Thus $cd_1(x, y) < \epsilon$, or $d_1(x, y) < \frac{\epsilon}{c}$.
+By Lemma 3, we can exchange $\mathcal{T}_1$ and $\mathcal{T}_2$ to show that $\mathcal{T}_2 \subset \mathcal{T}_1$, which, combined with the fact $\mathcal{T}_1 \subset \mathcal{T}_2$, proves $\mathcal{T}_1 = \mathcal{T}_2$.  Thus, the topologies on $X$ defined by two equivalent metrics are identical. \hfill $\square$
 
 \subsection*{ b)}
-\emph{Let $(X, d)$ be a metric space.  Show that there exists a metric $d_b$ with the property that $d_b(x,y) \leq 1$, for all $x,y \in X$, such that the topology on $X$ derived from the metric $d_b$ is the same as the one derived from the metric $d$.}
+\emph{Let $(X, d)$ be a metric space.  Show that there exists a metric $d_b$ with the property that $d_b(x,y) \leq 1$, for all $x,y \in X$, such that the topology on $X$ derived from the metric $d_b$ is the same as the one derived from the metric $d$.} \\
+
+Define $d_b$ as
+\begin{align*}
+    d_b(x,y) = \left\{\begin{array}{ll}
+        d(x,y) &,\ \text{if}\ d(x,y) \leq 1 \\
+        1 &,\ \text{if}\ d(x,y) > 1
+    \end{array}\right.
+\end{align*}
+\begin{lemma*}[5]
+    $d_b$ is a metric on $X$.
+\end{lemma*}
+\begin{proof}
+    \textbf{Non-negativity}: If $x = y$, then $d(x,y) = 0$ since $d$ is a metric on $X$, and since $0 \leq 1$, $d_b(x,y) = d(x,y) = 0$.  If $d_b(x,y) = 0$, then $0 = d_b(x,y) = d(x,y)$.  But since $d$ is a metric on $X$, this implies $x = y$.  \textbf{Symmetry}: If $d_b(x,y) = 1$, then $d(x,y) \geq 1$.  Thus $d(y,x) \geq 1$ since $d$ is a metric on $X$, and thus $d_b(y,x) = 1$.  If $d_b(x,y) < 1$, then $1 > d_b(x,y) = d(x,y) = d(y,x) = d_b(y,x)$.  \textbf{Triangle Inequality}:  If $d_b(x,y) < 1$, then $d_b(x,y) = d(x,y) \leq d(x,z) + d(z,y)$ for any $z \in X$.  If either $d(x,y) > 1$ or $d(y,z) > 1$, then $d_b(x,y) < 1 \leq d_b(x,z) + d_b(z,y)$.  Otherwise, $d_b(x,y) = d(x,y) \leq d(x,z) + d(z,y) = d_b(x,z) + d_b(z,y)$.  If $d_b(x,y) = 1$, then $d_b(x,y) = 1 \leq d(x,y) \leq d(x,z) + d(z,y) = d_b(x,z) + d_b(z,y)$ if $d(x,z) < 1$ and $d(z,y) < 1$.  However, if $d(x,z) > 1$ or $d(z,y) > 1$, then $d_b(x,z) = 1$ or $d_b(z,y) = 1$.  Thus $d_b(x,y) = 1 \leq d_b(x,z) + d_b(z,y)$.  In all cases, the triangle inequality holds.  Thus $d_b$ is a metric on $X$.
+\end{proof}
+
+Let $\mathcal{T}$ be the topology defined by the open sets as defined by the metric $d$, and let $\mathcal{T_b}$ be the topology defined by the open sets as defined by the metric $d_b$.  Also, denote open balls, with respect to the metric $d$ or $d_b$, of radius $\varepsilon$ around $x$ as $B_\varepsilon(x)$ or $B_{b,\varepsilon}(x)$, respectively.  In this proof, we wish to show $T = T_b$.
+
+Let $G \in T$.  Then $\forall x \in G$, $\exists \varepsilon$ such that $B_{\varepsilon}(x) \subset G$.  Choose $\hat{\varepsilon} < \min\{\varepsilon, 1\}$.  Then $B_{\hat{\varepsilon}}(x) \subset B_{\varepsilon}(x) \subset G$.  Since $\hat{\varepsilon} < 1$, then $B_{\hat{\varepsilon}}(x) = B_{b,\hat{\varepsilon}}(x)$.  Thus $B_{b,\hat{\varepsilon}} \subset G$.  Therefore $\forall x \in G$, $\exists \hat{\varepsilon}$ such that $B_{b,\hat{\varepsilon}}(x) \subset G$.  Thus $G$ is open with respect to $d_b$, showing $G \in T_b$, which then shows $T\subset T_b$.
+
+Let $G \in T_b$.  Then $\forall x \in G$, $\exists \varepsilon$ such that $B_{b,\varepsilon}(x) \in G$.  Again, choose $\hat{\varepsilon} < \min\{\varepsilon, 1\}$.  Then $B_{b,\hat{\varepsilon}}(x) \subset B_{b,\varepsilon}(x) \subset G$.  Since $\hat{\varepsilon} < 1$, then $B_{\hat{\varepsilon}}(x) = B_{b,\hat{\varepsilon}}(x)$.  Thus $B_{\hat{\varepsilon}}(x) \subset G$.  Therefore $\forall x\in G$, $\exists \hat{\varepsilon}$ such that $B_{b,\hat{\varepsilon}} \subset G$.  Thus $G$ is open with respect to $d$, showing $G \in T$, which then shows $T_b \in T$.  Thus $T_b \subset T$, and by the result above, $T = T_b$. \hfill $\square$
 
 \subsection*{ c)}
-\emph{Give an example of the situation in part b) with the metrics $d$ and $d_b$ that are \emph{not} equivalent.}
+\emph{Give an example of the situation in part b) with the metrics $d$ and $d_b$ that are \emph{not} equivalent.} \\
+
+Let $X$ be the normed linear space $\mathbb{R}$, and let $d$ be the standard metric on $\mathbb{R}$.  Define $d_b$ as in Problem 6b:
+\begin{align*}
+    d_b(x,y) = \left\{\begin{array}{ll}
+        d(x,y) &,\ \text{if}\ d(x,y) \leq 1 \\
+        1 &,\ \text{if}\ d(x,y) > 1
+    \end{array}\right.
+\end{align*}
+Since $d$ is unbounded on $\mathbb{R}$, then there is no $c > 0$ such that $d(x,y) < cd_b(x,y)$ for all $x,y \in X$, because if there was, then we could choose $y = x + c + 1$, and $d(x,y) = c + 1 <cd_b(x,y) = c$, which is a contradiction.  Thus $d$ and $d_b$ are not equivalent metrics. \hfill $\square$
 
 \section*{Problem 7}
 \emph{Prove Theorem 4.7 of the textbook.}
 
-\begin{lemma*}[4]
+\begin{lemma*}[5]
     Let $(X, \mathcal{T})$ be a topological space.  Then $G \in \mathcal{T}$ if and only if $G$ is a neighborhood of $x$ for each $x \in G$.
 \end{lemma*}
 \begin{proof}
     Let $G\in\mathcal{T}$.  Then since $G \subset G$, then $G$ contains an open set which contains every $x \in G$ (namely, $G$).  Then $G$ is a neighborhood of $x$ for each $x \in G$.  Now let $H$ be a neighborhood of $x$ for each $x \in H$.  Then $\exists H_x \subset H$ such that $x \in H_x$ and $H_x \in \mathcal{T}$ for each $x \in X$.  Then since $H_x \subset H$ for each $x \in H$, then $\bigcup_{x\in H} H_x \subset H$.  However, since $x \in H_x$ for every $x \in H$, then $H \subset \bigcup_{x\in H} H_x$.  Thus $\bigcup_{x\in H} H_x = H$.  Then since $H$ is an arbitrary union of open sets, then $H$ is open, i.e. $H \in \mathcal{T}$.
 \end{proof}
-\begin{lemma*}[5]
+\begin{lemma*}[6]
     Let $(X, \mathcal{T})$ be a topological space.  Then $G \in \mathcal{T}$ if and only if $G$ contains a neighborhood of $x$ for each $x \in G$.
 \end{lemma*}
 \begin{proof}
-    Let $G\in\mathcal{T}$.  Then by Lemma 4, $G$ is a neighborhood of $x$ for each $x \in G$, but since $G \subset G$, then $G$ contains a neighborhood of $x$ for each $x \in G$.  Now let $H$ contain a neighborhood of $x$ for each $x \in H$.  Then for each $x \in H$, $\exists H_x \subset H$ such that $H_x$ is a neighborhood of $x$.  Then $\exists G_x \subset H_x$ such that $x\in G_x$ and $G_x \in \mathcal{T}$ for each $x \in H$.  Then for each $x \in H$, $G_x \subset H_x \subset H$.  Thus $H$ is a neighborhood of $x$ for each $x \in H$.  Then by Lemma 4, $H \in \mathcal{T}$.
+    Let $G\in\mathcal{T}$.  Then by Lemma 5, $G$ is a neighborhood of $x$ for each $x \in G$, but since $G \subset G$, then $G$ contains a neighborhood of $x$ for each $x \in G$.  Now let $H$ contain a neighborhood of $x$ for each $x \in H$.  Then for each $x \in H$, $\exists H_x \subset H$ such that $H_x$ is a neighborhood of $x$.  Then $\exists G_x \subset H_x$ such that $x\in G_x$ and $G_x \in \mathcal{T}$ for each $x \in H$.  Then for each $x \in H$, $G_x \subset H_x \subset H$.  Thus $H$ is a neighborhood of $x$ for each $x \in H$.  Then by Lemma 5, $H \in \mathcal{T}$.
 \end{proof}
 \begin{theorem*}[4.7]
     Let $(X, \mathcal{T})$ and $(Y, \mathcal{S})$ be two topological spaces and $f: X \rightarrow Y$.  Then $f$ is continuous on $X$ if and only if $f^{-1}(G) \in \mathcal{T}$ for every $G \in S$.
 \end{theorem*}
 \begin{proof}
-    Suppose $f$ is continuous.  Then by the definition of continuity, for each $x \in X$, for each neighborhood $W$ of $f(x)$, there is a neighborhood $V$ of $x$ such that $f(V) \subset W$.  Now choose $G \in S$.  Then for each $x \in f^{-1}(G)$, $G$ is a neighborhood of each $f(x)$ by Lemma 4.  Since $f$ is continuous, there is a neighborhood $H$ of $x$ such that $f(H) \subset G$, which implies $H \subset f^{-1}(G)$.  Thus $f^{-1}(G)$ contains a neighborhood of each $x$ in $f^{-1}(G)$, thus by Lemma 5, $f^{-1}(G) \in \mathcal{T}$.  Now suppose $f^{-1}(G) \in \mathcal{T}$ for every $G \in S$.  Then pick $x \in X$ and a neighborhood $W$ of $f(x)$.  By the definition of neighborhood, $\exists H \in \mathcal{S}$ such that $f(x) \in H$ and $H \subset W$.  By assumption, $f^{-1}(H) \in \mathcal{T}$.  Since $f(x) \in H$, then $x \in f^{-1}(H)$.  Then by Lemma 4, $f^{-1}(H)$ is a neighborhood of $x$.  Also, $f(f^{-1}(H)) = H \subset W$.  Thus $f$ is continuous.
+    Suppose $f$ is continuous.  Then by the definition of continuity, for each $x \in X$, for each neighborhood $W$ of $f(x)$, there is a neighborhood $V$ of $x$ such that $f(V) \subset W$.  Now choose $G \in S$.  Then for each $x \in f^{-1}(G)$, $G$ is a neighborhood of each $f(x)$ by Lemma 5.  Since $f$ is continuous, there is a neighborhood $H$ of $x$ such that $f(H) \subset G$, which implies $H \subset f^{-1}(G)$.  Thus $f^{-1}(G)$ contains a neighborhood of each $x$ in $f^{-1}(G)$, thus by Lemma 6, $f^{-1}(G) \in \mathcal{T}$.  Now suppose $f^{-1}(G) \in \mathcal{T}$ for every $G \in S$.  Then pick $x \in X$ and a neighborhood $W$ of $f(x)$.  By the definition of neighborhood, $\exists H \in \mathcal{S}$ such that $f(x) \in H$ and $H \subset W$.  By assumption, $f^{-1}(H) \in \mathcal{T}$.  Since $f(x) \in H$, then $x \in f^{-1}(H)$.  Then by Lemma 5, $f^{-1}(H)$ is a neighborhood of $x$.  Also, $f(f^{-1}(H)) = H \subset W$.  Thus $f$ is continuous.
 \end{proof}
 
 \end{document}
