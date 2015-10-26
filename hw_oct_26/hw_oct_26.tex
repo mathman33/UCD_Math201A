@@ -117,9 +117,9 @@ By lemmas 1 and 2 and the Weierstrauss Approximation Theorem, $\mathbb{P}_\mathb
 
 Pick $x \in [0,1]$ and let $\varepsilon >0$.  Then the continuity of $k$ implies $\exists \delta >0$ such that $d((x, y), (x_0, y_0)) < \delta \implies d(k(x,y), k(x_0, y_0)) < \varepsilon$.  Consider $\tilde{x} \in [0,1]$ and assume $d(x, \tilde{x})< \delta$.  Then $d((x, y), (\tilde{x}, y)) < \delta$ for any $y \in [0,1]$.  Then $d(k(x, y), k(\tilde{x}, y)) < \varepsilon$.  Now choose $g \in \{Tf\ |\ \norm{f}_\text{sup} \leq 1\}$.  Then
 \begin{align*}
-    d(g(x), g(\tilde{x})) &= \left|\int_0^1 (k(x, y) - k(\tilde{x}, y)f(y) \dd y\right|\ \ \ \ \text{for some $f$ such that $\norm{f}_\text{sup} \leq 1$} \\
-    &\leq \int_0^1 \left|k(x,y) - k(\tilde{x}, y)\right||f(y)|\dd y\\
-    &< \varepsilon \int_0^1 |f(y)| \dd y \\
+    d(g(x), g(\tilde{x})) &= \norm{\int_0^1 (k(x, y) - k(\tilde{x}, y))f(y) \dd y}_\text{sup}\ \ \ \ \text{for some $f$ such that $\norm{f}_\text{sup} \leq 1$} \\
+    &\leq \int_0^1 \norm{k(x,y) - k(\tilde{x}, y)}_\text{sup}\norm{f(y)}_\text{sup}\dd y\\
+    &< \varepsilon \int_0^1 \norm{f(y)}_\text{sup} \dd y \\
     &< \varepsilon \int_0^1 \dd y \ \ \ \ \text{since $\norm{f}_\text{sup} < 1$} \\
     &= \varepsilon
 \end{align*}
