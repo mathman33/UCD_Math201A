@@ -143,14 +143,44 @@ Define $G_n$ as follows:
 \end{align*}
 and define $F_n \equiv \bigcup\limits_{[a,b] \in G_n} [a,b]$.  Finally, define the Cantor set $\mathcal{C} = \bigcap\limits_{n=0}^\infty F_n$.  Since for each $n$, $\left|G_n\right| = 2^n$, label each element of $G_n$ as $G_{n,k}$ for $k = 1, \dots, 2^n$.  Note that for each $G_{n,k}$, $\sup\left\{|x_1 - x_2|\ |\ x_1,x_2 \in G_{n,k}\right\} = 3^{-n}$. Next we will show $\mathcal{C}^\circ = \emptyset$, which will show $\mathcal{C} = \overline{\mathcal{C}}$ and $\partial\mathcal{C} = \mathcal{C}$.
 
-Let $x \in \mathcal{C}^\circ$.  Then since $\mathcal{C}^\circ$ is open, there is some open neighborhood $U$ such that $x \in U \subset \mathcal{C}^\circ$.  Since $U$ is an open neighborhood, $\exists \epsilon > 0$ such that $x \in B_\epsilon(x) \subset U \subset \mathcal{C}^\circ$.  Sicne $\mathcal{C}^\circ \subset \mathcal{C} = \bigcap\limits_{n=0}^\infty F_n$, then $\forall n$, $\exists k$ such that $B_\epsilon(x) \subset F_{n,k}$.  Thus $\forall n$, $\sup\left\{|y_1 - y_2|\ |\ y_1,y_2 \in B_\epsilon(x)\right\} = 2\epsilon < 3^{-n}$, which is a contradiction.  Thus $\mathcal{C}^\circ = \emptyset$, and $\overline{\mathcal{C}} = \mathcal{C}$.  Finally $\partial\mathcal{C} = \overline{\mathcal{C}} \cap \overline{\mathcal{C}^C} = \mathcal{C} \cap \qty(\mathcal{C}^\circ)^C = \mathcal{C} \cap \mathbb{R} = \mathcal{C}$. \hfill $\square$
+Let $x \in \mathcal{C}^\circ$.  Then since $\mathcal{C}^\circ$ is open, there is some open neighborhood $U$ such that $x \in U \subset \mathcal{C}^\circ$.  Since $U$ is an open neighborhood, $\exists \epsilon > 0$ such that $x \in B_\epsilon(x) \subset U \subset \mathcal{C}^\circ$.  Since $\mathcal{C}^\circ \subset \mathcal{C} = \bigcap\limits_{n=0}^\infty F_n$, then $\forall n$, $\exists k$ such that $B_\epsilon(x) \subset G_{n,k}$.  Thus $\forall n$, $\sup\left\{|y_1 - y_2|\ |\ y_1,y_2 \in B_\epsilon(x)\right\} = 2\epsilon < 3^{-n}$, which is a contradiction.  Thus $\mathcal{C}^\circ = \emptyset$, and $\overline{\mathcal{C}} = \mathcal{C}$.  Finally $\partial\mathcal{C} = \overline{\mathcal{C}} \cap \overline{\mathcal{C}^C} = \mathcal{C} \cap \qty(\mathcal{C}^\circ)^C = \mathcal{C} \cap \mathbb{R} = \mathcal{C}$. \hfill $\square$
+
+\section*{Problem 4}
+\emph{A topological space is \emph{connected} if it is not the union of two disjoint non-empty open sets.  A subset $Y$ of a topological space $(X, \mathcal{T})$ is called connected if $Y$ is a connected topological space with respect to the relative topology.}
+
+\subsection*{ a)}
+\emph{Describe the connected subsets of $(\mathbb{R}, |\cdot|)$.}
+
+\begin{lemma}
+    \label{connected_subsets_of_R}
+    The connected subsets of $\mathbb{R}$ are intervals.
+\end{lemma}
+\begin{proof}
+    ``$\Longrightarrow$'' Suppose $G \subset \mathbb{R}$ is not an interval.  Then $\exists x,\epsilon$ such that $x \not\in G$ but $x - \epsilon \in G$ and $x + \epsilon \in G$.  Then pick $U_1 = (-\infty, x) \cap G$ and $U_2 = (x, \infty) \cap G$.  Then $U_1$ and $U_2$ are open in the relative topology on $G$ and $U_1 \cap U_2 = \emptyset$.  Thus $G$ is not connected.\\
+
+    \noindent``$\Longleftarrow$'' Suppose $G \subset \mathbb{R}$ is not connected.  Then $G = U\cup V$ where $U,V\in \mathcal{T}$ and $U\cap V = \emptyset$.  $U \in \mathcal{T} \implies U = \cup_{\alpha \in I} (a_\alpha, b_\alpha) \cap G$, where $a_\alpha \neq b_\alpha$ for every $\alpha$ in the index set $I$.  Similarly, $V \in \mathcal{T} \implies V = \cup_{\beta\in J}(c_\beta, d_\beta) \cap G$ where $c_\beta \neq d_\beta$ for every $\beta$ in the index set $J$.  Let $\epsilon = \inf\{|u - v|\ |\ u \in U, v\in V\}$.\\
+
+    \noindent If $\epsilon = 0$, then pick $(u_n)_n \in U$ and $(v_n)_n \in V$ such that $\lim_{n\rightarrow\infty}u_n = \lim_{n\rightarrow\infty}v_n = L$.  If $L \in U$, then $\exists \tilde\epsilon > 0$ such that $B_{\tilde\epsilon}(L) \subset U$.  But since $\lim_{n\rightarrow\infty}v_n = L$, then $\exists N$ such that $n \geq N \implies v_n \in B_{\tilde\epsilon}(L)$, which is a contradiction since $U \cap V = \emptyset$.  Thus $L \not\in U$.  Similarly, $L \not\in V$.  Thus $L \not\in G$.  However, $\exists \overline{\epsilon}$ such that $L \pm \overline{\epsilon} \in U \subset G$ and $L \mp \overline{\epsilon} \in V \subset G$.  Thus $G$ is not an interval. \\
+
+    \noindent If $\epsilon > 0$, then pick $(u_n)_n \in U$ and $(v_n)_n \in V$ such that $\lim_{n\rightarrow\infty}u_n = \lim_{n\rightarrow\infty}v_n \pm \epsilon$.  Then let $L = \lim_{n\rightarrow\infty}u_n \pm \epsilon/2$.  Then $L \not\in U$ and $L \not\in V$ (thus $L \not\in G$) but $\exists \overline{\epsilon}$ such that $L \pm \overline{\epsilon} \in U \subset G$ and $L \mp \overline{\epsilon} \in V \subset G$.  Thus $G$ is not an interval.
+\end{proof}
+
+\subsection*{ b)}
+\emph{Show that $(\mathbb{R}, |\cdot|)$ is homeomorphic to the open interval $(0,1) \subset \mathbb{R}$ with the relative topology.} \\
+
+Define the function $f$ as
+\begin{align*}
+    f(x) = \frac{\tan^{-1}(x) + \frac{\pi}{2}}{\pi}
+\end{align*}
+Then since $\tan^{-1}(x)$ is a continuous bijection from $\mathbb{R}$ to $(-\frac{\pi}{2}, \frac{\pi}{2})$, then since $f(x)$ is a translation of $\tan^{-1}(x)$, then $f(x)$ is a continuous bijection from $\mathbb{R}$ to $(0,1)$.  In addition,
+\begin{align*}
+    f^{-1}(x) = \tan\qty(\pi x - \frac{\pi}{2})
+\end{align*}
+is a continuous bijection from $(0,1)$ to $\mathbb{R}$.  Thus $(\mathbb{R}, |\cdot|)$ is homeomorphic to $(0,1)$.
+
+\subsection*{ c)}
+\emph{Show that $(\mathbb{R}, |\cdot|)$ is not homeomorphic to $(\mathbb{R}^2, \norm{\cdot})$, where $\norm{\cdot}$ is the Euclidean norm.} \\
 
 
-% Also define $F_0, F_1, \dots, F_n, \dots$ recursively as follows:
-% \begin{align*}
-%     F_0 &= \qty[0,1] \\
-%     F_n &= \bigcup_{C \text{ a closed interval of } F_{n-1}} f\qty(C)
-% \end{align*}
-% and define the cantor set $\mathcal{C} = \bigcap_{n=1}^\infty F_n$.  Let $x \in \mathcal{C}^\circ$.  Then $x \in U$ where $U$ is some open set contained in $\mathcal{C}$.  Then $\exists \epsilon > 0$ such that $B_\epsilon(x) \subset U \subset \mathcal{C}$.  Note that $F_n$ is the union of $2^n$ closed intervals of the form $[a,b]$ where $b - a = 3^{-n}$.  Denote $F_{n,k}$ as the $k$\textsuperscript{th} interval of $F_n$.  Then $\forall n$, $\exists k \in \{1, 2, \dots, 2^n\}$ such that $B_\epsilon(x) \subset F_{n,k}$.  Then $\epsilon < 3^{-n}$ for all $n$, which is a contradiction.  Thus $x \not\in \mathcal{C}^\circ$, i.e.~$\mathcal{C}^\circ = \emptyset$.  Thus $\mathcal{C} = \overline{\mathcal{C}}$.  Thus $\mathcal{C} = \partial \mathcal{C}$. \hfill $\square$
 
 \end{document}
