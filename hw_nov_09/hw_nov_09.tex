@@ -1,0 +1,156 @@
+\documentclass[12pt]{article}
+\textwidth=17cm \oddsidemargin=-0.9cm \evensidemargin=-0.9cm
+\textheight=23.7cm \topmargin=-1.7cm
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{moreverb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{array}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\usepackage{bigints}
+\allowdisplaybreaks
+
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}{Lemma}
+
+% \newenvironment{proof}[1][Proof]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{definition}[1][Definition]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{example}[1][Example]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{remark}[1][Remark]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+% \newcommand{\qed}{\nobreak \ifvmode \relax \else
+%       \ifdim\lastskip<1.5em \hskip-\lastskip
+%       \hskip1.5em plus0em minus0.5em \fi \nobreak
+%       \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\suchthat}{\, \mid \,}
+\renewcommand{\theenumi}{\alph{enumi}}
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+\setcounter{section}{-1}
+
+\title{\bf HW \#5}
+\author{\bf Sam Fleischer}
+\date{\bf November 9, 2015}
+
+\begin{document}
+{\bf MATH 201A \hfill Applied Analysis \ \ \ \ \ \hfill Fall 2015} 
+
+{\let\newpage\relax\maketitle}
+
+\section*{Problem 1}
+\emph{Let $(X, \mathcal{T})$ be a Hausdorff space and $F,K \subset X$ such that $F$ is closed and $K$ is compact.}
+
+\subsection*{ a)}
+\emph{Prove that $K$ is closed.} \\
+
+Pick $y$ in $K^C$.  Then for every $x \in K$, choose an open neighborhood of $x$, $U_x$, and an open neighborhood of $y$, $V_x$, such that $U_x \cap V_x = \emptyset$ for each $x$.  This is possible since $X$ is a Hausdorff space.  Clearly, $\{U_x\}_{x\in K}$ is an open cover of $K$.  Since $K$ is compact, $\exists x_1, \dots, x_n$ such that $\{U_{x_i}\}_{i = 1}^n$ is an open cover of $K$.  Let $V = \bigcap_{i = 1}^n V_{x_i}$.  Then $V$ is open since it is a finite intersection of open neighborhoods.  Let $v \in V$.  Then for $i = 1, \dots, n$, $v \not\in U_{x_i}$.  Then $v \not\in K$, i.e.~$v \in K^C$.  Thus $V \subset K^C$.  Thus $K^C$ contains a neighborhood of each element of $K^C$, and so $K^C \in \mathcal{T}$.  Thus $K$ is closed. \hfill $\square$
+
+\subsection*{ b)}
+\emph{Prove that $F \cap K$ is compact.} \\
+
+Choose an open cover $\{G_\alpha\}_\alpha$ of $F \cap K$.  Since $K$ is compact, it is closed (by part a), and since $F$ is also closed, $F \cap K$ is closed, i.e.~$(F \cap K)^C$ is open.  Then $\left\{\{G_\alpha\}_\alpha, (F \cap K)^C\right\}$ is an open cover of $K$.  Then since $K$ is compact, there is a finite open subcover, namely $\left\{\{G_{\alpha_i}\}_{i = 1}^n, (F \cap K)^C\right\}$.  But since $(F \cap K)^C \cap (F \cap K) = \emptyset$, then $\{G_{\alpha_i}\}_{i = 1}^n$ is an open cover of $F \cap K$.  Since this is a subcover of $\{G_\alpha\}$, then $F \cap K$ is compact. \hfill $\square$
+
+\section*{Problem 2}
+\emph{Let $(X, \mathcal{T})$ be a topological space and $K_1$, $K_2$ two compact subsets of $X$.}
+
+\subsection*{ a)}
+\emph{Prove that $K_1 \cup K_2$ is compact.} \\
+
+Let $\{G_\alpha\}_\alpha$ be an open cover of $K_1 \cup K_2$.  Then $\{G_\alpha\}_\alpha$ is an open cover of both $K_1$ and $K_2$.  Then there are finite subcovers $\{G_{\alpha_i}\}_{i = 1}^n$ and $\{G_{\alpha_j}\}_{j = 1}^m$ of $K_1$ and $K_2$, respectively.  Then $\left\{\{G_{\alpha_i}\}_{i = 1}^n, \{G_{\alpha_j}\}_{j = 1}^m\right\}$ is a finite cover of $K_1 \cup K_2$, and is a subcover of $\{G_{\alpha}\}_\alpha$.  Thus every open cover has a finite subcover, proving $K_1 \cup K_2$ is compact. \hfill $\square$
+
+\subsection*{ b)}
+\emph{Assuming $(X, \mathcal{T})$ is Hausdorff, proce that $K_1 \cap K_2$ is compact.} \\
+
+By part 1.a), the compactness of $K_1$ implies its closure.  Thus by part 1.b), $K_1 \cap K_2$ is compact. \hfill $\square$
+
+\section*{Problem 3}
+\emph{If $A$ is a subset of a toplogical space, then the \emph{interior} $A^\circ$ of $A$ is the union of all open sets contained in $A$, the \emph{closure} $\overline{A}$ of $A$ is the intersection of all closed sets that contain $A$, and the \emph{boundary} $\partial A$ of $A$ is defined by $\partial A = \overline{A} \cap \overline{A^C}$.}
+
+\begin{lemma}
+    \label{awesome_lemma}
+    $\overline{A^C} = \qty(A^\circ)^C$
+\end{lemma}
+\begin{proof}
+    Let $\{C_\alpha\}$ be the set of all closed sets containing $A^C$.  Then by the definition of closure, $\overline{A^C} = \bigcap_\alpha C_\alpha$.  Since $A^C \subset C_\alpha$ for all $\alpha$, then $C_\alpha^C \subset A$ for all $\alpha$.  Also, since $C_\alpha$ is closed for all $\alpha$, $C_\alpha^C$ is open for all $\alpha$.  In addition, if $G$ is an open set contained in $A$, then $G = C_\alpha^C$ for some $C_\alpha$.  Then by the definition of interior, $A^\circ = \bigcup_\alpha C_\alpha^C$.  Thus,
+    \begin{align*}
+        \qty(A^\circ)^C = \qty(\cup_\alpha C_\alpha^C)^C = \cap_\alpha \qty(C_\alpha^C)^C = \cap_\alpha C_\alpha = \overline{A^C}
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+    \label{second_awesome_lemma}
+    $\overline{A}^C = \qty(A^C)^\circ$
+\end{lemma}
+\begin{proof}
+    Let $B = A^C$.  Then by Lemma 1, $\overline{B^C} = \qty(B^\circ)^C$.  Then $\overline{\qty(A^C)^C} = \qty(\qty(A^C)^\circ)^C$.  Thus $\overline{A} = \qty(\qty(A^C)^\circ)^C$.  Thus $\overline{A}^C = \qty(A^C)^\circ$
+\end{proof}
+
+\subsection*{ a)}
+\emph{Show that a set is closed if and only if it contains its boundary.} \\
+
+\noindent``$\Longrightarrow$''  Let $A$ be closed.  Then $A = \overline{A}$.  Then $\partial A = \overline{A} \cap \overline{A^C} \subset \overline{A} = A$.  Then $A$ contains its boundary. \\
+
+\noindent``$\Longleftarrow$''  Let $A$ contain its boundary, i.e. $\partial A = \overline{A} \cap \overline{A^C} \subset A$.  We want to show $A^C$ is open, i.e.~$A^C = \qty(A^C)^\circ$.  Obviously, $\qty(A^C)^\circ \subset A^C$.  Let $x \in A^C$.  Then $x \not\in A$.  Since $\partial A \subset A$, $x \not\in \partial A$.  Then either $x \not\in \overline{A}$ or $x \not\in \overline{A^C}$, i.e.~either $x \in \overline{A}^C$ or $x \in \overline{A^C}^C$.  By Lemmas \ref{awesome_lemma} and \ref{second_awesome_lemma}, either $x \in \qty(A^C)^\circ$ or $x \in A^\circ$.  But since $x \not\in A$, $x \not\in A^\circ$.  Thus $x \in \qty(A^C)^\circ$.  Then $A^C = \qty(A^C)^\circ$.  Thus $A^C$ is open, proving $A$ is closed. \hfill $\square$
+
+\subsection*{ b)}
+\emph{Show that a set is open if any only if it is disjoint from its boundary.}\\
+
+\noindent``$\Longrightarrow$''  Let $A$ be open.  Then $A = A^\circ$.  Then $A \cap \partial A = A \cap \qty(\overline{A} \cap \overline{A^C}) = A \cap \qty(\overline{A} \cap \qty(A^\circ)^C)$ (by Lemma \ref{awesome_lemma}) and thus $A \cap \partial A = A \cap \qty(\overline{A} \cap A^C) = \qty(A \cap A^C) \cap \overline{A} = \emptyset \cap \overline{A} = \emptyset$.  Thus $A$ is disjoint from its boundary. \\
+
+\noindent``$\Longleftarrow$''  Let $A \cap \partial A = \emptyset$, and choose $x \in A$.  Then $x \not\in \partial A$.  Thus $x \not\in \overline{A}$ or $x \not\in \overline{A^C}$.  Since $x \in A$, $x \in \overline{A}$.  Thus $x \not\in \overline{A^C}$.  By Lemma \ref{awesome_lemma}, $x \not\in \qty(A^\circ)^C$.  Thus $x \in A^\circ$.  Since $A^\circ$ is open, there is a neighborhood $G$ of $x$ such that $G \subset A^\circ$.  But $A^\circ \subset A$.  Thus $A$ is open. \hfill $\square$
+
+\subsection*{ c)}
+\emph{What are the closure, interior, and boundary of the Cantor set, considered as a subset of $\mathbb{R}$ with its usual topology?  The Cantor set is defined in Example 1.40 of the textbook.}\\
+
+Define the function $f$ whose domain is closed intervals of $\mathbb{R}$ by 
+\begin{align*}
+    f([a,b]) = \left\{\qty[a, a + \frac{b-a}{3}], \qty[b - \frac{b-a}{3}, b]\right\}
+\end{align*}
+Define $G_n$ as follows:
+\begin{align*}
+    G_0 &= \left\{\qty[0,1]\right\} \\
+    G_1 &= \left\{\qty[0, \frac{1}{3}], \qty[\frac{2}{3}, 1]\right\} \\
+    &\vdots \\
+    G_n &= \bigcup\limits_{[a,b] \in G_{n-1}} f([a,b])\\
+    &\vdots
+\end{align*}
+and define $F_n \equiv \bigcup\limits_{[a,b] \in G_n} [a,b]$.  Finally, define the Cantor set $\mathcal{C} = \bigcap\limits_{n=0}^\infty F_n$.  Since for each $n$, $\left|G_n\right| = 2^n$, label each element of $G_n$ as $G_{n,k}$ for $k = 1, \dots, 2^n$.  Note that for each $G_{n,k}$, $\sup\left\{|x_1 - x_2|\ |\ x_1,x_2 \in G_{n,k}\right\} = 3^{-n}$. Next we will show $\mathcal{C}^\circ = \emptyset$, which will show $\mathcal{C} = \overline{\mathcal{C}}$ and $\partial\mathcal{C} = \mathcal{C}$.
+
+Let $x \in \mathcal{C}^\circ$.  Then since $\mathcal{C}^\circ$ is open, there is some open neighborhood $U$ such that $x \in U \subset \mathcal{C}^\circ$.  Since $U$ is an open neighborhood, $\exists \epsilon > 0$ such that $x \in B_\epsilon(x) \subset U \subset \mathcal{C}^\circ$.  Sicne $\mathcal{C}^\circ \subset \mathcal{C} = \bigcap\limits_{n=0}^\infty F_n$, then $\forall n$, $\exists k$ such that $B_\epsilon(x) \subset F_{n,k}$.  Thus $\forall n$, $\sup\left\{|y_1 - y_2|\ |\ y_1,y_2 \in B_\epsilon(x)\right\} = 2\epsilon < 3^{-n}$, which is a contradiction.  Thus $\mathcal{C}^\circ = \emptyset$, and $\overline{\mathcal{C}} = \mathcal{C}$.  Finally $\partial\mathcal{C} = \overline{\mathcal{C}} \cap \overline{\mathcal{C}^C} = \mathcal{C} \cap \qty(\mathcal{C}^\circ)^C = \mathcal{C} \cap \mathbb{R} = \mathcal{C}$. \hfill $\square$
+
+
+% Also define $F_0, F_1, \dots, F_n, \dots$ recursively as follows:
+% \begin{align*}
+%     F_0 &= \qty[0,1] \\
+%     F_n &= \bigcup_{C \text{ a closed interval of } F_{n-1}} f\qty(C)
+% \end{align*}
+% and define the cantor set $\mathcal{C} = \bigcap_{n=1}^\infty F_n$.  Let $x \in \mathcal{C}^\circ$.  Then $x \in U$ where $U$ is some open set contained in $\mathcal{C}$.  Then $\exists \epsilon > 0$ such that $B_\epsilon(x) \subset U \subset \mathcal{C}$.  Note that $F_n$ is the union of $2^n$ closed intervals of the form $[a,b]$ where $b - a = 3^{-n}$.  Denote $F_{n,k}$ as the $k$\textsuperscript{th} interval of $F_n$.  Then $\forall n$, $\exists k \in \{1, 2, \dots, 2^n\}$ such that $B_\epsilon(x) \subset F_{n,k}$.  Then $\epsilon < 3^{-n}$ for all $n$, which is a contradiction.  Thus $x \not\in \mathcal{C}^\circ$, i.e.~$\mathcal{C}^\circ = \emptyset$.  Thus $\mathcal{C} = \overline{\mathcal{C}}$.  Thus $\mathcal{C} = \partial \mathcal{C}$. \hfill $\square$
+
+\end{document}
