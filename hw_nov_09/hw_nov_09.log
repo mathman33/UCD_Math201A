@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  6 NOV 2015 01:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 NOV 2015 08:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1946,19 +1946,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 182--183
  []
 
 [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 186.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 186.
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
+
+ []
+
+
+Overfull \hbox (3.45995pt too wide) in paragraph at lines 207--207
+[] 
+ []
+
+
+Overfull \hbox (40.40404pt too wide) in paragraph at lines 218--218
+[] 
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 225--226
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
+
+ []
+
+[7]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 274.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 274.
 (/Users/samuelfleischer/School/UCD/UCD_Math201A/hw_nov_09/hw_nov_09.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 186.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 186.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 274.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 274.
 Package rerunfilecheck Info: File `hw_nov_09.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 186.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 274.
  ) 
 Here is how much of TeX's memory you used:
- 32713 strings out of 493089
- 755398 string characters out of 6134842
- 928691 words of memory out of 5000000
+ 32721 strings out of 493089
+ 755471 string characters out of 6134842
+ 930692 words of memory out of 5000000
  35702 multiletter control sequences out of 15000+600000
  13057 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1978,10 +2008,10 @@ e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive
 /2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on /Users/samuelfleischer/School/UCD/UCD_Math201A/hw_nov_09/hw_n
-ov_09.pdf (4 pages, 159707 bytes).
+ov_09.pdf (7 pages, 175257 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 88 compressed objects within 1 object stream
- 22 named destinations out of 1000 (max. 500000)
+ 130 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

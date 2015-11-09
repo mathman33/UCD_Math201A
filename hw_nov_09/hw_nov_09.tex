@@ -158,7 +158,7 @@ Let $x \in \mathcal{C}^\circ$.  Then since $\mathcal{C}^\circ$ is open, there is
 \begin{proof}
     ``$\Longrightarrow$'' Suppose $G \subset \mathbb{R}$ is not an interval.  Then $\exists x,\epsilon$ such that $x \not\in G$ but $x - \epsilon \in G$ and $x + \epsilon \in G$.  Then pick $U_1 = (-\infty, x) \cap G$ and $U_2 = (x, \infty) \cap G$.  Then $U_1$ and $U_2$ are open in the relative topology on $G$ and $U_1 \cap U_2 = \emptyset$.  Thus $G$ is not connected.\\
 
-    \noindent``$\Longleftarrow$'' Suppose $G \subset \mathbb{R}$ is not connected.  Then $G = U\cup V$ where $U,V\in \mathcal{T}$ and $U\cap V = \emptyset$.  $U \in \mathcal{T} \implies U = \cup_{\alpha \in I} (a_\alpha, b_\alpha) \cap G$, where $a_\alpha \neq b_\alpha$ for every $\alpha$ in the index set $I$.  Similarly, $V \in \mathcal{T} \implies V = \cup_{\beta\in J}(c_\beta, d_\beta) \cap G$ where $c_\beta \neq d_\beta$ for every $\beta$ in the index set $J$.  Let $\epsilon = \inf\{|u - v|\ |\ u \in U, v\in V\}$.\\
+    \noindent``$\Longleftarrow$'' Suppose $G \subset \mathbb{R}$ is not connected.  Then $G = U\cup V$ where $U,V\in \mathcal{T}$ and $U\cap V = \emptyset$.  $U \in \mathcal{T} \implies U = \qty(\cup_{\alpha \in I} (a_\alpha, b_\alpha)) \cap G$, where $a_\alpha \neq b_\alpha$ for every $\alpha$ in the index set $I$.  Similarly, $V \in \mathcal{T} \implies V = \qty(\cup_{\beta\in J}(c_\beta, d_\beta)) \cap G$ where $c_\beta \neq d_\beta$ for every $\beta$ in the index set $J$.  Let $\epsilon = \inf\{|u - v|\ |\ u \in U, v\in V\}$.\\
 
     \noindent If $\epsilon = 0$, then pick $(u_n)_n \in U$ and $(v_n)_n \in V$ such that $\lim_{n\rightarrow\infty}u_n = \lim_{n\rightarrow\infty}v_n = L$.  If $L \in U$, then $\exists \tilde\epsilon > 0$ such that $B_{\tilde\epsilon}(L) \subset U$.  But since $\lim_{n\rightarrow\infty}v_n = L$, then $\exists N$ such that $n \geq N \implies v_n \in B_{\tilde\epsilon}(L)$, which is a contradiction since $U \cap V = \emptyset$.  Thus $L \not\in U$.  Similarly, $L \not\in V$.  Thus $L \not\in G$.  However, $\exists \overline{\epsilon}$ such that $L \pm \overline{\epsilon} \in U \subset G$ and $L \mp \overline{\epsilon} \in V \subset G$.  Thus $G$ is not an interval. \\
 
@@ -181,6 +181,94 @@ is a continuous bijection from $(0,1)$ to $\mathbb{R}$.  Thus $(\mathbb{R}, |\cd
 \subsection*{ c)}
 \emph{Show that $(\mathbb{R}, |\cdot|)$ is not homeomorphic to $(\mathbb{R}^2, \norm{\cdot})$, where $\norm{\cdot}$ is the Euclidean norm.} \\
 
+Suppose $f$ is a homeomorphism from $(\mathbb{R}, |\cdot|)$ to $(\mathbb{R}^2, \norm{\cdot})$.  Then $\mathbb{R}$ and $\mathbb{R}^2$ are indistinguishable as topological spaces.  Then $\mathbb{R}\setminus\{x_0\}$ and $\mathbb{R}^2\setminus\{f(x_0)\}$ are indistinguishable as topological spaces.  This is a contradiction since $\mathbb{R}\setminus\{x_0\}$ is not connected, but $\mathbb{R}^2\setminus\{f(x_0)\}$ is connected.  Thus $(\mathbb{R}, |\cdot|)$ is not homeomorphic to $(\mathbb{R}^2, \norm{\cdot})$. \hfill $\square$
 
+\section*{Problem 5}
+\emph{Prove that the sequence $(f_n)$ defined in Example 5.11 in the textbook is a Schauder basis of $(C([0,1]), \norm{\cdot}_\infty)$}. \\
+
+Let $f$ be a continuous function on $[0,1]$.  Since $[0,1]$ is compact, $f$ is uniformly continuous, and thus $\forall \epsilon$, $\exists \delta$ such that $\forall x,x_0 \in [0,1]$, $|x - x_0| < \delta \implies |f(x) - f(x_0)| < \frac{\epsilon}{2}$.
+
+Now choose $x \in [0, 1]$ and $k$ such that $2^{-k} < \delta$, and find $m$ such that
+\begin{align*}
+    x_m = \frac{m}{2^k} < x \leq \frac{m+1}{2^k} = x_{m+1}
+\end{align*}
+By the definition of the sequence $f_n$, we can find $c_n$ such that
+\begin{align*}
+    f(x_m) - \sum_{n=0}^\infty c_nf_n(x_m) = 0\ \ \ \ \ \text{and}\ \ \ \ \ f(x_{m+1}) - \sum_{n=0}^\infty c_nf_n(x_{m+1}) = 0
+\end{align*}
+However, since $x_m = \frac{m}{2^k}$ and $x_{m+1} = \frac{m+1}{2^k}$, then $\forall \ell > k$, $f_\ell(x_m) = f_\ell(x_{m+1}) = 0$.  Thus,
+\begin{align*}
+    f(x_m) - \sum_{n=0}^k c_nf_n(x_m) = 0\ \ \ \ \ \text{and}\ \ \ \ \ f(x_{m+1}) - \sum_{n=0}^k c_nf_n(x_{m+1}) = 0
+\end{align*}
+Then
+\begin{align*}
+    \left|f(x) - \sum_{n=0}^k c_nf_n(x)\right| &\leq \left|f(x) - f(x_m)\right| + \left|f(x_m) - \sum_{n=0}^k c_nf_n(x_m)\right| + \left|\sum_{n=0}^k c_nf_n(x_m) - \sum_{n=0}^k c_nf_n(x)\right| \\
+    &< \frac{\epsilon}{2} + 0 + \left|\sum_{n=0}^k c_nf_n(x_m) - \sum_{n=0}^k c_nf_n(x)\right|
+\end{align*}
+Since $\sum_{n=0}^kc_nf_n$ is a linear on $[x_m, x_{m+1}]$,
+\begin{align*}
+    \left|\sum_{n=0}^k c_nf_n(x_m) - \sum_{n=0}^k c_nf_n(x)\right| \leq \left|\sum_{n=0}^k c_nf_n(x_m) - \sum_{n=0}^k c_nf_n(x_{m+1})\right|
+\end{align*}
+and thus
+\begin{align*}
+    \left|f(x) - \sum_{n=0}^k c_nf_n(x)\right| &< \frac{\epsilon}{2} + \left|\sum_{n=0}^k c_nf_n(x_m) - \sum_{n=0}^k c_nf_n(x_{m+1})\right| \\
+    &\leq \frac{\epsilon}{2} + \left|\sum_{n=0}^k c_nf_n(x_m) - f(x_m)\right| + \left|f(x_m) - f(x_{m+1})\right| + \left|f(x_{m+1}) - \sum_{n=0}^k c_nf_n(x_{m+1})\right| \\
+    &< \frac{\epsilon}{2} + 0 + \frac{\epsilon}{2} + 0 \\
+    &= \epsilon
+\end{align*}
+since $\left|x_m - x_{m+1}\right| < \delta$.  Thus $\sum_{n=0}^\infty c_nf_n(x) = f(x)$ for each $x \in [0,1]$, i.e.~$\sum_{n=0}^\infty c_nf_n$ converges pointwise to $f$.  Since $f$ is continuous, $\sum_{n=0}^\infty c_nf_n$ converges uniformly to $f$.  Thus $(f_n)$ is a Schauder basis of $C([0,1], \norm{\cdot}_\infty)$. \hfill $\square$
+
+\section*{Problem 6}
+\emph{For $1\leq p \leq \infty$, consider the Banach space $\ell^p(\mathbb{N})$ defined in Example 5.5 of the textbook.  The set $\ell_c(\mathbb{N})$ is all sequences of the form $(x_1, x_2, \dots, x_n, 0, 0, \dots)$ whose terms vanish from some point onwards is an infinite-dimensional linear subspace of $\ell^p(\mathbb{N})$ for any $1 \leq p \leq \infty$.}
+
+\subsection*{ a)}
+\emph{Show that $\ell_c(\mathbb{N})$ is not closed in $\ell^p(\mathbb{N})$, so it is not a Banach space with respect to the norm of $\ell^p(\mathbb{N})$.} \\
+
+Consider the sequence in $\ell_c(\mathbb{N})$:
+\begin{align*}
+    x_1 &= \qty(\frac{1}{2}, 0, 0, 0, \dots) \\
+    x_2 &= \qty(\frac{1}{2}, \frac{1}{4}, 0, 0, \dots) \\
+    x_3 &= \qty(\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, 0, \dots) \\
+    &\vdots \\
+    x_n &= \qty(\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \dots, \frac{1}{2^n}, 0, 0, \dots) \\
+    &\vdots
+\end{align*}
+Then $x = \lim_{i\rightarrow\infty}x_i = \qty(\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \dots) \not\in \ell_c(\mathbb{N})$, but $x \in \ell^p(\mathbb{N})$ since $\sum_{i=1}^\infty (2^{-i})^p < \infty$.  So there is a limit point $x$ of $\ell_c(\mathbb{N})$ that is not contained in $\ell^p(\mathbb{N})$, but is contained in $\ell^p(\mathbb{N})$.  Thus $\ell_c(\mathbb{N})$ is not closed in $\ell^p(\mathbb{N})$. \hfill $\square$
+
+\subsection*{ b)}
+\emph{Show that $\ell_c(\mathbb{N})$ is dense in $\ell^p(\mathbb{N})$ for $1 \leq p \leq \infty$.} \\
+
+Let $y = (y_1, y_2, \dots) \in \ell^p(\mathbb{N})$.  Then construct the sequence
+\begin{align*}
+    x_1 &= (y_1, 0, 0, 0, \dots) \\
+    x_2 &= (y_1, y_2, 0, 0, \dots) \\
+    x_3 &= (y_1, y_2, y_3, 0, \dots) \\
+    &\vdots \\
+    x_n &= (y_1, y_2, \dots, y_n, 0, 0, \dots) \\
+    &\vdots
+\end{align*}
+Clearly $x_i \in \ell_c(\mathbb{N})$.  Since $\sum_{i=1}^\infty |y_i| < \infty$, then $y_i \rightarrow 0$.  Then $\forall \epsilon$, $\exists N$ such that $|y_n| < \epsilon$ for each $n \geq N$.  Then $x_i \rightarrow y$.  Thus $\ell_c(\mathbb{N})$ is dense in $\ell^p(\mathbb{N})$ for $1 \leq p \leq \infty$.
+
+\subsection*{ c)}
+\emph{Find the closure of $\ell_c(\mathbb{N})$ in $\ell^\infty(\mathbb{N})$.} \\
+
+Let $y = (y_1, y_2, \dots) \in \ell^\infty(\mathbb{N})$ such that $\lim_{i\rightarrow\infty}|y_i| = 0$.  Then construct the sequence $(x_n)_n \in \ell_c(\mathbb{N})$:
+\begin{align*}
+    x_1 &= (y_1, 0, 0, 0, \dots) \\
+    x_2 &= (y_1, y_2, 0, 0, \dots) \\
+    x_3 &= (y_1, y_2, y_3, 0, \dots) \\
+    &\vdots \\
+    x_n &= (y_1, y_2, \dots, y_n, 0, 0, \dots) \\
+    &\vdots
+\end{align*}
+Then choose $\epsilon > 0$.  Since $y_i \rightarrow 0$, then $\exists N$ such that $n \geq N \implies |y_i| < \epsilon$.  Also, if $n \geq N$, then $\norm{x_n - y}_\infty = \norm{y}_\infty < \epsilon$.  So $y$ is a limit point of a sequence in $\ell_c(\mathbb{N})$, and thus $y \in \overline{\ell_c(\mathbb{N})}$.
+
+Now let $y = (y_1, y_2, \dots) \in \ell^\infty(\mathbb{N})$ such that $\lim_{i\rightarrow\infty}|y_i| \neq 0$.  Then $\exists \epsilon > 0$ such that $\forall M > 0$, $\exists i > M$ such that $|y_i| > \epsilon$.  Assume there is a sequence $(x_n)_n \in \ell_c(\mathbb{N})$ such that $x_n \rightarrow y$ (i.e.~$x_n - y\rightarrow 0$).  Denote each $x_n$ as
+\begin{align*}
+    x_n &= (x_{n,1}, x_{n,2}, x_{n,3}, \dots)
+\end{align*}
+Then $\exists N$ such that $n \geq N \implies \norm{x_n - y}_\infty < \epsilon$.  However, by the definition of $\ell_c(\mathbb{N})$, for each $n$, $\exists M_n$ such that $m \geq M_n \implies x_{n,m} = 0$.  Then for each $n$, $\norm{x_n - y}_\infty > \epsilon$, which is a contradiction.  Thus there is no sequence in $\ell_c(\mathbb{N})$ that converges to $y$, and thus $y \not\in \overline{\ell_c(\mathbb{N})}$.
+
+Thus $\overline{\ell_c(\mathbb{N})} = \{(a_n) \in \ell_c(\mathbb{N})\ |\ \lim_{i\rightarrow\infty}|a_i| = 0 \}$. \hfill $\square$
 
 \end{document}
