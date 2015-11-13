@@ -1,0 +1,208 @@
+\documentclass[12pt]{article}
+\textwidth=17cm \oddsidemargin=-0.9cm \evensidemargin=-0.9cm
+\textheight=23.7cm \topmargin=-1.7cm
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{moreverb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{array}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\usepackage{bigints}
+\allowdisplaybreaks
+\pgfplotsset{compat=1.12}
+
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}{Lemma}
+
+% \newenvironment{proof}[1][Proof]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{definition}[1][Definition]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{example}[1][Example]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newenvironment{remark}[1][Remark]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+% \newcommand{\qed}{\nobreak \ifvmode \relax \else
+%       \ifdim\lastskip<1.5em \hskip-\lastskip
+%       \hskip1.5em plus0em minus0.5em \fi \nobreak
+%       \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcommand{\suchthat}{\, \mid \,}
+\renewcommand{\theenumi}{\alph{enumi}}
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+\setcounter{section}{-1}
+
+\title{\bf HW \#6}
+\author{\bf Sam Fleischer}
+\date{\bf November 16, 2015}
+
+\begin{document}
+{\bf MATH 201A \hfill Applied Analysis \ \ \ \ \ \hfill Fall 2015} 
+
+{\let\newpage\relax\maketitle}
+
+\section*{Problem 1}
+\emph{Let $k : [0,1]\times[0,1]\rightarrow \mathbb{R}$ be a continuous function.  Define the map $T:C([0,1])\rightarrow C([0,1])$ by}
+\begin{align*}
+    (Tf)(x) = \int_0^1 k(x,y)f(y)\dd y,\ \ \text{for all } f \in C([0,1])
+\end{align*}
+
+\subsection*{ a)}
+\emph{Let $\norm{T}$ denote the operator norm of $T$.  Prove}
+\begin{equation}
+    \label{eq_2}
+    \norm{T} = \sup\limits_{x\in[0,1]}\int_0^1|k(x,y)|\dd y
+\end{equation}
+
+First, we show $\norm{T} \leq \sup\limits_{x\in[0,1]}\int_0^1|k(x,y)|\dd y$.
+\begin{align*}
+    \norm{T} = \sup\limits_{\norm{f}=1}\norm{Tf} &= \sup\limits_{\norm{f}=1}\norm{\int_0^1 k(\cdot,y)f(y)\dd y} \\
+    &= \sup\limits_{x\in[0,1]}\qty(\sup\limits_{\norm{f}=1}\left|\int_0^1 k(x,y) f(y) \dd y\right|) \\
+    &\leq \sup_{x\in[0,1]}\qty(\sup_{\norm{f}=1}\int_0^1|k(x,y)||f(y)|\dd y) \\
+    &\leq \sup_{x\in[0,1]}\qty(\sup_{\norm{f}=1}\int_0^1|k(x,y)|\norm{f}\dd y) \\
+    &= \sup_{x\in[0,1]}\int_0^1|k(x,y)|\dd y
+\end{align*}
+Note that since $\int_0^1|k(x,y)|\dd y$ is a continuous functions of $x$, then $\exists x^* \in [0,1]$ such that
+\begin{align*}
+    \sup\limits_{x\in[0,1]}\int_0^1|k(x,y)|\dd y = \int_0^1|k(x^*,y)|\dd y
+\end{align*}
+Thus,
+\begin{align*}
+    \norm{T} \leq \int_0^1|k(x^*,y)|\dd y
+\end{align*}
+Next, we show $\norm{T} \geq \int_0^1|k(x^*,y)|\dd y$.  Define a sequence of functions $(f_n)_n$
+\begin{align*}
+    f_n(y) = \frac{k(x^*,y)}{\frac{1}{n} + |k(x^*,y)|}
+\end{align*}
+Note $f_n(y) \rightarrow \text{sign}(k(x^*,y))$ for each $y \in [0,1]$, i.e.~$f_n \rightarrow \text{sign}(k(x^*,\cdot))$ pointwise.
+\begin{align*}
+    \sup_{x\in[0,1]}\int_0^1 |k(x,y)| \dd y &= \int_0^1 |k(x^*, y)| \dd y \\
+    &= \int_0^1 k(x^*,y)\text{sign}(k(x^*,y)) \dd y \\
+    &= \int_0^1 k(x^*,y)\lim\limits_{n\rightarrow\infty}f_n(y) \dd y
+\end{align*}
+Since $\norm{f_n}_\infty \leq 1$ for all $n$, we can employ Lebesgue's Dominated Convergence Theorem to pull the limit out of the integral:
+\begin{align*}
+    \int_0^1 k(x^*,y)\lim\limits_{n\rightarrow\infty}f_n(y) \dd y = \lim\limits_{n\rightarrow\infty} \int_0^1 k(x^*,y)f_n(y) \dd y
+\end{align*}
+Thus,
+\begin{align*}
+    \sup_{x\in[0,1]}\int_0^1 |k(x,y)| \dd y &= \lim\limits_{n\rightarrow\infty} \int_0^1 k(x^*,y)f_n(y) \dd y \\
+    &= \lim_{n\rightarrow\infty} (Tf_n)(x^*) \\
+    &\leq \lim_{n\rightarrow\infty} \norm{Tf_n}_\infty
+\end{align*}
+But since $\norm{f_n} \leq 1$ for all $n$,
+\begin{align*}
+    \sup_{x\in[0,1]}\int_0^1 |k(x,y)| \dd y &\leq \lim_{n\rightarrow\infty} \norm{Tf_n}_\infty \leq \lim_{n\rightarrow\infty}\sup\limits_{\norm{f}\leq 1} \norm{Tf} = \lim_{n\rightarrow\infty}\norm{T} = \norm{T}
+\end{align*}
+Thus,
+\begin{align*}
+    \norm{T} \leq \sup\limits_{x\in[0,1]}\int_0^1 |k(x,y)|\dd y \leq \norm{T} \implies \norm{T} = \sup\limits_{x\in[0,1]}\int_0^1 |k(x,y)|\dd y
+\end{align*}
+\hfill $\square$
+
+\subsection*{ b)}
+\emph{Argue that the $\sup$ in \emph{(\ref{eq_2})} is attained in some $x \in [0,1]$.} \\
+
+As argued in part \textbf{a)}, since $k$ is a continuous function of $x$ and $y$, then $\int_0^1 |k(x,y)| \dd y$ is a continuous function of $x$.  Thus $\int_0^1 |k(x,y)| \dd y$ must reach its maximum on a compact set.  Since $[0,1]$ is compact, $\exists x^* \in [0,1]$ such that $\sup\limits_{x\in[0,1]}\int_0^1 |k(x,y)|\dd y = \int_0^1 |k(x^*,y)| \dd y$.
+
+\subsection*{ c)}
+\emph{Is it possible that $\norm{T} = 1$ but $\norm{T^2} = 0$?  Prove your answer.} \\
+
+Define $k(x,y) : [0,1] \times [0,1] \rightarrow \mathbb{R}$ as
+\begin{align*}
+    k(x,y) = \left\{\begin{array}{ll}
+        0, & \text{if } y \leq x + \dfrac{1}{2} \\
+        4(2y - 2x - 1), & \text{else}
+    \end{array}\right.
+\end{align*}
+Then if $T$ is defined using $k$, then
+\begin{align*}
+    \norm{T} &= \sup\limits_{x\in[0,1]}\int_0^1|k(x,y)|\dd y \\
+    &= 4\sup_{x\in[0,1]}\int_{x + \frac{1}{2}}^1 |2y - 2x - 1| \dd y \\
+    &= 4\sup_{x\in[0,1]} \qty(y^2 - (2x + 1)y)\Big|_{x + \frac{1}{2}}^1 \\
+    &= 4\sup_{x\in[0,1]} \qty(x - \frac{1}{2})^2 = 4\cdot\frac{1}{4} = 1
+\end{align*}
+However,
+\begin{align*}
+    \norm{T^2} &= \sup\limits_{\norm{f}=1}\norm{T^2f} \\
+    &= \sup_{\norm{f}=1}\int_0^1 k(x,y)\qty(\int_0^1 k(y,s) f(s) \dd s) \dd y \\
+    &= \sup_{\norm{f}=1}\int_0^1 \int_0^1 k(x,y)k(y,s) f(s) \dd s \dd y
+\end{align*}
+However, if $y \leq \frac{1}{2} \implies k(x,y) = 0$ and $y \geq \frac{1}{2} \implies k(y,s) = 0$, and thus $\forall y \in [0,1]$, $k(x,y)k(y,s) = 0$.  Thus,
+\begin{align*}
+    \norm{T^2} &= \sup_{\norm{f}=1}\int_0^1\int_0^1 k(x,y)k(y,s)f(s) \dd s \dd y \\
+    &= \sup_{\norm{f}=1} \int_0^1\int_0^1 0\ \dd s \dd y = 0
+\end{align*}
+So it is possible for $\norm{T} = 1$ and $\norm{T^2} = 0$. \hfill $\square$
+
+\section*{Problem 2}
+\emph{Study Section 5.4 of the textbook.}
+
+\section*{Problem 3}
+\emph{Let $X$ be the Banach space $\ell^2(\mathbb{N})$, defined by}
+\begin{align*}
+    \ell^2(\mathbb{N}) = \left\{z = \qty(z_n)_{n=1}^\infty\ |\ z_n \in \mathbb{C},\ \sum_{n=1}^\infty |z_n|^2 < \infty\right\}
+\end{align*}
+\emph{For $m=1,2, \dots$, define $e_m \in X$ to be the sequence with elements $(e_m)_n = \delta_{n,m}$, and define $P_m: X \rightarrow X$ by $P_m z = z_m e_m$, for all $z \in X$.} 
+
+\subsection*{ a)}
+\emph{Prove that $P_m \in \mathcal{B}(X)$, for all $m \geq 1$.}
+
+\begin{align*}
+    \norm{P_m} = \sup_{\norm{z}=1}\norm{P_m z} = \sup_{\norm{z}=1}\norm{z_m e_m} = \sup_{\norm{z}=1}\norm{z_m}\norm{e_m} \leq \norm{e_m}
+\end{align*}
+Thus $P_m$ is a bounded linear operator on $X$, i.e~$P_m \in \mathcal{B}(X)$. \hfill $\square$
+
+\subsection*{ b)}
+\emph{Verify $P_m P_n = \delta_{n,m}P_m$, for all $n,m \geq 1$.}
+\begin{align*}
+    (P_mP_n)(z) &= P_m(P_nz) = P_m(z_ne_n) = z_nP_m(e_n) = z_n(e_{n,m})e_m = z_n\delta_{n,m}e_m
+\end{align*}
+If $n \neq m$, then $\delta_{n,m} = 0$ and
+\begin{align*}
+    (P_mP_n)(z) = z_n\delta_{n,m}e_m = 0 = 0P_m(z) = \delta_{n,m}P_m(z) = (\delta_{n,m}P_m)(z)
+\end{align*}
+If $n = m$, then $z_m = z_n$ and
+\begin{align*}
+    (P_mP_n)(z) = z_n\delta_{n,m}e_m = \delta_{n,m}z_me_m = \delta_{n,m}P_m(z) = (\delta_{n,m}P_m)(z)
+\end{align*}
+In either case, $P_mP_n = \delta_{n,m}P_m$. \hfill $\square$
+
+\subsection*{ c)}
+\emph{Prove that $\norm{P_m} = 1$, for all $m \geq 1$.} 
+
+\subsection*{ d)}
+\emph{For $m \geq 1$, define $S_m$ by}
+\begin{align*}
+    S_m = \sum_{k=1}^m P_k
+\end{align*}
+\emph{Calculate $S_m S_n$, for all $n,m \geq 1$.}
+
+\subsection*{ e)}
+\emph{Show that $\norm{S_m} = 1$, for all $n \geq 1$.}
+
+\end{document}
