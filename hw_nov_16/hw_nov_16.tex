@@ -170,12 +170,14 @@ So it is possible for $\norm{T} = 1$ and $\norm{T^2} = 0$. \hfill $\square$
 \emph{For $m=1,2, \dots$, define $e_m \in X$ to be the sequence with elements $(e_m)_n = \delta_{n,m}$, and define $P_m: X \rightarrow X$ by $P_m z = z_m e_m$, for all $z \in X$.} 
 
 \subsection*{ a)}
-\emph{Prove that $P_m \in \mathcal{B}(X)$, for all $m \geq 1$.}
+\emph{Prove that $P_m \in \mathcal{B}(X)$, for all $m \geq 1$.} \\
 
-\begin{align*}
-    \norm{P_m} = \sup_{\norm{z}=1}\norm{P_m z} = \sup_{\norm{z}=1}\norm{z_m e_m} = \sup_{\norm{z}=1}\norm{z_m}\norm{e_m} \leq \norm{e_m}
-\end{align*}
-Thus $P_m$ is a bounded linear operator on $X$, i.e~$P_m \in \mathcal{B}(X)$. \hfill $\square$
+Note $\norm{e_m} = 1$ for all $m$.  Now, fix $m \geq 1$.
+\begin{equation}
+    \label{norm_equality}
+    \norm{P_m} = \sup_{\norm{z}=1}\norm{P_mz} = \sup_{\norm{z}=1}\norm{z_me_m} = \sup_{\norm{z}=1}|z_m|\norm{e_m} = \sup_{\norm{z}=1}|z_m|
+\end{equation}
+Since $\norm{z} = 1$, then $|z_m| \leq 1$ for all $m$.  Thus $\sup_{\norm{z}=1}|z_m| \leq 1$, which implies $\norm{P_m} \leq 1$.  Thus $P_m$ is a bounded linear operator on $X$, i.e~$P_m \in \mathcal{B}(X)$. \hfill $\square$
 
 \subsection*{ b)}
 \emph{Verify $P_m P_n = \delta_{n,m}P_m$, for all $n,m \geq 1$.}
@@ -193,16 +195,66 @@ If $n = m$, then $z_m = z_n$ and
 In either case, $P_mP_n = \delta_{n,m}P_m$. \hfill $\square$
 
 \subsection*{ c)}
-\emph{Prove that $\norm{P_m} = 1$, for all $m \geq 1$.} 
+\emph{Prove that $\norm{P_m} = 1$, for all $m \geq 1$.} \\
+
+By part \textbf{a)}, $\norm{P_m} \leq 1$.  However,
+\begin{align*}
+    \norm{P_me_m} = \norm{e_{m,m}e_m} = |e_{m,m}|\norm{e_m}
+\end{align*}
+But $e_{m,m} = \delta_{m,m} = 1$ and $\norm{e_m} = 1$, thus $\norm{P_me_m} = 1$.  This implies $\norm{P_m} \geq 1$, and so $\norm{P_m} = 1$. \hfill $\square$
 
 \subsection*{ d)}
 \emph{For $m \geq 1$, define $S_m$ by}
 \begin{align*}
     S_m = \sum_{k=1}^m P_k
 \end{align*}
-\emph{Calculate $S_m S_n$, for all $n,m \geq 1$.}
+\emph{Calculate $S_m S_n$, for all $n,m \geq 1$.} \\
+
+\begin{align*}
+    (S_mS_n)(z) &= S_m(S_nz) \\
+    &= S_m\qty(\sum_{k=1}^nP_kz) \\
+    &= S_m\qty(\sum_{k=1}^nz_ke_k) \\
+    &= S_m\qty(z_1,z_2, \dots, z_n, 0, 0\dots) \\
+    &= \sum_{j=1}^m P_k(z_1, \dots, z_n, 0, 0, \dots)
+\end{align*}
+If $n \leq m$,
+\begin{align*}
+    (S_mS_n)(z) &= P_1(z_1, \dots, z_n, 0, 0, \dots) + \dots + P_n(z_1, \dots, z_n, 0, 0, \dots) \\
+    &\ \ \ + P_{n+1}(z_1, \dots, z_n, 0, 0, \dots) + \dots + P_m(z_1, \dots, z_n, 0, 0, \dots) \\
+    &= z_1e_1 + \dots + z_ne_n + 0e_{n+1} + \dots 0e_m \\
+    &= (z_1, z_2, \dots, z_n) \\
+    &= S_nz
+\end{align*}
+So $S_mS_n = S_n$.  If $n \geq m$,
+\begin{align*}
+    (S_mS_n)(z) &= P_1(z_1, \dots, z_n, 0, 0, \dots) + \dots + P_m(z_1, \dots, z_n, 0, 0, \dots) \\
+    &= z_1e_1 + \dots + z_me_m \\
+    &= (z_1, z_2, \dots, z_m) \\
+    &= S_mz
+\end{align*}
+So $S_mS_n = S_m$.  In either case, $S_mS_n = S_{\min\{m,n\}}$. \hfill $\square$
 
 \subsection*{ e)}
-\emph{Show that $\norm{S_m} = 1$, for all $n \geq 1$.}
+\emph{Show that $\norm{S_m} = 1$, for all $m \geq 1$.} \\
+
+Fix $m \geq 1$.  First we show $\norm{S_m}$ is bounded by $1$.
+\begin{align*}
+    \norm{S_m} &= \norm{\sum_{k=1}^m P_k} \\
+    &= \sup_{\norm{z}=1}\norm{\qty(\sum_{k=1}^m P_k)z} \\
+    &= \sup_{\norm{z}=1}\norm{\sum_{k=1}^m P_kz} \\
+    &= \sup_{\norm{z}=1}\norm{\sum_{k=1}^m z_ke_k} \\
+    &= \sup_{\norm{z}=1}\norm{(z_1, z_2, \dots, z_m, 0, 0, \dots)} \\
+    &\leq \sup_{\norm{z}=1}\norm{z} = 1
+\end{align*}
+However,
+\begin{align*}
+    \norm{S_me_1} &= \norm{\qty(\sum_{k=1}^mP_k)e_1} \\
+    &= \norm{\sum_{k=1}^mP_ke_1} \\
+    &= \norm{\sum_{k=1}^m e_{1,k}e_k} \\
+    &= \norm{\sum_{k=1}^m\delta_{1,k}e_k} \\
+    &= \norm{(\delta_{1,1}, \delta_{1,2}, \dots, \delta_{1,m}, 0, 0, \dots)} \\
+    &= \norm{(1, 0, 0, \dots)} = 1
+\end{align*}
+Thus $\norm{S_m} \geq 1$, implying $\norm{S_m} = 1$ \hfill $\square$
 
 \end{document}
