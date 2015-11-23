@@ -1,0 +1,228 @@
+\documentclass[12pt]{article}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{moreverb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{array}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{bbold}
+\usepackage{alltt}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\usepackage{bigints}
+\allowdisplaybreaks
+\pgfplotsset{compat=1.12}
+
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}{Lemma}
+    
+\title{\bf HW \#7}
+\author{\bf Sam Fleischer}
+\date{\bf November 23, 2015}
+
+\begin{document}
+\noindent\textbf{MATH 201A \hfill Applied Analysis \ \ \ \ \hfill Fall 2015} 
+
+{\let\newpage\relax\maketitle}
+
+% PROBLEM 1 --------------------------------------------
+\section*{Problem 1}
+\emph{Let $X$ be a Banach space and consider the map $\exp\ :\ \mathcal{B}(X) \rightarrow \mathcal{B}(X)$, defined by the series}
+\begin{equation}
+    \label{exponential}
+    \exp(T) = \sum_{n=0}^\infty \frac{1}{n!}T^n
+\end{equation}
+\emph{where, by convention, $T^0 = \mathbb{1}$.}
+
+% PROBLEM 1A --------------------------------------------
+\subsection*{ a)}
+\emph{Prove that the map $\exp$ is well-defined by showing that this series (\ref{exponential}) converges absolutely for all $T \in \mathcal{B}(X)$.} \\
+
+Since, by part \textbf{b)}, $\norm{\exp T} \leq \exp \norm{T}$.  Then, since
+\begin{align*}
+    \exp \norm{T} = \sum_{n=0}^\infty\frac{1}{n!}\norm{T}^n
+\end{align*}
+converges for all finite $\norm{T}$, then $\norm{\exp T}$ converges absolutely for all $T \in \mathcal{B}(X)$. \hfill $\square$
+
+% PROBLEM 1B --------------------------------------------
+\subsection*{ b)}
+\emph{Prove the bound}
+\begin{align*}
+    \norm{\exp(T)} \leq e^{\norm{T}},\ \ \ T \in \mathcal{B}(X)
+\end{align*}
+
+\begin{align*}
+    \norm{\exp T} &= \norm{\sum_{n=0}^\infty \frac{1}{n!}T^n} \leq \sum_{n=0}^\infty\norm{\frac{1}{n!}T^n} \leq \sum_{n=0}^\infty\frac{1}{n!}\norm{T}^n = \exp\norm{T}
+\end{align*}
+\hfill $\square$
+
+% PROBLEM 1C --------------------------------------------
+\subsection*{ c)}
+\emph{Prove that $\exp$ is a continuous map when $\mathcal{B}(X)$ is considered with the uniform operator topology.} \\
+
+We want to show
+\begin{align*}
+    \lim_{T\rightarrow T_0}\exp T = \exp T_0
+\end{align*}
+for every $T_0 \in \mathcal{B}(X)$.  Define $P_N\ :\ \mathcal{B}(X) \rightarrow \mathcal{B}(X)$ by
+\begin{align*}
+    P_NT = \sum_{n=0}^N \frac{1}{n!}T^n
+\end{align*}
+$P_N \rightarrow \exp$ uniformly because
+\begin{align*}
+    \norm{P_n - \exp}_{\text{OP}} = \sup\limits_{T = \norm{1}}\norm{P_NT - \exp T} = \sup\limits_{\norm{T}=1}\norm{\sum_{n=N+1}^\infty \frac{1}{n!}T^n} \leq \sup\limits_{\norm{T}=1}\sum_{n=N+1}^\infty\frac{1}{n!}\norm{T}^n = \sum_{n=N+1}^\infty \frac{1}{n!}
+\end{align*}
+which is arbitrarily small as $N \rightarrow \infty$.  Thus $P_N \rightarrow \exp$ strongly, so $\exp T = \lim\limits_{N\rightarrow\infty} P_N T\ \ \forall T \in\mathcal{B}(X)$.
+\begin{align*}
+    \lim_{T \rightarrow T_0} \exp T = \lim_{T\rightarrow T_0}\lim_{N\rightarrow \infty} P_N T = \lim_{N\rightarrow \infty}\lim_{T\rightarrow T_0}P_N T = \lim_{N\rightarrow \infty} P_N\lim_{T\rightarrow T_0}T = \lim_{N\rightarrow \infty} P_N T_0 = \exp T_0
+\end{align*}
+Thus $\exp$ is a continuous map when $\mathcal{B}(X)$ is considered with the uniform operator topology. \hfill $\square$
+
+% PROBLEM 2 --------------------------------------------
+\section*{Problem 2}
+\emph{Let $\mathcal{B}$ be a Banach space and consider a continuous function $A\ :\ \mathbb{R} \rightarrow \mathcal{B}$.}
+
+% PROBLEM 2A --------------------------------------------
+\subsection*{ a)}
+\emph{For $a < b \in \mathbb{R}$, $\int_a^b A(t) \dd t$ can be defined as the limit of Riemann sums.  E.g., show that the following limit exists in the uniform topology:}
+\begin{align*}
+    \int_a^b A(t) \dd t = \lim_{N\rightarrow \infty}2^{-N}(b-a)\sum_{n=1}^{2^N} A(a + n2^{-N}(b-a))
+\end{align*}
+
+For a given $N$, for $n = 0, 1, \dots, 2^N$, define $x_n \equiv a + n2^{-N}(b-a)$.  Then
+\begin{align*}
+    \int_a^b A(t) \dd t = \sum_{n=0}^{2^N - 1} \int_{x_n}^{x_{n+1}} A(t)\dd t
+\end{align*}
+Note that by continuity of $A$, for each $x \in \mathbb{R}$ and $\epsilon > 0$, $\exists \delta$ such that $|x - y| < \delta \implies \norm{A(x) - A(y)} < \epsilon$.  Then if we choose $N$ such that $\delta > (b-a)2^{-N}$, then it suffices to show
+\begin{align*}
+    \norm{(b-a)2^{-N}\sum_{n=0}^{2^N-1}A(x_n) - \sum_{n=0}^{2^N-1}\int_{x_n}^{x_{n+1}}A(t)\dd t} < \epsilon
+\end{align*}
+However, 
+\begin{align*}
+    \norm{(b-a)2^{-N}\sum_{n=0}^{2^N-1}A(x_n) - \sum_{n=0}^{2^N-1}\int_{x_n}^{x_{n+1}}A(t)\dd t} &= \norm{\sum_{n=0}^{2^N-1}\qty[(b-a)2^{-N}A(x_n) - \int_{x_n}^{x_{n+1}} A(t) \dd t]} \\
+    &\leq \sum_{n=0}^{2^N-1}\norm{(b-a)2^{-N}\qty[A(x_n) - A(y_n)]} \\
+    &\ \ \ \ \ \text{for some $y_n \in [x_n, x_{n+1}]$ by the intermediate} \\
+    &\ \ \ \ \ \text{value theorem} \\
+    &= (b-a)2^{-N}\sum_{n=0}^{2^N-1}\norm{A(x_n) - A(y_n)} \\
+    &< (b-a)2^{-N}2^N\frac{\epsilon}{b-a} \\
+    &= \epsilon
+\end{align*}
+Thus $\displaystyle\int_a^b A(t) \dd t$ is well defined as the limit of Riemann sums. \hfill $\square$
+
+% PROBLEM 2B --------------------------------------------
+\subsection*{ b)}
+\emph{$A(\cdot)$ is called differentiable on an interval $I$ if for all $t \in I$, the following limit exists in the uniform topology:}
+\begin{align*}
+    A'(t) := \frac{\dd}{\dd t}A(t) := \lim_{h\rightarrow 0}\frac{A(t+h) - A(t)}{h}
+\end{align*}
+\emph{and the function $t \mapsto A'(t)$ is continuous on $I$.  Let $X$ be a Banach space, $A \in \mathcal{B}(X)$, and consider the map $t \mapsto \exp(tA)$.  Show that $A$ is differentiable and that its derivative is given by the following two expressions:}
+\begin{align*}
+    \frac{\dd}{\dd t}\exp(tA) = A\exp(tA) = \exp(tA)A
+\end{align*}
+
+\begin{align*}
+    \frac{\dd}{\dd t}\exp(tA) &= \lim_{h\rightarrow 0}\frac{\exp((t+h)A) - \exp(tA)}{h} \\
+    &= \lim_{h\rightarrow 0}\frac{\exp(tA + hA) - \exp(tA)}{h}
+\end{align*}
+But the operators $tA$ and $hA$ commute since
+\begin{align*}
+    tAhA = thA^2 = htA^2 = hAtA
+\end{align*}
+thus
+\begin{align*}
+    \frac{\dd}{\dd t}\exp(tA) &= \lim_{h\rightarrow 0}\frac{\exp(tA)\exp(hA) - \exp(tA)}{h} \\
+    &= \lim_{h\rightarrow 0}\frac{\exp(tA)\qty[\exp(hA) - I]}{h} \\
+    &= \exp(tA)\lim_{h\rightarrow 0}\frac{\qty[I + hA + \dfrac{h^2A^2}{2!} + \dfrac{h^3A^3}{3!} + \dots] - I}{h} \\
+    &= \exp(tA)\lim_{h\rightarrow 0}\qty[A + \frac{h^2A}{2!} + \frac{h^3A^2}{3!} + \dots] \\
+    &= \exp(tA)\lim_{h\rightarrow 0}A \\
+    &= \exp(tA)A
+\end{align*}
+However, $\exp(tA)$ and $A$ are commutative since $tA$ and $A$ are commutative.
+\begin{align*}
+    \exp(tA)A &= \qty[I + tA + \frac{t^2A^2}{2!} + \frac{t^3A^3}{3!} + \dots]A \\
+    &= A + tA^2 + \frac{t^2A^3}{2!} + \frac{t^3A^4}{4!} + \dots \\
+    &= A\qty[I + tA + \frac{t^2A^2}{2!} + \frac{t^3A^3}{3!} + \dots] \\
+    &= A\exp(tA)
+\end{align*}
+
+% PROBLEM 2C --------------------------------------------
+\subsection*{ c)}
+\emph{Let $A(t)$ be a differentiable function $\mathbb{R} \supset [0,1] \rightarrow \mathcal{B}(X)$.  Show that $\exp(A(t))$ is differentiable and that its derivative satisfies}
+\begin{align*}
+    \frac{\dd}{\dd t}\exp(A(t)) = \int_0^1\exp(s(A(t)))A'(t)\exp((1-s)A(t)) \dd s
+\end{align*}
+\emph{(Hint: consider $B(s) = \exp(s(A(t+h)))\exp((1-s)A(t))$ and note that $A(t+h) - A(t) = B(1) - B(0)$).} \\
+
+Consider
+\begin{align*}
+    B(s) = \exp(s(A(t+h)))\exp((1-s)A(t))
+\end{align*}
+and note that
+\begin{align*}
+    B(1) - B(0) = \exp(A(t+h)) - \exp(A(t))
+\end{align*}
+Then
+\begin{align*}
+    \frac{\dd}{\dd t}\exp(A(t)) &= \lim_{h\rightarrow 0}\frac{\exp(A(t+h)) - \exp(A(t))}{h} \\
+    &= \lim_{h\rightarrow 0}\frac{B(1) - B(0)}{h} \\
+    &= \lim_{h\rightarrow 0}\frac{\displaystyle\int_0^1 B'(s)\dd s}{h}
+\end{align*}
+by the Fundamental Theorem of Calculus for Banach Spaces.  Note that
+\begin{align*}
+    B'(s) = \qty[A(t+h) - A(t)]B(s)
+\end{align*}
+Thus,
+\begin{align*}
+    \frac{\dd}{\dd t}\exp(A(t)) &= \lim_{h\rightarrow 0}\frac{\displaystyle\int_0^1 \qty[A(t+h) - A(t)]B(s)\dd s}{h} \\
+    &= \int_0^1 \lim_{h\rightarrow 0}\frac{A(t+h) - A(t)}{h} B(s)\dd s \\
+    &= \int_0^1 \lim_{h\rightarrow 0}\frac{A(t+h) - A(t)}{h} \exp(s(A(t+h)))\exp((1-s)A(t)) \dd s \\
+    &= \int_0^1 A'(t) \exp(s(A(t)))\exp((1-s)A(t)) \dd s \\
+    &= \int_0^1\exp(s(A(t)))A'(t)\exp((1-s)A(t)) \dd s
+\end{align*} 
+\hfill $\square$
+
+% PROBLEM 3 --------------------------------------------
+\section*{Problem 3}
+\emph{Let $X$ be a Banach space and consider the $T \in \mathcal{B}(X)$ such that $\norm{T} < 1$.  Prove that $\mathbb{1} + T$ is invertible and that its inverse is given by the following uniformly convergent series:}
+\begin{align*}
+    (\mathbb{1} + T)^{-1} = \sum_{n=0}^\infty (-1)^n T^n
+\end{align*}
+
+Let $\norm{T} = 0$.  Then $T = \mathbb{0}$.  Then
+\begin{align*}
+    \qty(\mathbb{1 + 0})^{-1} = \mathbb{1}^{-1} = \mathbb{1} = \mathbb{0}^0 = \sum_{n=0}^{\infty}0^n = \sum_{n=0}^\infty (-1)^n\mathbb{1}^n
+\end{align*}
+Now let $0 < \norm{T} < 1$.  Then assume $x \in \ker(\mathbb{1} + T)$ and $x \neq 0$.  Then
+\begin{align*}
+    (\mathbb{1} + T)x = 0\ \implies\ x + Tx = 0\ \implies\ Tx = -x\ \implies\ \norm{T} \geq 1 \implies\Longleftarrow
+\end{align*}
+Thus $x \neq 0$ and $\ker(\mathbb{1} + T) = \{0\}$.  Thus $\mathbb{1} + T$ is invertible and
+\begin{align*}
+    (\mathbb{1} + T)\sum_{n=0}^\infty(-1)^nT^n &= (\mathbb{1} + T)\qty[\mathbb{1} - T + T^2 - T^3 + \dots] \\
+    &= \qty[\mathbb{1} - T + T^2 - T^3 + \dots ] + \qty[T - T^2 + T^3 - T^4]
+\end{align*}
+However, $\mathbb{1} + T + T^2 + T^3 + \dots$ is absolutely convergent, and thus we can rearrange the terms of the series.
+\begin{align*}
+    (\mathbb{1} + T)\sum_{n=0}^\infty(-1)^nT^n &= \mathbb{1} + (T - T) + (T^2 - T^2) + \dots = \mathbb{1}
+\end{align*}
+Similarly, $\qty[\displaystyle\sum_{n=0}^\infty(-1)^nT^n](\mathbb{1} + T) = \mathbb{1}$.  Thus
+\begin{align*}
+    (\mathbb{1} + T)^{-1} = \sum_{n=0}^\infty (-1)^nT^n
+\end{align*}
+\hfill $\square$
+
+\end{document}
