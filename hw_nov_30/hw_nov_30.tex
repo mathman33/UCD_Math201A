@@ -1,0 +1,240 @@
+\documentclass[12pt]{article}
+
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{moreverb}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{array}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{bbold}
+\usepackage{alltt}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\usepackage{bigints}
+\allowdisplaybreaks
+\pgfplotsset{compat=1.12}
+
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}{Lemma}
+    
+\title{\bf HW \#8}
+\author{\bf Sam Fleischer}
+\date{\bf November 30, 2015}
+
+\begin{document}
+\noindent\textbf{MATH 201A \hfill Applied Analysis \ \ \ \ \hfill Fall 2015} 
+
+{\let\newpage\relax\maketitle}
+
+% PROBLEM 1 --------------------------------------------
+\section*{Problem 1}
+\emph{Consider the Banach space $C([0,1])$ with the supremum norm.  For $x \in [0,1]$ let $\delta_x$ denote the linear functional on $C([0,1])$ given by}
+\begin{align*}
+    \delta_x(f) = f(x),\ \ \ \ \text{for all } f \in C([0,1])
+\end{align*}
+
+% PROBLEM 1A --------------------------------------------
+\subsection*{ a)}
+\emph{Show that $\norm{\delta_x} = 1$.}
+
+% PROBLEM 1B --------------------------------------------
+\subsection*{ b)}
+\emph{Show that there does not exist a Riemann integrable function $k\ :\ [0,1] \rightarrow \mathbb{R}$, such that}
+\begin{align*}
+    \delta_x(f) = \int_0^1 k(y)f(y) \dd y,\ \ \ \ \text{for all } f \in C([0,1])
+\end{align*}
+
+
+% PROBLEM 2 --------------------------------------------
+\section*{Problem 2}
+\emph{Prove that there does not exist an inner product on $C([0,1])$ such that the supremum norm is derived from this inner product.}
+
+% PROBLEM 3 --------------------------------------------
+\section*{Problem 3}
+\emph{Let $\mathcal{H}$ be a Hilbert space and let $M$ be a subset of $\mathcal{H}$.} \\
+
+% PROBLEM 3A --------------------------------------------
+\subsection*{ a)}
+\emph{Prove that $M^\perp$ is a closed linear subspace of $\mathcal{H}$.}
+
+First we show $M^\perp$ is a linear subspace.  Let $x, y \in M^\perp$ and $\lambda, \mu \in \mathbb{C}$.  Then for each $m \in M$,
+\begin{align*}
+    \langle m, \lambda x + \mu y\rangle = \lambda\langle m, x\rangle + \mu\langle m, y\rangle = 0
+\end{align*}
+Thus $\lambda x + \mu y \in M^\perp$.  Thus $M^\perp$ is a linear subspace of $\mathcal{H}$.  Next, let $(x_n)$ be a convergent sequence in $M^\perp$, and let $x_n \rightarrow x$.  Then for each $m \in M$,
+\begin{align*}
+    \langle x, m \rangle = \langle \lim_{n\rightarrow \infty} x_n, m\rangle
+\end{align*}
+but since $\langle \cdot, \cdot \rangle$ is continuous,
+\begin{align*}
+    \langle \lim_{n\rightarrow \infty} x_n, m\rangle = \lim_{n\rightarrow \infty}\langle x_n, m\rangle = \lim_{n\rightarrow \infty} 0 = 0
+\end{align*}
+Thus $\langle x, m \rangle = 0$, which shows $x \in M^\perp$, proving $M^\perp$ is closed. \hfill $\square$
+
+% PROBLEM 3B --------------------------------------------
+\subsection*{ b)}
+\emph{Prove that $M \cap M^\perp \subset \{0\}$.} \\
+
+Let $x \in M \cap M^\perp$.  Then by the definition of $M^\perp$,
+\begin{align*}
+    \langle x, x\rangle = 0
+\end{align*}
+Then $\norm{x} = 0$, which shows $x = 0$.  Thus $M \cap M^\perp \subset \{0\}$. \hfill $\square$
+
+% PROBLEM 3C --------------------------------------------
+\subsection*{ c)}
+\emph{If $M$ is a linear subspace of $\mathcal{H}$, prove that $(M^\perp)^\perp = \overline{M}$.} \\
+
+Assume $x \in \overline{M}$.  Then there is a sequence $x_n \in M$ such that $x_n \rightarrow x$.  Then $\langle x_n, y \rangle = 0$ for every $y \in M^\perp$.  Then by continuity of $\langle\cdot,\cdot\rangle$, $\langle x, y\rangle = 0$ for every $y \in M^\perp$.  Then $x \in (M^\perp)^\perp$ by the definition of $(M^\perp)^\perp$.  Thus $\overline{M} \subset (M^\perp)^\perp$. \\
+
+Now assume $x \not\in \overline{M}$.  Since $\overline{M}$ is closed, then by the Projection Theorem, $\exists y \in \overline{M}$ such that $(x - y) \perp \overline{M}$.  Since $y \in \overline{M}$, $\langle x - y, y\rangle = 0$.  Since $x \neq y$ ($x \not\in \overline{M}$ and $y \in \overline{M}$), then $\langle x - y, x - y \rangle \neq 0$.  However, $\langle x - y, x - y \rangle = \langle x - y, x \rangle - \langle x - y, y \rangle = \langle x - y, x \rangle$.  Since $x - y \perp \overline{M}$, then $x - y \perp M$.  So $x - y \in M^\perp$.  Then since $\langle x - y, x \rangle \neq 0$, then $x \not\in (M^\perp)^\perp$.  Then $(M^\perp)^\perp \subset \overline{M}$. \\
+
+Thus, $\overline{M} = (M^\perp)^\perp$. \hfill $\square$
+
+% PROBLEM 4 --------------------------------------------
+\section*{Problem 4}
+\emph{Let $\mathcal{H}$ be a Hilbert space and $A \in \mathcal{B}(\mathcal{H})$.  If $\langle x, Ay\rangle = 0$ for all $x, y, \in \mathcal{H}$, prove $A = \mathbb{0}$.} \\
+
+Since $\langle x, Ay \rangle = 0$ for all $x,y \in \mathcal{H}$, then in particular, take $x = Ay$, and so $\langle Ay, Ay \rangle = 0$ for all $y \in \mathcal{H}$.  Then $Ay = 0$ for all $y \in \mathcal{H}$.  Thus $A = \mathbb{0}$. \hfill $\square$
+
+% PROBLEM 5 --------------------------------------------
+\section*{Problem 5}
+\emph{Let $\mathcal{H}$ be a Hilbert space and $P$ and $Q$ two orthogonal projections on $\mathcal{H}$.}
+
+% PROBLEM 5A --------------------------------------------
+\subsection*{ a)}
+\emph{Prove that $PQ$ is an orthogonal projection if and only if $PQ - QP = 0$, i.e., if and only if $P$ and $Q$ commute.} \\
+
+First note that
+\begin{equation}
+    \label{useful_identity}
+    \langle PQx,y \rangle = \langle Qx, Py \rangle = \langle x, QPy \rangle
+\end{equation}
+
+Assume $PQ$ is an orthogonal projection.  Then by the definition of orthogonal projection, and by (\ref{useful_identity}), $\langle PQx, y\rangle = \langle x, PQy \rangle$.  Then for all $x, y \in \mathcal{H}$,
+\begin{align*}
+    \langle x, QPy \rangle &= \langle x, PQy \rangle \\
+    \implies \langle x, (QP - PQ)y \rangle &= 0 \\
+    \implies QP - PQ &= \mathbb{0} \\
+    \implies QP = PQ
+\end{align*}
+Thus $P$ and $Q$ commute.
+
+Now assume $PQ = QP$.  Then $(PQ)^2 = PQPQ = PPQQ = PQ$ since $P$ and $Q$ are orthogonal projections.  Also, by (\ref{useful_identity}), $\langle PQx, y\rangle = \langle x, QPy \rangle = \langle x, PQy \rangle$.  Thus $PQ$ is an orthogonal projection. \hfill $\square$
+
+% PROBLEM 5B --------------------------------------------
+\subsection*{ b)}
+\emph{Prove that for commuting orthogonal projections $P$ and $Q$, one has $\rm{ran}(PQ) = \rm{ran}(P)\cap\rm{ran}(Q)$.} \\
+
+Let $x \in \rm{ran}(PQ)$.  Then $\exists y$ such that $PQy = x$.  Then $P$ maps $Qy$ on to $x$.  Then $x \in \rm{ran}(P)$.  However, since $P$ and $Q$ commute, then $QPy = x$, and thus $Q$ maps $Py$ on to $x$, and so $x \in \rm{ran}(Q)$.  Thus $x \in \rm{ran}(P)\cap\rm{ran}(Q)$.  So $\rm{ran}(PQ) \subset \rm{ran}(P)\cap\rm{ran}(Q)$. \\
+
+Now let $x \in \rm{ran}(P)\cap\rm{ran}(Q)$.  Then $x \in \rm{ran}(P)$ and $x \in \rm{ran}(Q)$.  So $\exists y_1, y_2$ such that $Py_1 = Qy_2 = x$.  Thus, $PQy_2 = P^2y_1 = Py_1 = x$, and thus $x \in \rm{ran}(PQ)$.  So $\rm{ran}(P)\cap\rm{ran}(Q) \subset \rm{ran}(PQ)$. \\
+
+Thus, $\rm{ran}(PQ) = \rm{ran}(P)\cap\rm{ran}(Q)$. \hfill $\square$
+
+% PROBLEM 5C --------------------------------------------
+\subsection*{ c)}
+\emph{Prove that $P + Q$ is an orthogonal projection if and only if $PQ = \mathbb{0}$.} \\
+
+Assume $PQ = \mathbb{0}$.  Then $\langle PQx, y \rangle = 0$ for all $x,y \in \mathcal{H}$.  But by (\ref{useful_identity}), $\langle x, QPy \rangle = 0$ for all $x,y \in \mathcal{H}$.  Thus $QP = \mathbb{0}$.  Then $(P + Q)^2 = P^2 + PQ + QP + Q^2 = P^2 + \mathbb{0} + \mathbb{0} + Q^2 = P + Q$ since $P$ and $Q$ are orthogonal projections.  Also,
+\begin{align*}
+    \langle (P + Q)x, y \rangle &= \langle Px + Qx, y\rangle \\
+    &= \langle Px, y\rangle + \langle Qx, y\rangle \\
+    &= \langle x, Py\rangle + \langle x, Qy\rangle \\
+    &= \langle x, Py + Qy\rangle \\
+    &= \langle x, (P + Q)y\rangle
+\end{align*}
+Thus $P + Q$ is an orthogonal projection. \\
+
+Assume $P + Q$ is an orthogonal projection.  Then $(P + Q)^2 = P + Q$, but $(P + Q)^2 = P^2 + PQ + QP + Q^2 = P + PQ + QP + Q$.  Thus $PQ + QP = \mathbb{0}$, i.e.~$PQ = -QP$. \\
+
+Assume $x \in \rm{ran}(P)\cap\rm{ran}(Q)$ and note $0 = (PQ + QP)x = PQx + QPx$.  Since $x \in \rm{ran}(P)$, $Px = x$.  Also, since $x \in \rm{ran}(Q)$, $Qx = x$.  Then $PQx = Px = x$ and $QPx = Qx = x$.  So $0 = PQx + QPx = 2x$.  Thus $x = 0$. \\
+
+Now, take any $x \in \mathcal{H}$, then certainly $PQx \in \rm{ran}(P)$ and since $PQx = -QPx = Q(-Px)$, then $PQx \in \rm{ran}(Q)$.  Then $PQx = 0$ by the paragraph above, and thus $PQ = \mathbb{0}$, i.e.~$\rm{ran}(PQ) = \{0\}$. \\
+
+Thus, $P + Q$ is an orthogonal projection if and only if $\rm{ran}(PQ) = \{0\}$.  \hfill $\square$
+
+% PROBLEM 5D --------------------------------------------
+\subsection*{ d)}
+\emph{Prove that if $PQ = \mathbb{0}$, we have $\rm{ran}(P+Q) = \rm{ran}(P) \oplus \rm{ran}(Q)$.} \\
+
+Let $PQ = \mathbb{0}$ and assume $y \in \rm{ran}(P + Q)$.  Then $\exists x \in \mathcal{H}$ such that $Px + Qx = y$.  Then $y$ is the sum of an element in $\rm{ran}(P)$ and an element in $\rm{ran}(Q)$.  Thus $y \in \rm{ran}(P) \oplus \rm{ran}(Q)$.  Assume $y \in \rm{ran}(P) \oplus \rm{ran}(Q)$.  Then $\exists x_1, x_2 \in \mathcal{H}$ such that $y = Px_1 + Qx_2$.  Then $Py = P^2x_1 + PQ X_2 = Px_1$ and $Qy = QPx_1 + Q^2x_2 = Qx_2$.  Thus $y = Px_1 + Qx_2 = Py + Qy = (P + Q)y$.  Thus $y \in \rm{ran}(P + Q)$, which shows $\rm{ran}(P + Q) = \rm{ran}(P)\oplus\rm{ran}(Q)$. \hfill $\square$
+
+
+% PROBLEM 6 --------------------------------------------
+\section*{Problem 6}
+\emph{Let $\mathcal{H}$ be a Hilbert space and $P \in \mathcal{B}(\mathcal{H})$ such that $P^2 = P$ and $\dim\rm{ran}(P) = 1$.}
+
+% PROBLEM 6A --------------------------------------------
+\subsection*{ a)}
+\emph{Show that $\norm{P} \geq 1$.} \\
+
+Let $x \in \rm{ran}(P)$ such that $\norm{x} = 1$.  Then $Px = x$, and so $\norm{Px} = \norm{x} = 1$.  Thus $\norm{P} \geq 1$. \hfill $\square$
+
+% PROBLEM 6B --------------------------------------------
+\subsection*{ b)}
+\emph{Suppose $\dim\mathcal{H} \geq 2$.  Find}
+\begin{align*}
+    \sup\left\{\norm{P}\ |\ P\in\mathcal{B}(\mathcal{H}),\ P^2 = P,\ \dim\rm{ran}(P) = 1\right\}
+\end{align*}
+
+% PROBLEM 7 --------------------------------------------
+\section*{Problem 7}
+\emph{Let $\{e_1, e_2, \dots\}$ be an orthonormal basis of a separable Hilbert space $\mathcal{H}$.}
+
+% PROBLEM 7A --------------------------------------------
+\subsection*{ a)}
+\emph{Let $(a_n) \in \ell^1(\mathbb{N})$.  Show that $\sum_{n=1}^\infty a_ne_n$ converges absolutely to a limit in $\mathcal{H}$.}
+
+% PROBLEM 7B --------------------------------------------
+\subsection*{ b)}
+\emph{Let $\alpha \in (0, \infty)$ and define $a_n = n^{-\alpha}$, $n \geq 1$.  For which values of $\alpha$ does $\sum_{n=1}^\infty a_ne_n$ converge unconditionally but not absolutely?}
+
+
+% PROBLEM 8 --------------------------------------------
+\section*{Problem 8}
+\emph{Define the Legendre polynomials $P_n$ by}
+\begin{align*}
+    P_n(x) = \frac{1}{2^n n!}\frac{\dd^n}{\dd x^n}(x^2 - 1)^n
+\end{align*}
+
+% PROBLEM 8A --------------------------------------------
+\subsection*{ a)}
+\emph{Show that the Legendre polynomials are orthogonal in $L^2([-1,1])$, and that they are obtained by Gram-Schmidt orthogonalization of the monomials.}
+
+% PROBLEM 8B --------------------------------------------
+\subsection*{ b)}
+\emph{Show that}
+\begin{align*}
+    \int_{-1}^1 P_n(x)^2\dd x = \frac{2}{2n + 1}
+\end{align*}
+
+% PROBLEM 8C --------------------------------------------
+\subsection*{ c)}
+\emph{Prove that the Legendre polynomials form an orthogonal basis of $L^2([-1,1])$.}
+
+% PROBLEM 8D --------------------------------------------
+\subsection*{ d)}
+\emph{Prove that the Legendre polynomial $P_n$ is an eigenfunction of the differential operator}
+\begin{align*}
+    L = -\frac{\dd}{\dd x}(1 - x^2)\frac{\dd}{\dd x}
+\end{align*}
+with eigenvalue $\lambda_n = n(n+1)$, meaning that
+\begin{align*}
+    LP_n = \lambda_nP_n
+\end{align*}
+
+\end{document}
