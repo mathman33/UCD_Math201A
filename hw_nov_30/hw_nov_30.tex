@@ -357,8 +357,11 @@ Fix $n$, and pick $m < n$.  Then
     \langle x^m, P_n \rangle &= \int_{-1}^1 x^m P_n \dd x \\
     &= \int_{-1}^1 x^m \frac{1}{2^n n!} \frac{\dd^n}{\dd x^n} (x^2 - 1)^n \dd x \\
     \implies 2^n n! \langle x^m, P_n \rangle &= \int_{-1}^1 x^m\frac{\dd^n}{\dd x^n}(x^2 - 1)^n \dd x \\
-    &= (-1)^m m! \int_{-1}^1\frac{\dd^{n-m}}{\dd x^{n-m}} (x^2 - 1)^n \dd x & \text{through integration by parts $m$ times}
+    &= (-1)^m m! \int_{-1}^1\frac{\dd^{n-m}}{\dd x^{n-m}} (x^2 - 1)^n \dd x & \text{through integration by parts $m$ times} \\
+    &= (-1)^m m! \frac{\dd^{n-m-1}}{\dd x^{n-m-1}}(x^2 - 1)^n\Big|_{-1}^1 \\
+    &= 0
 \end{align*}
+because $x^2 - 1$ is a factor of $\dfrac{\dd^{n-m-1}}{\dd x^{n-m-1}}(x^2 - 1)^n$.  Thus $x^m \perp P_n$ for all $m < n$.  However, $P_m$ is a linear combination of elements from $\{1, x, \dots, x^m\}$, and thus $P_m \perp P_n$.  Thus the Legendre polynomials are orthogonal in $L^2([-1,1])$. \hfill $\square$
 
 % PROBLEM 8B --------------------------------------------
 \subsection*{ b)}
