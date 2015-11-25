@@ -50,6 +50,15 @@
 \subsection*{ a)}
 \emph{Show that $\norm{\delta_x} = 1$.}
 
+\begin{align*}
+    \norm{\delta_x} = \sup_{\norm{f} = 1}\left|\delta_x(f)\right| = \sup_{\norm{f} = 1} |f(x)| \leq 1
+\end{align*}
+but if $f \equiv 1$, then $|\delta_x(f)| = f(x) = 1$, and thus
+\begin{align*}
+    \norm{\delta_x} = 1
+\end{align*}
+\hfill $\square$
+
 % PROBLEM 1B --------------------------------------------
 \subsection*{ b)}
 \emph{Show that there does not exist a Riemann integrable function $k\ :\ [0,1] \rightarrow \mathbb{R}$, such that}
@@ -57,14 +66,47 @@
     \delta_x(f) = \int_0^1 k(y)f(y) \dd y,\ \ \ \ \text{for all } f \in C([0,1])
 \end{align*}
 
+Fix $z \in [0, 1]$.  Then define $\delta_z(f) = f(z)$ and assume there exists $k\ :\ [0,1] \rightarrow \mathbb{R}$ such that
+\begin{align*}
+    \delta_z(f) = \int_0^1 k(y) f(y) \dd y
+\end{align*}
+for all $f \in C([0,1])$.  For $n = 1, 2, \dots$, define $f_k \in C([0,1])$ as
+\begin{align*}
+    f_n(x) = \left\{\begin{array}{ll}
+        2^n x + (1 - 2^nx_0)\ &,\ x \in [z - \frac{1}{2^n}, z] \\
+        -2^n x + (1 + 2^nz)\ &,\ x \in [z, z + \frac{1}{2^n}] \\
+        0\ &,\ \text{else}
+    \end{array}\right.
+\end{align*}
+These are tent functions centered at $z$ with $f_n(z) = 1$ for all $n$.  Then
+\begin{align*}
+    1 = f_n(z) = \delta_z(f) = \int_0^1 k(y) f_n(y) \dd y = \int_{\max\left\{{0, z - \frac{1}{2^n}}\right\}}^{\min\left\{{1, z + \frac{1}{2^n}}\right\}} k(y) f_n(y) \dd y
+\end{align*}
+Note $\norm{f_n} = 1$ for all $n$, and let $K$ denote $\norm{k}$ ($K$ is finite since $k$ is continuous on a compact set).  Then
+\begin{align*}
+    1 = f_n(z) \delta_z(f) \leq K\int_{\max\left\{{0, z - \frac{1}{2^n}}\right\}}^{\min\left\{{1, z + \frac{1}{2^n}}\right\}} \dd y = K\frac{1}{2^{n-1}}
+\end{align*}
+Taking the limit as $n \rightarrow \infty$ yields $1 \leq \lim\limits_{n\rightarrow \infty} K \dfrac{1}{2^{n-1}} = 0$, a contradiction. \medskip
+
+Thus, there does not exist a Riemann integrable function $k$ such that
+\begin{align*}
+    \delta_z(f) = \int_0^1 k(y) f(y) \dd y
+\end{align*}
+for all $f \in C([0,1])$. \hfill $\square$
 
 % PROBLEM 2 --------------------------------------------
 \section*{Problem 2}
-\emph{Prove that there does not exist an inner product on $C([0,1])$ such that the supremum norm is derived from this inner product.}
+\emph{Prove that there does not exist an inner product on $C([0,1])$ such that the supremum norm is derived from this inner product.} \medskip
+
+Take $f(x) = x$ and $g(x) = 1$.  Then $\norm{f}_\infty = 1$ and $\norm{g}_\infty = 1$.  Also, $\norm{f + g}_\infty = 2$ and $\norm{f - g}_\infty = 1$.  Then
+\begin{align*}
+    5 = \norm{f + g}_\infty^2 + \norm{f - g}_\infty^2 \neq 2\norm{f}_\infty^2 + 2\norm{g}_\infty^2 = 4
+\end{align*}
+Thus $\norm{\cdot}_\infty$ cannot be derived from an inner product on $C([0,1])$. \hfill $\square$
 
 % PROBLEM 3 --------------------------------------------
 \section*{Problem 3}
-\emph{Let $\mathcal{H}$ be a Hilbert space and let $M$ be a subset of $\mathcal{H}$.} \\
+\emph{Let $\mathcal{H}$ be a Hilbert space and let $M$ be a subset of $\mathcal{H}$.} \medskip
 
 % PROBLEM 3A --------------------------------------------
 \subsection*{ a)}
@@ -86,7 +128,7 @@ Thus $\langle x, m \rangle = 0$, which shows $x \in M^\perp$, proving $M^\perp$ 
 
 % PROBLEM 3B --------------------------------------------
 \subsection*{ b)}
-\emph{Prove that $M \cap M^\perp \subset \{0\}$.} \\
+\emph{Prove that $M \cap M^\perp \subset \{0\}$.} \medskip
 
 Let $x \in M \cap M^\perp$.  Then by the definition of $M^\perp$,
 \begin{align*}
@@ -96,17 +138,17 @@ Then $\norm{x} = 0$, which shows $x = 0$.  Thus $M \cap M^\perp \subset \{0\}$. 
 
 % PROBLEM 3C --------------------------------------------
 \subsection*{ c)}
-\emph{If $M$ is a linear subspace of $\mathcal{H}$, prove that $(M^\perp)^\perp = \overline{M}$.} \\
+\emph{If $M$ is a linear subspace of $\mathcal{H}$, prove that $(M^\perp)^\perp = \overline{M}$.} \medskip
 
-Assume $x \in \overline{M}$.  Then there is a sequence $x_n \in M$ such that $x_n \rightarrow x$.  Then $\langle x_n, y \rangle = 0$ for every $y \in M^\perp$.  Then by continuity of $\langle\cdot,\cdot\rangle$, $\langle x, y\rangle = 0$ for every $y \in M^\perp$.  Then $x \in (M^\perp)^\perp$ by the definition of $(M^\perp)^\perp$.  Thus $\overline{M} \subset (M^\perp)^\perp$. \\
+Assume $x \in \overline{M}$.  Then there is a sequence $x_n \in M$ such that $x_n \rightarrow x$.  Then $\langle x_n, y \rangle = 0$ for every $y \in M^\perp$.  Then by continuity of $\langle\cdot,\cdot\rangle$, $\langle x, y\rangle = 0$ for every $y \in M^\perp$.  Then $x \in (M^\perp)^\perp$ by the definition of $(M^\perp)^\perp$.  Thus $\overline{M} \subset (M^\perp)^\perp$. \medskip
 
-Now assume $x \not\in \overline{M}$.  Since $\overline{M}$ is closed, then by the Projection Theorem, $\exists y \in \overline{M}$ such that $(x - y) \perp \overline{M}$.  Since $y \in \overline{M}$, $\langle x - y, y\rangle = 0$.  Since $x \neq y$ ($x \not\in \overline{M}$ and $y \in \overline{M}$), then $\langle x - y, x - y \rangle \neq 0$.  However, $\langle x - y, x - y \rangle = \langle x - y, x \rangle - \langle x - y, y \rangle = \langle x - y, x \rangle$.  Since $x - y \perp \overline{M}$, then $x - y \perp M$.  So $x - y \in M^\perp$.  Then since $\langle x - y, x \rangle \neq 0$, then $x \not\in (M^\perp)^\perp$.  Then $(M^\perp)^\perp \subset \overline{M}$. \\
+Now assume $x \not\in \overline{M}$.  Since $\overline{M}$ is closed, then by the Projection Theorem, $\exists y \in \overline{M}$ such that $(x - y) \perp \overline{M}$.  Since $y \in \overline{M}$, $\langle x - y, y\rangle = 0$.  Since $x \neq y$ ($x \not\in \overline{M}$ and $y \in \overline{M}$), then $\langle x - y, x - y \rangle \neq 0$.  However, $\langle x - y, x - y \rangle = \langle x - y, x \rangle - \langle x - y, y \rangle = \langle x - y, x \rangle$.  Since $x - y \perp \overline{M}$, then $x - y \perp M$.  So $x - y \in M^\perp$.  Then since $\langle x - y, x \rangle \neq 0$, then $x \not\in (M^\perp)^\perp$.  Then $(M^\perp)^\perp \subset \overline{M}$. \medskip
 
 Thus, $\overline{M} = (M^\perp)^\perp$. \hfill $\square$
 
 % PROBLEM 4 --------------------------------------------
 \section*{Problem 4}
-\emph{Let $\mathcal{H}$ be a Hilbert space and $A \in \mathcal{B}(\mathcal{H})$.  If $\langle x, Ay\rangle = 0$ for all $x, y, \in \mathcal{H}$, prove $A = \mathbb{0}$.} \\
+\emph{Let $\mathcal{H}$ be a Hilbert space and $A \in \mathcal{B}(\mathcal{H})$.  If $\langle x, Ay\rangle = 0$ for all $x, y, \in \mathcal{H}$, prove $A = \mathbb{0}$.} \medskip
 
 Since $\langle x, Ay \rangle = 0$ for all $x,y \in \mathcal{H}$, then in particular, take $x = Ay$, and so $\langle Ay, Ay \rangle = 0$ for all $y \in \mathcal{H}$.  Then $Ay = 0$ for all $y \in \mathcal{H}$.  Thus $A = \mathbb{0}$. \hfill $\square$
 
@@ -116,7 +158,7 @@ Since $\langle x, Ay \rangle = 0$ for all $x,y \in \mathcal{H}$, then in particu
 
 % PROBLEM 5A --------------------------------------------
 \subsection*{ a)}
-\emph{Prove that $PQ$ is an orthogonal projection if and only if $PQ - QP = 0$, i.e., if and only if $P$ and $Q$ commute.} \\
+\emph{Prove that $PQ$ is an orthogonal projection if and only if $PQ - QP = 0$, i.e., if and only if $P$ and $Q$ commute.} \medskip
 
 First note that
 \begin{equation}
@@ -137,17 +179,17 @@ Now assume $PQ = QP$.  Then $(PQ)^2 = PQPQ = PPQQ = PQ$ since $P$ and $Q$ are or
 
 % PROBLEM 5B --------------------------------------------
 \subsection*{ b)}
-\emph{Prove that for commuting orthogonal projections $P$ and $Q$, one has $\rm{ran}(PQ) = \rm{ran}(P)\cap\rm{ran}(Q)$.} \\
+\emph{Prove that for commuting orthogonal projections $P$ and $Q$, one has $\rm{ran}(PQ) = \rm{ran}(P)\cap\rm{ran}(Q)$.} \medskip
 
-Let $x \in \rm{ran}(PQ)$.  Then $\exists y$ such that $PQy = x$.  Then $P$ maps $Qy$ on to $x$.  Then $x \in \rm{ran}(P)$.  However, since $P$ and $Q$ commute, then $QPy = x$, and thus $Q$ maps $Py$ on to $x$, and so $x \in \rm{ran}(Q)$.  Thus $x \in \rm{ran}(P)\cap\rm{ran}(Q)$.  So $\rm{ran}(PQ) \subset \rm{ran}(P)\cap\rm{ran}(Q)$. \\
+Let $x \in \rm{ran}(PQ)$.  Then $\exists y$ such that $PQy = x$.  Then $P$ maps $Qy$ on to $x$.  Then $x \in \rm{ran}(P)$.  However, since $P$ and $Q$ commute, then $QPy = x$, and thus $Q$ maps $Py$ on to $x$, and so $x \in \rm{ran}(Q)$.  Thus $x \in \rm{ran}(P)\cap\rm{ran}(Q)$.  So $\rm{ran}(PQ) \subset \rm{ran}(P)\cap\rm{ran}(Q)$. \medskip
 
-Now let $x \in \rm{ran}(P)\cap\rm{ran}(Q)$.  Then $x \in \rm{ran}(P)$ and $x \in \rm{ran}(Q)$.  So $\exists y_1, y_2$ such that $Py_1 = Qy_2 = x$.  Thus, $PQy_2 = P^2y_1 = Py_1 = x$, and thus $x \in \rm{ran}(PQ)$.  So $\rm{ran}(P)\cap\rm{ran}(Q) \subset \rm{ran}(PQ)$. \\
+Now let $x \in \rm{ran}(P)\cap\rm{ran}(Q)$.  Then $x \in \rm{ran}(P)$ and $x \in \rm{ran}(Q)$.  So $\exists y_1, y_2$ such that $Py_1 = Qy_2 = x$.  Thus, $PQy_2 = P^2y_1 = Py_1 = x$, and thus $x \in \rm{ran}(PQ)$.  So $\rm{ran}(P)\cap\rm{ran}(Q) \subset \rm{ran}(PQ)$. \medskip
 
 Thus, $\rm{ran}(PQ) = \rm{ran}(P)\cap\rm{ran}(Q)$. \hfill $\square$
 
 % PROBLEM 5C --------------------------------------------
 \subsection*{ c)}
-\emph{Prove that $P + Q$ is an orthogonal projection if and only if $PQ = \mathbb{0}$.} \\
+\emph{Prove that $P + Q$ is an orthogonal projection if and only if $PQ = \mathbb{0}$.} \medskip
 
 Assume $PQ = \mathbb{0}$.  Then $\langle PQx, y \rangle = 0$ for all $x,y \in \mathcal{H}$.  But by (\ref{useful_identity}), $\langle x, QPy \rangle = 0$ for all $x,y \in \mathcal{H}$.  Thus $QP = \mathbb{0}$.  Then $(P + Q)^2 = P^2 + PQ + QP + Q^2 = P^2 + \mathbb{0} + \mathbb{0} + Q^2 = P + Q$ since $P$ and $Q$ are orthogonal projections.  Also,
 \begin{align*}
@@ -157,21 +199,21 @@ Assume $PQ = \mathbb{0}$.  Then $\langle PQx, y \rangle = 0$ for all $x,y \in \m
     &= \langle x, Py + Qy\rangle \\
     &= \langle x, (P + Q)y\rangle
 \end{align*}
-Thus $P + Q$ is an orthogonal projection. \\
+Thus $P + Q$ is an orthogonal projection. \medskip
 
-Assume $P + Q$ is an orthogonal projection.  Then $(P + Q)^2 = P + Q$, but $(P + Q)^2 = P^2 + PQ + QP + Q^2 = P + PQ + QP + Q$.  Thus $PQ + QP = \mathbb{0}$, i.e.~$PQ = -QP$. \\
+Assume $P + Q$ is an orthogonal projection.  Then $(P + Q)^2 = P + Q$, but $(P + Q)^2 = P^2 + PQ + QP + Q^2 = P + PQ + QP + Q$.  Thus $PQ + QP = \mathbb{0}$, i.e.~$PQ = -QP$. \medskip
 
-Assume $x \in \rm{ran}(P)\cap\rm{ran}(Q)$ and note $0 = (PQ + QP)x = PQx + QPx$.  Since $x \in \rm{ran}(P)$, $Px = x$.  Also, since $x \in \rm{ran}(Q)$, $Qx = x$.  Then $PQx = Px = x$ and $QPx = Qx = x$.  So $0 = PQx + QPx = 2x$.  Thus $x = 0$. \\
+Assume $x \in \rm{ran}(P)\cap\rm{ran}(Q)$ and note $0 = (PQ + QP)x = PQx + QPx$.  Since $x \in \rm{ran}(P)$, $Px = x$.  Also, since $x \in \rm{ran}(Q)$, $Qx = x$.  Then $PQx = Px = x$ and $QPx = Qx = x$.  So $0 = PQx + QPx = 2x$.  Thus $x = 0$, which proves $\rm{ran}(P)\cap\rm{ran}(Q) = \{0\}$. \medskip
 
-Now, take any $x \in \mathcal{H}$, then certainly $PQx \in \rm{ran}(P)$ and since $PQx = -QPx = Q(-Px)$, then $PQx \in \rm{ran}(Q)$.  Then $PQx = 0$ by the paragraph above, and thus $PQ = \mathbb{0}$, i.e.~$\rm{ran}(PQ) = \{0\}$. \\
+Now, take any $x \in \mathcal{H}$, then certainly $PQx \in \rm{ran}(P)$ and since $PQx = -QPx = Q(-Px)$, then $PQx \in \rm{ran}(Q)$.  Then $PQx = 0$ by the paragraph above, and thus $PQ = \mathbb{0}$, i.e.~$\rm{ran}(PQ) = \{0\}$. \medskip
 
 Thus, $P + Q$ is an orthogonal projection if and only if $\rm{ran}(PQ) = \{0\}$.  \hfill $\square$
 
 % PROBLEM 5D --------------------------------------------
 \subsection*{ d)}
-\emph{Prove that if $PQ = \mathbb{0}$, we have $\rm{ran}(P+Q) = \rm{ran}(P) \oplus \rm{ran}(Q)$.} \\
+\emph{Prove that if $PQ = \mathbb{0}$, we have $\rm{ran}(P+Q) = \rm{ran}(P) \oplus \rm{ran}(Q)$.} \medskip
 
-Let $PQ = \mathbb{0}$ and assume $y \in \rm{ran}(P + Q)$.  Then $\exists x \in \mathcal{H}$ such that $Px + Qx = y$.  Then $y$ is the sum of an element in $\rm{ran}(P)$ and an element in $\rm{ran}(Q)$.  Thus $y \in \rm{ran}(P) \oplus \rm{ran}(Q)$.  Assume $y \in \rm{ran}(P) \oplus \rm{ran}(Q)$.  Then $\exists x_1, x_2 \in \mathcal{H}$ such that $y = Px_1 + Qx_2$.  Then $Py = P^2x_1 + PQ X_2 = Px_1$ and $Qy = QPx_1 + Q^2x_2 = Qx_2$.  Thus $y = Px_1 + Qx_2 = Py + Qy = (P + Q)y$.  Thus $y \in \rm{ran}(P + Q)$, which shows $\rm{ran}(P + Q) = \rm{ran}(P)\oplus\rm{ran}(Q)$. \hfill $\square$
+Let $PQ = \mathbb{0}$ and assume $y \in \rm{ran}(P + Q)$.  Then $\exists x \in \mathcal{H}$ such that $Px + Qx = y$.  Then $y$ is the sum of an element in $\rm{ran}(P)$ and an element in $\rm{ran}(Q)$.  Thus $y \in \rm{ran}(P) \oplus \rm{ran}(Q)$.  Assume $y \in \rm{ran}(P) \oplus \rm{ran}(Q)$.  Then $\exists x_1, x_2 \in \mathcal{H}$ such that $y = Px_1 + Qx_2$.  Then $Py = P^2x_1 + PQ x_2 = Px_1$ and $Qy = QPx_1 + Q^2x_2 = Qx_2$ since $QP = \mathbb{0}$.  Thus $y = Px_1 + Qx_2 = Py + Qy = (P + Q)y$.  Thus $y \in \rm{ran}(P + Q)$, which shows $\rm{ran}(P + Q) = \rm{ran}(P)\oplus\rm{ran}(Q)$. \hfill $\square$
 
 
 % PROBLEM 6 --------------------------------------------
@@ -180,7 +222,7 @@ Let $PQ = \mathbb{0}$ and assume $y \in \rm{ran}(P + Q)$.  Then $\exists x \in \
 
 % PROBLEM 6A --------------------------------------------
 \subsection*{ a)}
-\emph{Show that $\norm{P} \geq 1$.} \\
+\emph{Show that $\norm{P} \geq 1$.} \medskip
 
 Let $x \in \rm{ran}(P)$ such that $\norm{x} = 1$.  Then $Px = x$, and so $\norm{Px} = \norm{x} = 1$.  Thus $\norm{P} \geq 1$. \hfill $\square$
 
@@ -191,6 +233,87 @@ Let $x \in \rm{ran}(P)$ such that $\norm{x} = 1$.  Then $Px = x$, and so $\norm{
     \sup\left\{\norm{P}\ |\ P\in\mathcal{B}(\mathcal{H}),\ P^2 = P,\ \dim\rm{ran}(P) = 1\right\}
 \end{align*}
 
+Let $\dim\mathcal{H} \geq 2$ and let $\{e_\alpha\}_{\alpha \in I}$ be an orthonormal basis.  Then pick two distinct basis elements, $e_{\alpha_1}$ and $e_{\alpha_2}$, and define
+\begin{align*}
+    P_n(x) = \qty(x_{\alpha_1} + nx_{\alpha_2})e_{\alpha_1}
+\end{align*}
+for $n = 1, 2, \dots$, and where $x_{\alpha_i}$ is the defined as the coefficient on $e_{\alpha_i}$ in the sum
+\begin{align*}
+    x = \sum_{\alpha \in I}x_\alpha e_\alpha
+\end{align*}
+Then clearly $\dim\rm{ran}P_n = 1$ since $P_n x = ae_{\alpha_1}$ where $a$ is the only degree of freedom (i.e. no vector in the range of $P_n$ is linearly independent from $e_{\alpha_1}$).  Also,
+\begin{align*}
+    P_n^2 x &= P_n((x_{\alpha_1} + nx_{\alpha_2})e_{\alpha_1})\\
+    &= (x_{\alpha_1} + nx_{\alpha_2} + n(0))e_{\alpha_1} \\
+    &= P_n x
+\end{align*}
+Lastly,
+\begin{align*}
+    \norm{P_n} = \sup_{\norm{x} = 1}\norm{P_nx} = \sup_{\norm{x} = 1}\left|x_{\alpha_1} + nx_{\alpha_2}\right|
+\end{align*}
+However, since $\norm{x} = \sqrt{\langle x, x\rangle} = 1$, and $x = \sum_{\alpha \in I} x_\alpha e_\alpha$, then 
+\begin{align*}
+    1 = \langle x, x \rangle = \left\langle \sum_{\alpha \in I} x_\alpha e_\alpha, \sum_{\alpha \in I} x_\alpha e_\alpha \right\rangle = \sum_{\alpha \in I} |x_\alpha|^2
+\end{align*}
+Thus each $x_\alpha$ is at most $1$, and so $|x_{\alpha_1}| \leq 1$ and $|x_{\alpha_2}| \leq 1$.  Thus
+\begin{align*}
+    \norm{P_n} = \sup_{\norm{x} = 1}|x_{\alpha_1} + nx_{\alpha_2}| \leq 1 + n
+\end{align*}
+Note, however, $\norm{P_n e_{\alpha_2}} = n$, and thus $\norm{P_n} \geq n$.  In summary,
+\begin{align*}
+    n \leq \norm{P_n} \leq n + 1
+\end{align*}
+So $P_n \in \mathcal{B}(\mathcal{H})$, but as $n \rightarrow \infty$, $\norm{P_n} \rightarrow \infty$.  Thus,
+\begin{align*}
+    \sup\left\{\norm{P}\ |\ P\in\mathcal{B}(\mathcal{H}),\ P^2 = P,\ \dim\rm{ran}(P) = 1\right\} = \infty
+\end{align*}
+\hfill $\square$
+
+% For finite $\dim\mathcal{H} \geq 2$, define $P_n$ as
+% \begin{align*}
+%     P_n = \qty[\begin{array}{ccccc}
+%         1 & n & 0 & \dots & 0 \\
+%         0 & 0 & 0 & \dots & 0 \\
+%         0 & 0 & 0 & & \vdots \\
+%         \vdots & \vdots & & \ddots & \vdots \\
+%         0 & 0 & \dots & \dots & 0
+%     \end{array}]
+% \end{align*}
+% Then $P_n^2 = P_n$, and $\dim\rm{ran}(P_n) = 1$.  Also, $\norm{P_n} = 1 + n$, which is finite, and thus $P_n \in \mathcal{B}(\mathcal{H})$.  As $n \rightarrow \infty$, then $\norm{P_n} \rightarrow \infty$.  Thus for finite $\dim \mathcal{H}$,
+% \begin{align*}
+%     \sup\left\{\norm{P}\ |\ P \in \mathcal{B}(\mathcal{H}), P^2 = P, \dim\rm{ran}(P) = 1\right\} = \infty
+% \end{align*}
+% For countably infinite $\dim\mathcal{H}$, consider $\mathcal{H} = \ell_\infty(\mathbb{N})$.  Then define $P_n$ as
+% \begin{align*}
+%     P_n(x_1, x_2, x_3, \dots) = (x_1 + nx_2, 0, 0, \dots, 0, \dots)
+% \end{align*}
+% Then $P_n^2 = P_n$, and $\dim\rm{ran}(P_n) = 1$.  Also, $\norm{P_n} = 1 + n$, which is finite, and thus $P_n \in \mathcal{B}(\mathcal{H})$.  As $n\rightarrow \infty$, then $\norm{P_n} \rightarrow \infty$.  Thus for countably infinite $\dim \mathcal{H}$,
+% \begin{align*}
+%     \sup\left\{\norm{P}\ |\ P \in \mathcal{B}(\mathcal{H}), P^2 = P, \dim\rm{ran}(P) = 1\right\} = \infty
+% \end{align*}
+% For uncountably infinite $\dim\mathcal{H}$, consider $\mathcal{H} = L_\infty([0,1])$.  Then define $P_n$ as
+% \begin{align*}
+%     P_n(f) = (nf(0) + f(1))x
+% \end{align*}
+% Then
+% \begin{align*}
+%     P_n^2(f) = P_n(P_nf) = P_n((nf(0) + f(1))x) = n(0) + (nf(0) + f(1))x = P_nf
+% \end{align*}
+% for all $f \in C([0,1])$.  Also, $\dim\rm{ran}(P_n) = 1$ since all elements of $\rm{ran}(P_n)$ are of the form $f(x) = mx$, where $m$ is the only degree of freedom.  Also, for a given $n$,
+% \begin{align*}
+%     \norm{P_n} = \sup_{\norm{f} = 1}\norm{P_nf} = \sup_{\norm{f} = 1} \sup_{x\in[0,1]}\left|(nf(0) + f(1))x\right| = \sup_{\norm{f} = 1} \left|nf(0) + f(1)\right| \leq n + 1
+% \end{align*}
+% But if $f \equiv 1$, then $\norm{P_n f} = n + 1$, and thus
+% \begin{align*}
+%     \norm{P_n} = n + 1
+% \end{align*}
+% Then since $\norm{P_n}$ is finite, $P_n \in \mathcal{B}(\mathcal{H})$, and thus for uncountably infinite $\dim \mathcal{H}$,
+% \begin{align*}
+%     \sup\left\{\norm{P}\ |\ P \in \mathcal{B}(\mathcal{H}), P^2 = P, \dim\rm{ran}(P) = 1\right\} = \infty
+% \end{align*}
+
+% For all cases (finite $\dim\mathcal{H} \geq 2$, (un)countably infinite $\dim\mathcal{H}$), we find the supremum is $\infty$. \hfill $\square$
+
 % PROBLEM 7 --------------------------------------------
 \section*{Problem 7}
 \emph{Let $\{e_1, e_2, \dots\}$ be an orthonormal basis of a separable Hilbert space $\mathcal{H}$.}
@@ -199,10 +322,24 @@ Let $x \in \rm{ran}(P)$ such that $\norm{x} = 1$.  Then $Px = x$, and so $\norm{
 \subsection*{ a)}
 \emph{Let $(a_n) \in \ell^1(\mathbb{N})$.  Show that $\sum_{n=1}^\infty a_ne_n$ converges absolutely to a limit in $\mathcal{H}$.}
 
+\begin{align*}
+    \sum_{n=1}^\infty \norm{a_n e_n} = \sum_{n=1}^\infty |a_n|\norm{e_n} = \sum_{n=1}^\infty |a_n| < \infty
+\end{align*}
+since $(a_n) \in \ell^1(\mathbb{N})$.  Thus $\sum_{n=1}^\infty$ converges absolutely to a limit in $\mathcal{H}$. \hfill $\square$
+
 % PROBLEM 7B --------------------------------------------
 \subsection*{ b)}
-\emph{Let $\alpha \in (0, \infty)$ and define $a_n = n^{-\alpha}$, $n \geq 1$.  For which values of $\alpha$ does $\sum_{n=1}^\infty a_ne_n$ converge unconditionally but not absolutely?}
+\emph{Let $\alpha \in (0, \infty)$ and define $a_n = n^{-\alpha}$, $n \geq 1$.  For which values of $\alpha$ does $\sum_{n=1}^\infty a_ne_n$ converge unconditionally but not absolutely?} \medskip
 
+If $\alpha > 1$, then
+\begin{align*}
+    \sum_{n=1}^\infty \norm{a_ne_n} = \sum_{n=1}^\infty |a_n|\norm{e_n} = \sum_{n=1}^\infty |n^{-\alpha}| <\infty
+\end{align*}
+by the $p$-series test of calculus.  Now consider the norm of the proposed summation:
+\begin{align*}
+    \norm{\sum_{n=1}^\infty a_ne_n} &= \sqrt{\left\langle \sum_{n=1}^\infty a_ne_n, \sum_{n=1}^\infty a_ne_n\right\rangle} = \sqrt{\sum_{n=1}^\infty |a_n|^2 \langle e_n, e_n \rangle} = \sqrt{\sum_{n=1}^\infty n^{-2\alpha}}
+\end{align*}
+which converges if $2\alpha > 1$, i.e.~if $\alpha > \frac{1}{2}$.  Thus if $\alpha \in (\frac{1}{2}, 1]$, then $\sum_{n=1}^\infty$ converges unconditionally but not absolutely. \hfill $\square$
 
 % PROBLEM 8 --------------------------------------------
 \section*{Problem 8}
@@ -213,7 +350,15 @@ Let $x \in \rm{ran}(P)$ such that $\norm{x} = 1$.  Then $Px = x$, and so $\norm{
 
 % PROBLEM 8A --------------------------------------------
 \subsection*{ a)}
-\emph{Show that the Legendre polynomials are orthogonal in $L^2([-1,1])$, and that they are obtained by Gram-Schmidt orthogonalization of the monomials.}
+\emph{Show that the Legendre polynomials are orthogonal in $L^2([-1,1])$, and that they are obtained by Gram-Schmidt orthogonalization of the monomials.} \\
+
+Fix $n$, and pick $m < n$.  Then
+\begin{align*}
+    \langle x^m, P_n \rangle &= \int_{-1}^1 x^m P_n \dd x \\
+    &= \int_{-1}^1 x^m \frac{1}{2^n n!} \frac{\dd^n}{\dd x^n} (x^2 - 1)^n \dd x \\
+    \implies 2^n n! \langle x^m, P_n \rangle &= \int_{-1}^1 x^m\frac{\dd^n}{\dd x^n}(x^2 - 1)^n \dd x \\
+    &= (-1)^m m! \int_{-1}^1\frac{\dd^{n-m}}{\dd x^{n-m}} (x^2 - 1)^n \dd x & \text{through integration by parts $m$ times}
+\end{align*}
 
 % PROBLEM 8B --------------------------------------------
 \subsection*{ b)}
@@ -222,19 +367,54 @@ Let $x \in \rm{ran}(P)$ such that $\norm{x} = 1$.  Then $Px = x$, and so $\norm{
     \int_{-1}^1 P_n(x)^2\dd x = \frac{2}{2n + 1}
 \end{align*}
 
+\begin{align*}
+    \langle P_n, P_n\rangle^2 &= \int_{-1}^1 P_n(x)^2\dd x \\
+    &= \int_{-1}^1\qty(\frac{1}{2^n n!}\frac{\dd^n}{\dd x^n}(x^2 - 1)^n)^2 \dd x \\
+    &= \frac{1}{2^{2n}(n!)^2}\int_{-1}^1\qty(\frac{\dd^n}{\dd x^n} (x^2 - 1)^n)^2 \dd x \\
+    &= \frac{(-1)^n}{2^{2n}(n!)^2}\int_{-1}^1 (x^2 - 1)^n \frac{\dd^{2n}}{\dd x^{2n}}(x^2 - 1)^n \dd x & \text{through integration by parts $n$ times} \\
+    &= \frac{(-1)^n(2n)!}{2^{2n}(n!)^2}\int_{-1}^1(x^2 - 1)^n \dd x & \text{through integration by parts $2n$ times}
+\end{align*}
+Now just consider the integral
+\begin{align*}
+    \int_{-1}^1 (x^2 - 1)^n \dd x &= \int_{-1}^1 (x-1)^n (x+1)^n \dd x \\
+    &= \frac{(n!)^2(-1)^n}{(2n)!}\int_{-1}^1 (x + 1)^{2n} \dd x & \text{through integration by parts $n$ times} \\
+    &= \frac{(n!)^2(-1)^n}{(2n)!}\qty[\frac{(x+1)^{2n+1}}{2n+1}]_{-1}^1 \\
+    &= \frac{(n!)^2(-1)^n\ 2^{2n+1}}{(2n)! (2n+1)}
+\end{align*}
+Thus, 
+\begin{align*}
+    \langle P_n, P_n\rangle^2 &= \frac{(-1)^n(2n)!}{2^{2n}(n!)^2} \cdot \frac{(n!)^2(-1)^n\ 2^{2n+1}}{(2n)! (2n+1)} \\
+    &= \frac{2}{2n+1}
+\end{align*}
+\hfill $\square$
+
 % PROBLEM 8C --------------------------------------------
 \subsection*{ c)}
-\emph{Prove that the Legendre polynomials form an orthogonal basis of $L^2([-1,1])$.}
+\emph{Prove that the Legendre polynomials form an orthogonal basis of $L^2([-1,1])$.} \\
+
+In part \textbf{a)}, we used the Gram-Schmidt process to generate the Legendre polynomials from the basis of monomials.  The Gram-Schmidt process creates an orthogonal basis from any basis.  Thus the Legendre polynomials form an orthogonal basis of $L^2([-1,1])$. \hfill $\square$
 
 % PROBLEM 8D --------------------------------------------
 \subsection*{ d)}
 \emph{Prove that the Legendre polynomial $P_n$ is an eigenfunction of the differential operator}
 \begin{align*}
-    L = -\frac{\dd}{\dd x}(1 - x^2)\frac{\dd}{\dd x}
+    L = -\frac{\dd}{\dd x}\qty[(1 - x^2)\frac{\dd}{\dd x}]
 \end{align*}
 with eigenvalue $\lambda_n = n(n+1)$, meaning that
 \begin{align*}
     LP_n = \lambda_nP_n
 \end{align*}
+
+Let $u(x) = (x^2 - 1)^n$ and note that
+\begin{align*}
+    (x^2 - 1)Du = (x^2 - 1)n(x^2 - 1)^n\cdot 2x = 2nxu
+\end{align*}
+Apply $D^{n+1}$ to both sides, and use Liebnitz's Rule for $n$\textsuperscript{th} derivative of $fg$ to acheive
+\begin{align*}
+    \frac{(n+1)n}{2}\cdot2\cdot D^{n-1}Du + (n+1)2xD^nDu + (x^2 - 1)D^{n+1}Du &= 2n(n+1)D^nu + 2nxD^{n+1}u \\
+    \implies 2xD^{n+1}u + (x^2 - 1)D^{n+2}u &= n(n+1)D^nu \\
+    \implies LD^nu &= n(n+1)D^nu
+\end{align*}
+which shows $D^n$ is an eigenfunction of $L$ with eigenvalue $\lambda_n = n(n+1)$.  Since $2^n n!P_n = D^n$ (i.e.~$P_n$ is linearly dependent on $D^n$), then $P_n$ is an eigenfunction of $L$ with eigenvalue $\lambda_n = n(n+1)$. \hfill $\square$
 
 \end{document}
